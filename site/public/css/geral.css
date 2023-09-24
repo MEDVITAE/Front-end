@@ -1,21 +1,15 @@
-/*ROBOTO*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-/*ROWDIES*/
-@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap');
+/*Link Fontes*/
+/*ROBOTO*/ /*ROWDIES*/ /*POPPINS*/ /*MONTSERRAT*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&family=Rowdies:wght@300;400;700&display=swap');
 
-/*POPPINS*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300;400;700&family=Rowdies&display=swap');
-
-/*MONTSERRAT*/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&family=Roboto:wght@300;400;700&family=Rowdies&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none; 
-    transition: .5s;
+    transition: 0.5s;
 }
 
 a:link {
@@ -34,6 +28,10 @@ a:hover {
 a:active {
     text-decoration: none!important;
     color: inherit;
+}
+
+li{
+    list-style: none!important;
 }
 
 :root{
@@ -102,5 +100,24 @@ a:active {
     .xbold-16 {
         font-weight: var(--extrabold);
         font-size: 16px;
+    }
+
+    /*Padrão Logo*/
+    .logo{
+        width: 135px;
+        height: 21vh;
+    }
+
+    /*Padrão Botão*/
+    .btn{
+        width: 178px;
+        height: 7vh;
+        border-radius: 7px;
+        border: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
     }
 }
