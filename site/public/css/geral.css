@@ -47,17 +47,71 @@ li{
     --branco: #ffffff;
     --preto: #000000;
 
-
     /*PESO FONTES*/
-
+    
     --regular: 400;
     --medium: 500;
     --semibold: 600;
     --bold: 700;
     --extrabold: 800;
+    
+    /*COR BACKGROUND*/
 
+    .bg-azulEscuro{
+        background-color: var(--azul-escuro);
+    }
+    
+    .bg-azulClaro{
+        background-color: var(--azul-claro);
+    }
+
+    .bg-vermelhoEscuro{
+        background-color: var(--vermelho-escuro);
+    }
+
+    .bg-vermelhoClaro{
+        background-color: var(--vermelho-claro);
+    }
+
+    /*FAMILIA FONTE*/
+    .rowdies{
+        font-family: 'Rowdies';
+    }
+
+    .roboto{
+        font-family: 'Roboto';
+    }
+
+    .montserrat{
+        font-family: 'Montserrat';
+    }
+
+    .poppins{
+        font-family: 'Poppins';
+    }
 
     /*ESTILO FONTE*/
+
+    /*REGULAR*/
+    .sregular-16{
+        font-weight: var(--regular);
+        font-size: 16px;
+    }
+
+    .sregular-24{
+        font-weight: var(--regular);
+        font-size: 24px;
+    }
+
+    .sregular-30{
+        font-weight: var(--regular);
+        font-size: 30px;
+    }
+
+    .sregular-64{
+        font-weight: var(--regular);
+        font-size: 64px;
+    }
 
     /*SEMIBOLD*/
     .sbold-24 {
@@ -110,14 +164,16 @@ li{
 
     /*Padrão Botão*/
     .btn{
-        width: 178px;
-        height: 7vh;
+        width: 190px;
+        height: 6vh;
         border-radius: 7px;
         border: none;
+
+        font-family: 'Roboto';
 
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-evenly;
     }
 }
