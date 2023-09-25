@@ -1,18 +1,18 @@
 @import url(geral.css);
 
-.imgMenu{
+.imgMenu {
     width: 100%;
 
     display: flex;
     justify-content: end;
 }
 
-.imgRetangulo{
+.imgRetangulo {
     width: 53%;
     position: absolute;
 }
 
-header{
+header {
     margin-top: 2%;
     width: 100%;
     position: relative;
@@ -23,7 +23,7 @@ header{
     justify-content: space-around;
 }
 
-header .menu{
+header .menu {
     width: 65%;
 
     display: flex;
@@ -31,11 +31,11 @@ header .menu{
     justify-content: space-between;
 }
 
-header .menu a{
+header .menu a {
     color: var(--preto);
 }
 
-.slogan{
+.slogan {
     width: 100%;
     height: 70vh;
     position: relative;
@@ -46,12 +46,12 @@ header .menu a{
     align-items: center;
 }
 
-.slogan .imgPessoas{
+.slogan .imgPessoas {
     width: 57%;
     height: 68vh;
 }
 
-.slogan .textoSlogan{
+.slogan .textoSlogan {
     width: 30%;
     height: 51vh;
 
@@ -60,7 +60,7 @@ header .menu a{
     justify-content: center;
 }
 
-.doar{
+.doar {
     margin-top: 10%;
     width: 100%;
     height: 80vh;
@@ -71,7 +71,7 @@ header .menu a{
     align-items: center;
 }
 
-.doar .conteudoDoar{
+.doar .conteudoDoar {
     width: 100%;
     height: 50vh;
     padding-left: 6%;
@@ -82,24 +82,24 @@ header .menu a{
     align-items: center;
 }
 
-.doar .conteudoDoar .imgTuboEnsaio{
+.doar .conteudoDoar .imgTuboEnsaio {
     width: 60%;
     height: 60vh;
-    
+
     display: flex;
     justify-content: end;
 }
 
-.doar .conteudoDoar li{
+.doar .conteudoDoar li {
     font-family: 'Roboto';
     font-size: 24px;
     font-weight: var(--regular);
-    
+
     display: flex;
     align-items: center;
 }
 
-.funciona{
+.funciona {
     margin-top: 10%;
     width: 100%;
     height: 60vh;
@@ -110,7 +110,7 @@ header .menu a{
     align-items: center;
 }
 
-.funciona .info{
+.funciona .info {
     width: 100%;
     height: 16vh;
 
@@ -120,7 +120,7 @@ header .menu a{
     align-items: flex-end;
 }
 
-.funciona .info .imgInfo{
+.funciona .info .imgInfo {
     width: 16%;
 
     display: flex;
@@ -128,11 +128,11 @@ header .menu a{
     align-items: center;
 }
 
-.funciona .info h2{
+.funciona .info h2 {
     margin-bottom: 6%;
 }
 
-.funciona .info .infoTexto{
+.funciona .info .infoTexto {
     width: 18%;
 
     display: flex;
@@ -141,7 +141,7 @@ header .menu a{
     align-items: center;
 }
 
-.somos{
+.somos {
     margin-top: 10%;
     width: 100%;
     height: 80vh;
@@ -152,7 +152,7 @@ header .menu a{
     align-items: center;
 }
 
-.somos div{
+.somos div {
     width: 100%;
 
     display: flex;
@@ -160,7 +160,8 @@ header .menu a{
     justify-content: space-between;
 }
 
-.somos div .calendario{
+.somos div .calendario {
+    margin-left: 5%;
     width: 30%;
 
     display: flex;
@@ -168,8 +169,8 @@ header .menu a{
     align-items: center;
 }
 
-.somos div .proposta{
-    width: 60%;
+.somos div .proposta {
+    width: 65%;
     height: 50vh;
 
     display: flex;
@@ -178,13 +179,22 @@ header .menu a{
     align-items: center;
 }
 
-.somos div .proposta .propostaTexto{
-    margin: 2%;
+.somos div .proposta .propostaTexto {
     width: 80%;
     height: 50vh;
+    border-radius: 20px;
+}
+
+.somos div .proposta .propostaTexto div {
+    margin-top: 4%;
+    margin-left: 12%;
+    width: 80%;
+    height: 38vh;
 
     display: flex;
     flex-direction: column;
 }
 
-
+.somos div .proposta .propostaTexto div h2{
+    margin-bottom: 3%;
+}

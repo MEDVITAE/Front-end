@@ -54,7 +54,12 @@ li{
     --semibold: 600;
     --bold: 700;
     --extrabold: 800;
-    
+
+    /*COR FONTE*/
+    .now{
+        color: var(--vermelho-claro);
+    }
+
     /*COR BACKGROUND*/
 
     .bg-azulEscuro{
@@ -102,6 +107,11 @@ li{
         font-size: 16px;
     }
 
+    .sregular-20{
+        font-weight: var(--regular);
+        font-size: 20px;
+    }
+
     .sregular-24{
         font-weight: var(--regular);
         font-size: 24px;
@@ -129,6 +139,11 @@ li{
     }
 
     /*BOLD*/
+    .bold-30 {
+        font-weight: var(--bold);
+        font-size: 30;
+    }
+
     .bold-24 {
         font-weight: var(--bold);
         font-size: 24px;
