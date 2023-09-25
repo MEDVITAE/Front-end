@@ -73,6 +73,10 @@ li{
         background-color: var(--vermelho-claro);
     }
 
+    .bg-branco{
+        background-color: var(--branco);
+    }
+
     /*FAMILIA FONTE*/
     .rowdies{
         font-family: 'Rowdies';
