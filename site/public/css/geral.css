@@ -1,21 +1,15 @@
-/*ROBOTO*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-/*ROWDIES*/
-@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap');
+/*Link Fontes*/
+/*ROBOTO*/ /*ROWDIES*/ /*POPPINS*/ /*MONTSERRAT*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&family=Rowdies:wght@300;400;700&display=swap');
 
-/*POPPINS*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300;400;700&family=Rowdies&display=swap');
-
-/*MONTSERRAT*/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&family=Roboto:wght@300;400;700&family=Rowdies&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none; 
-    transition: .5s;
+    transition: 0.5s;
 }
 
 a:link {
@@ -36,6 +30,10 @@ a:active {
     color: inherit;
 }
 
+li{
+    list-style: none!important;
+}
+
 :root{
 
     /*CORES*/
@@ -49,17 +47,85 @@ a:active {
     --branco: #ffffff;
     --preto: #000000;
 
-
     /*PESO FONTES*/
-
+    
     --regular: 400;
     --medium: 500;
     --semibold: 600;
     --bold: 700;
     --extrabold: 800;
 
+    /*COR FONTE*/
+    .now{
+        color: var(--vermelho-claro);
+    }
+
+    /*COR BACKGROUND*/
+
+    .bg-azulEscuro{
+        background-color: var(--azul-escuro);
+    }
+    
+    .bg-azulClaro{
+        background-color: var(--azul-claro);
+    }
+
+    .bg-vermelhoEscuro{
+        background-color: var(--vermelho-escuro);
+    }
+
+    .bg-vermelhoClaro{
+        background-color: var(--vermelho-claro);
+    }
+
+    .bg-branco{
+        background-color: var(--branco);
+    }
+
+    /*FAMILIA FONTE*/
+    .rowdies{
+        font-family: 'Rowdies';
+    }
+
+    .roboto{
+        font-family: 'Roboto';
+    }
+
+    .montserrat{
+        font-family: 'Montserrat';
+    }
+
+    .poppins{
+        font-family: 'Poppins';
+    }
 
     /*ESTILO FONTE*/
+
+    /*REGULAR*/
+    .sregular-16{
+        font-weight: var(--regular);
+        font-size: 16px;
+    }
+
+    .sregular-20{
+        font-weight: var(--regular);
+        font-size: 20px;
+    }
+
+    .sregular-24{
+        font-weight: var(--regular);
+        font-size: 24px;
+    }
+
+    .sregular-30{
+        font-weight: var(--regular);
+        font-size: 30px;
+    }
+
+    .sregular-64{
+        font-weight: var(--regular);
+        font-size: 64px;
+    }
 
     /*SEMIBOLD*/
     .sbold-24 {
@@ -73,6 +139,11 @@ a:active {
     }
 
     /*BOLD*/
+    .bold-30 {
+        font-weight: var(--bold);
+        font-size: 30;
+    }
+
     .bold-24 {
         font-weight: var(--bold);
         font-size: 24px;
@@ -102,5 +173,26 @@ a:active {
     .xbold-16 {
         font-weight: var(--extrabold);
         font-size: 16px;
+    }
+
+    /*Padrão Logo*/
+    .logo{
+        width: 135px;
+        height: 21vh;
+    }
+
+    /*Padrão Botão*/
+    .btn{
+        width: 190px;
+        height: 6vh;
+        border-radius: 7px;
+        border: none;
+
+        font-family: 'Roboto';
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
     }
 }
