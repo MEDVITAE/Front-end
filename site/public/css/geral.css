@@ -195,4 +195,11 @@ li{
         align-items: center;
         justify-content: space-evenly;
     }
+
+    /*Padrão das Boxs*/
+    .box{
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+    }
 }
