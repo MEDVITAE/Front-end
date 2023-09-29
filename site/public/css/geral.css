@@ -38,6 +38,7 @@ li{
 
     /*CORES*/
 
+    --azul-real: #0D6986;
     --azul-escuro: #66A0FA;
     --azul-claro: #C1D6F6;
 
@@ -56,6 +57,10 @@ li{
     --extrabold: 800;
     
     /*COR BACKGROUND*/
+
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
 
     .bg-azulEscuro{
         background-color: var(--azul-escuro);
@@ -185,4 +190,9 @@ li{
         align-items: center;
         justify-content: space-evenly;
     }
+
+    .bgHoverVermelho:hover{
+        background-color: var(--vermelho-escuro);
+    }
+    
 }
