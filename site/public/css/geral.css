@@ -55,7 +55,12 @@ li{
     --semibold: 600;
     --bold: 700;
     --extrabold: 800;
-    
+
+    /*COR FONTE*/
+    .now{
+        color: var(--vermelho-claro);
+    }
+
     /*COR BACKGROUND*/
 
     .bg-azulReal{
@@ -139,6 +144,11 @@ li{
     }
 
     /*BOLD*/
+    .bold-30 {
+        font-weight: var(--bold);
+        font-size: 30;
+    }
+
     .bold-24 {
         font-weight: var(--bold);
         font-size: 24px;
@@ -191,8 +201,15 @@ li{
         justify-content: space-evenly;
     }
 
+
+    /*Padrão das Boxs*/
+    .box{
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+    }
+
     .bgHoverVermelho:hover{
         background-color: var(--vermelho-escuro);
     }
-    
 }
