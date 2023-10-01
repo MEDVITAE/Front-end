@@ -209,6 +209,16 @@ li {
         cursor: pointer;
     }
 
+    .btn:hover {
+        background-color: var(--vermelho-escuro);
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+    
+      .btn{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
+
 
     /*Padrão das Boxs*/
     .box {
@@ -243,3 +253,4 @@ li {
         z-index: -999, -888;
     }
 }
+
