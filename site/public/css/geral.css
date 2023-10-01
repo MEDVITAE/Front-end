@@ -10,6 +10,7 @@
     box-sizing: border-box;
     text-decoration: none; 
     transition: 0.5s;
+ 
 }
 
 a:link {
@@ -187,9 +188,8 @@ li{
         height: 6vh;
         border-radius: 7px;
         border: none;
-
+        font-weight: bold;
         font-family: 'Roboto';
-
         display: flex;
         flex-direction: row;
         align-items: center;
