@@ -85,7 +85,6 @@ header .menu a{
 .doar .conteudoDoar .imgTuboEnsaio{
     width: 60%;
     height: 60vh;
-    
     display: flex;
     justify-content: end;
 }
@@ -94,7 +93,7 @@ header .menu a{
     font-family: 'Roboto';
     font-size: 24px;
     font-weight: var(--regular);
-    
+
     display: flex;
     align-items: center;
 }
