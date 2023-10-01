@@ -40,6 +40,7 @@ li {
 
     /*CORES*/
 
+    --azul-real: #0D6986;
     --azul-escuro: #66A0FA;
     --azul-claro: #C1D6F6;
 
@@ -63,6 +64,14 @@ li {
     }
 
     /*COR BACKGROUND*/
+
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
+
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
 
     .bg-azulEscuro {
         background-color: var(--azul-escuro);
@@ -200,12 +209,19 @@ li {
         cursor: pointer;
     }
 
+
     /*Padrão das Boxs*/
     .box {
         border: #000000 solid 1px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border-radius: 5px;
     }
+
+    .bgHoverVermelho:hover{
+        background-color: var(--vermelho-escuro);
+    }
+}
+
 
     /*Padrão das dos Campos de Usuário*/
     .campoUsuario {
