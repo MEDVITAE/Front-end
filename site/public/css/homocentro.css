@@ -54,7 +54,7 @@ header {
 
 .container .formulario {
     width: 40%;
-    height: 60vh;
+    height: 65vh;
 
     display: flex;
     flex-direction: column;
@@ -78,8 +78,9 @@ header {
 }
 
 .container .imgDoe {
-    margin-top: 12%;
-    margin-right: 5%;
+    height: 70vh;
+    margin-top: 5.5%;
+    margin-right: 8%;
 }
 
 .btn {

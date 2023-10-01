@@ -1,7 +1,7 @@
 @import url(geral.css);
 
 .img {
-    width: 100%;
+    width: 120%;
     position: absolute;
     display: flex;
     justify-content: end;
@@ -32,29 +32,18 @@ header {
     font-family: 'Roboto', sans-serif;
 }
 
-.nextPage {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    margin-top: 2%;
-}
-
-.nextPage h3 {
-    font-family: 'Roboto', sans-serif;
-}
-
 .container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: relative;
 }
 
 .container .formulario {
-    width: 40%;
-    height: 60vh;
+
+    width: 50%;
+    height: 70vh;
 
     display: flex;
     flex-direction: column;
@@ -62,80 +51,87 @@ header {
     align-items: center;
 }
 
-.container .formulario input {
-    width: 60%;
+.container .formulario .input-size {
+    width: 80%;
     height: 6vh;
 
     padding-left: 20px;
     border-radius: 10px;
 
     border-color: black;
-    background-color: white;
 
     font-family: 'Roboto', sans-serif;
     margin-bottom: 10px;
-
 }
 
 .container .imgDoe {
-    margin-top: 12%;
-    margin-right: 5%;
+    height: 75vh;
+    margin-top: 3%;
+    margin-right: 8%;
 }
 
-.btn {
-    width: 20%;
-    height: 5vh;
-    border-radius: 3px;
-    margin-left: 14%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+.formulario h1 {
+    font-family: 'Rowdies', sans-serif;
+    font-size: 7vh;
+}
 
+.dados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formulario .text-title {
+    margin-bottom: 3%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+}
+
+.cadastrar {
     background-color: var(--vermelho-claro);
 }
 
 
 .inputs {
+    width: 80%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+} 
+
+.input-left {
+    display: flex;
     flex-direction: column;
-    width: 120%;
-}    
+    align-items: center;
+    width: 50%;
+}
 
 .input-size::placeholder {
     color: black;
     font-weight: bold;
 }
 
-.cadastro {
+.input-right {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    height: 80%;
-}
-
-.cadastro h1 {
-    font-family: 'Rowdies', sans-serif;
-    font-size: 7vh;
-}
-
-.cadastro .text-title{
-    font-family: 'Roboto', sans-serif;
-    font-size: 3vh;
-}
-.cadastrar {
-    display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30%;
     width: 50%;
 }
+
+.check {
+    font-family: 'Roboto', sans-serif;
+    justify-content: space-between;
+    height: 10vh;
+    width: 83%;
+    display: flex;
+}
+
+.minhaCaixaDeSelecao {
+    height: 60%;
+    margin: 0;
+}
+
+h3 {
+    margin-top: 1.5%;
+}
+
+
