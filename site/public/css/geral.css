@@ -220,8 +220,6 @@ li {
     .bgHoverVermelho:hover{
         background-color: var(--vermelho-escuro);
     }
-}
-
 
     /*Padrão das dos Campos de Usuário*/
     .campoUsuario {
