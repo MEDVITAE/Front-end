@@ -38,6 +38,7 @@ li{
 
     /*CORES*/
 
+    --azul-real: #0D6986;
     --azul-escuro: #66A0FA;
     --azul-claro: #C1D6F6;
 
@@ -54,8 +55,17 @@ li{
     --semibold: 600;
     --bold: 700;
     --extrabold: 800;
-    
+
+    /*COR FONTE*/
+    .now{
+        color: var(--vermelho-claro);
+    }
+
     /*COR BACKGROUND*/
+
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
 
     .bg-azulEscuro{
         background-color: var(--azul-escuro);
@@ -102,6 +112,11 @@ li{
         font-size: 16px;
     }
 
+    .sregular-20{
+        font-weight: var(--regular);
+        font-size: 20px;
+    }
+
     .sregular-24{
         font-weight: var(--regular);
         font-size: 24px;
@@ -129,6 +144,11 @@ li{
     }
 
     /*BOLD*/
+    .bold-30 {
+        font-weight: var(--bold);
+        font-size: 30;
+    }
+
     .bold-24 {
         font-weight: var(--bold);
         font-size: 24px;
@@ -190,4 +210,17 @@ li{
       .btn{
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
       }
+
+
+    /*Padrão das Boxs*/
+    .box{
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+    }
+
+    .bgHoverVermelho:hover{
+        background-color: var(--vermelho-escuro);
+    }
+
 }
