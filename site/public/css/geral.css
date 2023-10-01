@@ -1,6 +1,8 @@
-
 /*Link Fontes*/
-/*ROBOTO*/ /*ROWDIES*/ /*POPPINS*/ /*MONTSERRAT*/
+/*ROBOTO*/
+/*ROWDIES*/
+/*POPPINS*/
+/*MONTSERRAT*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&family=Rowdies:wght@300;400;700&display=swap');
 
 
@@ -8,33 +10,33 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; 
+    text-decoration: none;
     transition: 0.5s;
 }
 
 a:link {
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
 
 a:visited {
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
 
 a:hover {
-    text-decoration: none!important;
-    color: inherit!important;
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 a:active {
-    text-decoration: none!important;
+    text-decoration: none !important;
     color: inherit;
 }
 
-li{
-    list-style: none!important;
+li {
+    list-style: none !important;
 }
 
-:root{
+:root {
 
     /*CORES*/
 
@@ -43,12 +45,12 @@ li{
 
     --vermelho-claro: #FF6666;
     --vermelho-escuro: #DC2A2A;
-    
+
     --branco: #ffffff;
     --preto: #000000;
 
     /*PESO FONTES*/
-    
+
     --regular: 400;
     --medium: 500;
     --semibold: 600;
@@ -56,73 +58,73 @@ li{
     --extrabold: 800;
 
     /*COR FONTE*/
-    .now{
+    .now {
         color: var(--vermelho-claro);
     }
 
     /*COR BACKGROUND*/
 
-    .bg-azulEscuro{
+    .bg-azulEscuro {
         background-color: var(--azul-escuro);
     }
-    
-    .bg-azulClaro{
+
+    .bg-azulClaro {
         background-color: var(--azul-claro);
     }
 
-    .bg-vermelhoEscuro{
+    .bg-vermelhoEscuro {
         background-color: var(--vermelho-escuro);
     }
 
-    .bg-vermelhoClaro{
+    .bg-vermelhoClaro {
         background-color: var(--vermelho-claro);
     }
 
-    .bg-branco{
+    .bg-branco {
         background-color: var(--branco);
     }
 
     /*FAMILIA FONTE*/
-    .rowdies{
+    .rowdies {
         font-family: 'Rowdies';
     }
 
-    .roboto{
+    .roboto {
         font-family: 'Roboto';
     }
 
-    .montserrat{
+    .montserrat {
         font-family: 'Montserrat';
     }
 
-    .poppins{
+    .poppins {
         font-family: 'Poppins';
     }
 
     /*ESTILO FONTE*/
 
     /*REGULAR*/
-    .sregular-16{
+    .sregular-16 {
         font-weight: var(--regular);
         font-size: 16px;
     }
 
-    .sregular-20{
+    .sregular-20 {
         font-weight: var(--regular);
         font-size: 20px;
     }
 
-    .sregular-24{
+    .sregular-24 {
         font-weight: var(--regular);
         font-size: 24px;
     }
 
-    .sregular-30{
+    .sregular-30 {
         font-weight: var(--regular);
         font-size: 30px;
     }
 
-    .sregular-64{
+    .sregular-64 {
         font-weight: var(--regular);
         font-size: 64px;
     }
@@ -176,13 +178,13 @@ li{
     }
 
     /*Padrão Logo*/
-    .logo{
+    .logo {
         width: 135px;
         height: 21vh;
     }
 
     /*Padrão Botão*/
-    .btn{
+    .btn {
         width: 190px;
         height: 6vh;
         border-radius: 7px;
@@ -194,12 +196,36 @@ li{
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
+
+        cursor: pointer;
     }
 
     /*Padrão das Boxs*/
-    .box{
+    .box {
         border: #000000 solid 1px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border-radius: 5px;
+    }
+
+    /*Padrão das dos Campos de Usuário*/
+    .campoUsuario {
+        background-color: white;
+        padding: 20px;
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    /*Padrão do background e logo*/
+    .imgOndaLogo{
+        background-image: url("../assets/LogoVitai.png"), url("../assets/ONDA\ -\ CADASTRO.svg  ");
+        background-repeat: no-repeat, no-repeat;
+        background-position: right;
+        background-position-x: 85vw, 50vw;
+        background-position-y: 5vh, top;
+        background-size: 150px, contain;
+        z-index: -999, -888;
     }
 }
