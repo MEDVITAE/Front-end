@@ -1,0 +1,142 @@
+@import url(geral.css);
+
+.img {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: end;
+}
+
+body {
+    overflow: hidden;
+}
+
+header {
+    margin: 0.1%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.componente {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.componente a {
+    padding-left: 10%;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nextPage {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 2%;
+}
+
+.nextPage h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+
+.container .formulario {
+    width: 40%;
+    height: 65vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .formulario input {
+    width: 60%;
+    height: 6vh;
+
+    padding-left: 20px;
+    border-radius: 10px;
+
+    border-color: black;
+    background-color: white;
+
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+
+}
+
+.container .imgDoe {
+    height: 70vh;
+    margin-top: 5.5%;
+    margin-right: 8%;
+}
+
+.btn {
+    width: 20%;
+    height: 5vh;
+    border-radius: 3px;
+    margin-left: 14%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: var(--vermelho-claro);
+}
+
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 120%;
+}    
+
+.input-size::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+}
+
+.cadastro h1 {
+    font-family: 'Rowdies', sans-serif;
+    font-size: 7vh;
+}
+
+.cadastro .text-title{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+}
+.cadastrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 50%;
+}
