@@ -1,0 +1,115 @@
+@import url(geral.css);
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.componente {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    
+}
+
+.componente a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+}
+
+header{
+width: 100%;
+height: 20vh;
+}
+
+.nextPage {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    justify-content: space-evenly;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.container .imgDoadores{
+    height: 80vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.container .formulario {
+    width: 50%;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .formulario h1{
+    margin-bottom: 10px;
+}
+
+
+
+.container .formulario input {
+    width: 60%;
+    height: 6vh;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-top: 5%;
+    border-color: 30px solid black;
+}
+
+.btn{
+    width: 20%;
+    height: 5vh;
+
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    background-color: var(--vermelho-claro);
+}
+
+button.btn.cadastrar {
+    margin-top: 1%;
+    font-weight: bold;
+}
+
+button.btn.logar {
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.background {
+    background-color: aqua;
+    height: 100%;
+    width: 50%;
+}
