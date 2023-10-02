@@ -6,11 +6,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&family=Rowdies:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rowdies:wght@300;400;700&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
+    text-decoration: none; 
     transition: 0.5s;
 }
 
@@ -32,8 +33,8 @@ a:active {
     color: inherit;
 }
 
-li {
-    list-style: none !important;
+li{
+    list-style: none!important;
 }
 
 :root {
@@ -51,7 +52,7 @@ li {
     --preto: #000000;
 
     /*PESO FONTES*/
-
+    
     --regular: 400;
     --medium: 500;
     --semibold: 600;
@@ -59,12 +60,31 @@ li {
     --extrabold: 800;
 
     /*COR FONTE*/
-    .now {
+    .now{
         color: var(--vermelho-claro);
     }
 
     /*COR BACKGROUND*/
+    .bg-azulEscuro{
+        background-color: var(--azul-escuro);
+    }
+    
+    .bg-azulClaro{
+        background-color: var(--azul-claro);
+    }
 
+    .bg-vermelhoEscuro{
+        background-color: var(--vermelho-escuro);
+    }
+
+    .bg-vermelhoClaro{
+        background-color: var(--vermelho-claro);
+    }
+
+    .bg-branco{
+      backgorund-color: var(--branco);
+    }
+      
     .bg-azulReal{
         background-color: var(--azul-real);
     }
@@ -94,6 +114,22 @@ li {
     }
 
     /*FAMILIA FONTE*/
+    .rowdies{
+        font-family: 'Rowdies';
+    }
+
+    .roboto{
+        font-family: 'Roboto';
+    }
+
+    .montserrat{
+        font-family: 'Montserrat';
+    }
+
+    .poppins{
+      font-family: 'Poppins';
+    }
+      
     .rowdies {
         font-family: 'Rowdies';
     }
@@ -113,27 +149,28 @@ li {
     /*ESTILO FONTE*/
 
     /*REGULAR*/
-    .sregular-16 {
+      
+    .sregular-16{
         font-weight: var(--regular);
         font-size: 16px;
     }
-
-    .sregular-20 {
+      
+    .sregular-20{
         font-weight: var(--regular);
         font-size: 20px;
     }
-
-    .sregular-24 {
+      
+    .sregular-24{
         font-weight: var(--regular);
         font-size: 24px;
     }
 
-    .sregular-30 {
+    .sregular-30{
         font-weight: var(--regular);
         font-size: 30px;
     }
 
-    .sregular-64 {
+    .sregular-64{
         font-weight: var(--regular);
         font-size: 64px;
     }
@@ -187,13 +224,13 @@ li {
     }
 
     /*Padrão Logo*/
-    .logo {
+    .logo{
         width: 135px;
         height: 21vh;
     }
 
     /*Padrão Botão*/
-    .btn {
+    .btn{
         width: 190px;
         height: 6vh;
         border-radius: 7px;
