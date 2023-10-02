@@ -1,7 +1,10 @@
-
 /*Link Fontes*/
-/*ROBOTO*/ /*ROWDIES*/ /*POPPINS*/ /*MONTSERRAT*/
+/*ROBOTO*/
+/*ROWDIES*/
+/*POPPINS*/
+/*MONTSERRAT*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rowdies:wght@300;400;700&display=swap');
 
 
 * {
@@ -14,20 +17,20 @@
 }
 
 a:link {
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
 
 a:visited {
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
 
 a:hover {
-    text-decoration: none!important;
-    color: inherit!important;
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 a:active {
-    text-decoration: none!important;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -35,16 +38,17 @@ li{
     list-style: none!important;
 }
 
-:root{
+:root {
 
     /*CORES*/
 
+    --azul-real: #0D6986;
     --azul-escuro: #66A0FA;
     --azul-claro: #C1D6F6;
 
     --vermelho-claro: #FF6666;
     --vermelho-escuro: #DC2A2A;
-    
+
     --branco: #ffffff;
     --preto: #000000;
 
@@ -62,7 +66,6 @@ li{
     }
 
     /*COR BACKGROUND*/
-
     .bg-azulEscuro{
         background-color: var(--azul-escuro);
     }
@@ -80,6 +83,34 @@ li{
     }
 
     .bg-branco{
+      backgorund-color: var(--branco);
+    }
+      
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
+
+    .bg-azulReal{
+        background-color: var(--azul-real);
+    }
+
+    .bg-azulEscuro {
+        background-color: var(--azul-escuro);
+    }
+
+    .bg-azulClaro {
+        background-color: var(--azul-claro);
+    }
+
+    .bg-vermelhoEscuro {
+        background-color: var(--vermelho-escuro);
+    }
+
+    .bg-vermelhoClaro {
+        background-color: var(--vermelho-claro);
+    }
+
+    .bg-branco {
         background-color: var(--branco);
     }
 
@@ -97,22 +128,39 @@ li{
     }
 
     .poppins{
+      font-family: 'Poppins';
+    }
+      
+    .rowdies {
+        font-family: 'Rowdies';
+    }
+
+    .roboto {
+        font-family: 'Roboto';
+    }
+
+    .montserrat {
+        font-family: 'Montserrat';
+    }
+
+    .poppins {
         font-family: 'Poppins';
     }
 
     /*ESTILO FONTE*/
 
     /*REGULAR*/
+      
     .sregular-16{
         font-weight: var(--regular);
         font-size: 16px;
     }
-
+      
     .sregular-20{
         font-weight: var(--regular);
         font-size: 20px;
     }
-
+      
     .sregular-24{
         font-weight: var(--regular);
         font-size: 24px;
@@ -194,5 +242,52 @@ li{
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
+
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: var(--vermelho-escuro);
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+    
+      .btn{
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      }
+
+
+    /*Padrão das Boxs*/
+    .box {
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+    }
+
+    .bgHoverVermelho:hover{
+        background-color: var(--vermelho-escuro);
+    }
+
+    /*Padrão das dos Campos de Usuário*/
+    .campoUsuario {
+        background-color: white;
+        padding: 20px;
+        border: #000000 solid 1px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    /*Padrão do background e logo*/
+    .imgOndaLogo{
+        background-image: url("../assets/LogoVitai.png"), url("../assets/ONDA\ -\ CADASTRO.svg  ");
+        background-repeat: no-repeat, no-repeat;
+        background-position: right;
+        background-position-x: 85vw, 50vw;
+        background-position-y: 5vh, top;
+        background-size: 150px, contain;
+        z-index: -999, -888;
     }
 }
+
