@@ -9,29 +9,6 @@ body {
     /* border: solid 1px yellow; */
 }
 
-.flexContainer .menu {
-    width: 33%;
-    height: 100vh;
-    border-right-style: solid;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* border: solid 1px blue; */
-}
-
-.flexContainer .menu .menuItens {
-    width: 60%;
-    height: 55vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.flexContainer .menu .menuItens .item {
-    color: var(--preto);
-}
-
 .imgOnda {
     width: 104.8%;
     height: 100vh;

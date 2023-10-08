@@ -1,3 +1,5 @@
+import '../../../html-css-template/css/menu.css'
+
 interface IMenuPerfil{
     nome: string,
 }

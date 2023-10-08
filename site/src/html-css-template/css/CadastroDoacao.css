@@ -6,43 +6,6 @@
     display: flex;
 }
 
-.menu{
-    width: 20%;
-    height: 100vh;
-    border-right-style: solid;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.menu .rowdies {
-    margin-top: 10%;
-}
-
-.menu .menuItens{
-    width: 60%;
-    height: 50vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-}
-
-.menu .menuItens div{
-    width: 100%;
-    height: 25vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.menu .menuItens .item{
-    color: var(--preto);
-}
-
 .cadastrarDoacao {
     width: 80%;
     height: 100vh;

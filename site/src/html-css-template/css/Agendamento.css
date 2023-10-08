@@ -20,31 +20,6 @@
 	flex-direction: row;
 }
 
-.menu {
-	width: 20%;
-	height: 100vh;
-	border-right-style: solid;
-	position: relative;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-}
-
-.menu .menuItens {
-	width: 60%;
-	height: 55vh;
-
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-.menu .menuItens .item {
-	color: var(--preto);
-}
-
 .agenda {
 	width: 58%;
 	height: 100vh;

@@ -1,3 +1,7 @@
+import '../../../../html-css-template/css/telaAptidao.css'
+
+import { MenuPerfil } from "../../../shared/components";
+
 export const Quiz = () => {
     return(
         <>
@@ -8,18 +12,7 @@ export const Quiz = () => {
             <div className="imgLogo">
                 <img className="imgOndaDentro" src="../assets/LogoVitai.png" alt=""  />
             </div>
-            <div className="menu">
-                <h1 className="rowdies bold-30">Nome usuário</h1>
-                <div className="menuItens">
-                    <a href="" className="now roboto sbold-20">Perfil</a>
-                    <a href="" className="item roboto sbold-20">Ver mapa</a>
-                    <a href="" className="item roboto sbold-20">Quiz de Aptidão</a>
-                    <a href="" className="item roboto sbold-20">Histórico de Doações</a>
-                    <a href="" className="item roboto sbold-20">Agendar Doação</a>
-                    <a href="" className="item roboto sbold-20">Ranking</a>
-                </div>
-                <button className="btn bg-vermelhoClaro">Sair</button>
-            </div>
+            <MenuPerfil nome="Diego"/>
             <div className="conteudoQuiz">
                 <div className="containerAptidao">
                     <h1 className="rowdies bold-30">QUIZ DE APTIDÃO</h1>

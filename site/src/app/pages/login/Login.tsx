@@ -1,3 +1,5 @@
+import '../../../html-css-template/css/login.css'
+
 export const Login = () =>{
     return(
         <>

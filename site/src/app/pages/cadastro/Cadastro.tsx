@@ -1,3 +1,5 @@
+import '../../../html-css-template/css/Cadastro.css'
+
 export const Cadastro = () => {
     return(
         <>

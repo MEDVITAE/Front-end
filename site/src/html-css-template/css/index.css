@@ -317,8 +317,6 @@ header .menu a:hover {
     justify-content: center;
     align-items: center;
 }
-    color: var(--preto);
-}
 
 header .menu a:hover {
     border: 6px;
