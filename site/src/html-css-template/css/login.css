@@ -1,12 +1,6 @@
 @import url(geral.css);
 
-body {
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-}
-
-header {
+.header5 {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -29,7 +23,7 @@ header {
     font-size: 18px;
 }
 
-header{
+.header5{
 width: 100%;
 height: 20vh;
 }

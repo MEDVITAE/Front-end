@@ -7,8 +7,8 @@ export const Cadastro = () => {
         <img src="../assets/ONDA - CADASTRO.svg" alt=""  />
     </div>
   
-    <header>
-        <div className="componente">
+    <header className='header1'>
+        <div className="componente1">
             <img src="../assets/LogoVitai.png" alt="Vitae"  />
             <a href="">Home</a>
         </div>
@@ -26,8 +26,8 @@ export const Cadastro = () => {
         </div>
     </header>
 
-    <div className="container">
-        <div className="formulario">
+    <div className="container1">
+        <div className="formulario1">
             <div className="cadastro" >
                 <h1>Cadastre-se</h1>
                     <h1 className="text-title">Bem vindo!!</h1>

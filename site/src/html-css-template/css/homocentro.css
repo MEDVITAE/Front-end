@@ -7,11 +7,7 @@
     justify-content: end;
 }
 
-body {
-    overflow: hidden;
-}
-
-header {
+.header4 {
     margin: 0.1%;
     width: 100%;
     display: flex;
@@ -87,7 +83,6 @@ header {
     width: 20%;
     height: 5vh;
     border-radius: 3px;
-    margin-left: 14%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

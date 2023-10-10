@@ -12,7 +12,7 @@
     position: absolute;
 }
 
-header {
+.header2 {
     margin-top: 2%;
     width: 100%;
     position: relative;
@@ -23,7 +23,7 @@ header {
     justify-content: space-around;
 }
 
-header .menu {
+.header2 .menuPagina {
     width: 65%;
 
     display: flex;
@@ -31,12 +31,12 @@ header .menu {
     justify-content: space-between;
 }
 
-header .menu a {
+.header2 .menuPagina a {
     height: 5vh;
     color: var(--preto);
 }
 
-header .menu a:hover {
+.header2 .menuPagina a:hover {
     border: 6px;
     border-bottom-style: solid;
     border-color: var(--vermelho-claro);
@@ -135,6 +135,10 @@ header .menu a:hover {
     align-items: center;
 }
 
+.funciona .info .imgInfo img{
+    width: 40%;
+}
+
 .funciona .info h2 {
     margin-bottom: 6%;
 }
@@ -175,279 +179,8 @@ header .menu a:hover {
     align-items: center;
 }
 
-.somos div .proposta {
-    width: 60%;
-    height: 50vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.somos div .proposta .propostaTexto {
-    width: 75%;
-    height: 50vh;
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.somos div .proposta .propostaTexto .proText{
-    margin-top: 5%;
-    margin-left: 5%;
-    width: 100%;
-    height: 40vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.somos div .proposta .propostaTexto .proText h2{
-    margin-bottom: 4%;
-}
-
-
-.perguntas {
-    margin-top: 10%;
-    width: 100%;
-    height: 80vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.perguntas h1{
-    margin-bottom: 3%;
-}
-
-.perguntas .infoPerguntas {
-    width: 60%;
-    height: 21vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.perguntas .infoPerguntas .question {
-    width: 100%;
-    height: 9vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.perguntas .infoPerguntas .question p {
-    margin-left: 2%;
-}
-
-.perguntas .infoPerguntas .answer{
-    width: 100%;
-    height: 18vh;
-
-    display: none;
-}
-
-.perguntas .infoPerguntas:hover .answer{
-    border: 3px;
-    border-style: solid;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.perguntas .infoPerguntas .answer p {
-    margin-left: 3%;
-}
-
-.facaParte {
-    margin-top: 10%;
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.facaParte .saibaMais {
-    width: 40%;
-
-    display: flex;
-    justify-content: center;
-}
-
-.facaParte .saibaMais .btn2{
-    width: 20%;
-    border: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.facaParte .saibaMais .ipt {
-    width: 50%;
-    height: 5vh;
-
-    border: none;
-    padding-left: 20px;
-}
-
-.facaParte .saibaMais .ipt::placeholder {
-    color: var(--preto);
-}
-
-.footer{
-    margin-top: 10%;
-    width: 100%;
-    height: 50vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-header .menu a:hover {
-    border: 6px;
-    border-bottom-style: solid;
-    border-color: var(--vermelho-claro);
-}
-
-.slogan {
-    width: 100%;
-    height: 70vh;
-    position: relative;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.slogan .imgPessoas {
-    width: 57%;
-    height: 68vh;
-}
-
-.slogan .textoSlogan {
-    width: 30%;
-    height: 54vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.doar {
-    margin-top: 10%;
-    width: 100%;
-    height: 80vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.doar .conteudoDoar {
-    width: 100%;
-    height: 50vh;
-    padding-left: 6%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.doar .conteudoDoar .imgTuboEnsaio {
-    width: 60%;
-    height: 60vh;
-
-    display: flex;
-    justify-content: end;
-}
-
-.doar .conteudoDoar li {
-    font-family: 'Roboto';
-    font-size: 24px;
-    font-weight: var(--regular);
-    display: flex;
-    align-items: center;
-}
-
-.funciona {
-    margin-top: 10%;
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.funciona .info {
-    width: 100%;
-    height: 16vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-end;
-}
-
-.funciona .info .imgInfo {
-    width: 16%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.funciona .info h2 {
-    margin-bottom: 6%;
-}
-
-.funciona .info .infoTexto {
-    width: 18%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.somos {
-    margin-top: 10%;
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.somos div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.somos div .calendario {
-    width: 40%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.somos div .calendario img{
+    width: 45%;
 }
 
 .somos div .proposta {

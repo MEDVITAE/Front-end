@@ -9,9 +9,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; 
+    text-decoration: none;
     transition: 0.5s;
- 
+
 }
 
 a:link {
@@ -32,8 +32,8 @@ a:active {
     color: inherit;
 }
 
-li{
-    list-style: none!important;
+li {
+    list-style: none !important;
 }
 
 :root {
@@ -51,7 +51,7 @@ li{
     --preto: #000000;
 
     /*PESO FONTES*/
-    
+
     --regular: 400;
     --medium: 500;
     --semibold: 600;
@@ -59,77 +59,77 @@ li{
     --extrabold: 800;
 
     /*COR FONTE*/
-    .now{
+    .now {
         color: var(--vermelho-claro);
     }
 
     /*COR BACKGROUND*/
-    .bg-azulEscuro{
+    .bg-azulEscuro {
         background-color: var(--azul-escuro);
     }
-    
-    .bg-azulClaro{
+
+    .bg-azulClaro {
         background-color: var(--azul-claro);
     }
 
-    .bg-vermelhoEscuro{
+    .bg-vermelhoEscuro {
         background-color: var(--vermelho-escuro);
     }
 
-    .bg-vermelhoClaro{
+    .bg-vermelhoClaro {
         background-color: var(--vermelho-claro);
     }
 
-    .bg-branco{
-      backgorund-color: var(--branco);
+    .bg-branco {
+        background-color: var(--branco);
     }
-      
-    .bg-azulReal{
+
+    .bg-azulReal {
         background-color: var(--azul-real);
     }
 
     /*FAMILIA FONTE*/
-    .rowdies{
+    .rowdies {
         font-family: 'Rowdies';
     }
 
-    .roboto{
+    .roboto {
         font-family: 'Roboto';
     }
 
-    .montserrat{
+    .montserrat {
         font-family: 'Montserrat';
     }
 
-    .poppins{
-      font-family: 'Poppins';
+    .poppins {
+        font-family: 'Poppins';
     }
 
     /*ESTILO FONTE*/
 
     /*REGULAR*/
-      
-    .regular-16{
+
+    .regular-16 {
         font-weight: var(--regular);
         font-size: 16px;
     }
-      
-    .regular-20{
+
+    .regular-20 {
         font-weight: var(--regular);
         font-size: 20px;
     }
-      
-    .regular-24{
+
+    .regular-24 {
         font-weight: var(--regular);
         font-size: 24px;
     }
 
-    .regular-30{
+    .regular-30 {
         font-weight: var(--regular);
         font-size: 30px;
     }
 
-    .regular-64{
+    .regular-64 {
         font-weight: var(--regular);
         font-size: 64px;
     }
@@ -183,13 +183,13 @@ li{
     }
 
     /*Padrão Logo*/
-    .logo{
+    .logo {
         width: 135px;
         height: 21vh;
     }
 
     /*Padrão Botão*/
-    .btn{
+    .btn {
         width: 190px;
         height: 6vh;
         border-radius: 7px;
@@ -208,11 +208,11 @@ li{
         background-color: var(--vermelho-escuro);
         transition-duration: 0.4s;
         cursor: pointer;
-      }
-    
-      .btn{
+    }
+
+    .btn {
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-      }
+    }
 
 
     /*Padrão das Boxs*/
@@ -233,15 +233,27 @@ li{
         align-items: center;
     }
 
-    /*Padrão do background e logo*/
-    .imgOndaLogo{
-        background-image: url("../assets/LogoVitai.png"), url("../assets/ONDA\ -\ CADASTRO.svg  ");
-        background-repeat: no-repeat, no-repeat;
-        background-position: right;
-        background-position-x: 85vw, 50vw;
-        background-position-y: 5vh, top;
-        background-size: 150px, contain;
-        z-index: -999, -888;
+    /*Padrão do background e logo em PERFIL*/
+    .bg-imgOndaLogo {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        position: absolute;
+        justify-content: end;
     }
-}
+    
+    .imgRetangulo {
+        width: 20%;
+        height: 100vh;
+    
+    }
 
+    .logoPerfil {
+        margin-top: 2%;
+        margin-right: 4%;
+        width: 135px;
+        height: 21vh;
+        position: relative;
+    }
+    
+}

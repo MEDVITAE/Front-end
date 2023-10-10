@@ -1,9 +1,5 @@
 @import url(geral.css);
 
-body {
-    overflow: hidden;
-}
-
 .flexContainer {
     display: flex;
     /* border: solid 1px yellow; */

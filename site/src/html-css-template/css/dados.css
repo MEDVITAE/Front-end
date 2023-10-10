@@ -7,11 +7,7 @@
     justify-content: end;
 }
 
-body {
-    overflow: hidden;
-}
-
-header {
+.header3 {
     margin: 0.1%;
     width: 100%;
     display: flex;
@@ -19,20 +15,20 @@ header {
     position: relative;
 }
 
-.componente {
+.componente2 {
     width: 50%;
     display: flex;
     align-items: center;
 }
 
-.componente a {
+.componente2 a {
     padding-left: 10%;
     list-style: none;
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
 }
 
-.container {
+.container2 {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -40,7 +36,7 @@ header {
     position: relative;
 }
 
-.container .formulario {
+.container2 .formulario2 {
 
     width: 50%;
     height: 70vh;
@@ -51,7 +47,7 @@ header {
     align-items: center;
 }
 
-.container .formulario .input-size {
+.container2 .formulario2 .input-size {
     width: 80%;
     height: 6vh;
 
@@ -64,13 +60,13 @@ header {
     margin-bottom: 10px;
 }
 
-.container .imgDoe {
+.container2 .imgDoe {
     height: 75vh;
     margin-top: 3%;
     margin-right: 8%;
 }
 
-.formulario h1 {
+.formulario2 h1 {
     font-family: 'Rowdies', sans-serif;
     font-size: 7vh;
 }
@@ -82,7 +78,7 @@ header {
     flex-direction: column;
 }
 
-.formulario .text-title {
+.formulario2 .text-title {
     margin-bottom: 3%;
     font-family: 'Roboto', sans-serif;
     font-size: 3vh;

@@ -1,11 +1,5 @@
 @import url(geral.css);
 
-body {
-    display: flex;
-    overflow:hidden ; 
-
-}
-
 .conteudo {
     width: 80%;
     height: 100vh;

@@ -6,7 +6,7 @@ export const CadastroDados = () => {
             <div className="img">
                 <img src="../assets/ONDA - CADASTRO.svg" alt="" />
             </div>
-            <header>
+            <header className='header3'>
                 <div className="componente">
                     <img src="../assets/LogoVitai.png" alt="Vitae" />
                 </div>
