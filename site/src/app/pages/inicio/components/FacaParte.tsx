@@ -1,15 +1,24 @@
-import Imagem  from '../../../../html-css-template/assets/LogoVitai.png';
+import { useNavigate } from "react-router-dom";
+import { vetorImg } from "../../../shared/components/imagens";
+import { vetorIcon } from "../../../shared/components/imagens";
 
 export const FacaParte = () => {
+
+    const navegando = useNavigate();
+
+    const navegarClick = () => {
+        navegando("/cadastro-usuario");
+    }
+
     return(
         <>
          <div className="facaParte">
                 <h1 className="rowdies">Faça parte e salve vidas</h1>
-                <button className="btn bg-vermelhoClaro roboto regular-16">
+                <button onClick={navegarClick} className="btn bg-vermelhoClaro roboto regular-16">
                     Quero ser Doador
-                    <img src="../assets/BackArrow.png" alt="" />
+                    <img src={vetorIcon[0]} alt="" />
                 </button>
-                <img src="../assets/WorldBloodDonorDayPNG.png" alt="" />
+                <img src={vetorImg[14]} alt="" />
                 <h2 className="roboto">Saiba mais Sobre </h2>
                 <p className="poppins">Envie seu E-mail para saber tudo sobre a doação</p>
                 <div className="saibaMais">

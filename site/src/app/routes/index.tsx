@@ -21,7 +21,7 @@ export const Routes = () => {
                 <Route path="/pagina-inicial" element={<PaginaInicial />} />
                 <Route path="/pagina-inicial/saiba-mais" element={<SaibaMais />} />
                 <Route path="/cadastro-usuario" element={<Cadastro />} />
-                <Route path="/cadastro-usuario" element={<CadastroDados />} />
+                <Route path="/cadastro-usuario/complementar" element={<CadastroDados />} />
                 <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/perfil-usuario" element={<Perfil />} />
@@ -35,6 +35,7 @@ export const Routes = () => {
                 <Route path="/perfil-funcionario/cadastro-funcionario" element={<CadastroFuncionario />} />
                 <Route path="/perfil-usuario/" element={<Perfil />} />
                 <Route path="/perfil-usuario/" element={<Perfil />} />
+                
                 <Route path="*" element={<Navigate to={"/pagina-inicial"} />} />
             </Switch>
         </BrowserRouter>

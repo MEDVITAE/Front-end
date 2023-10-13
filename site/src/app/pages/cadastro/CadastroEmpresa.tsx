@@ -3,7 +3,7 @@ import '../../../html-css-template/css/homocentro.css'
 export const CadastroEmpresa = () => {
     return (
         <>
-            <div className="img">
+            <div className="img2">
                 <img src="../assets/ONDA - CADASTRO.svg" alt="" />
             </div>
             <header className='header4'>
@@ -12,7 +12,7 @@ export const CadastroEmpresa = () => {
                     <a href="">Home</a>
                 </div>
 
-                <div className="nextPage">
+                <div className="nextPage3">
                     <div>
                         <h3>Já tem conta ?</h3>
                         <h3>Então vamos logar!</h3>

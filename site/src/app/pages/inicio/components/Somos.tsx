@@ -1,4 +1,4 @@
-import  Imagem  from '../../../../html-css-template/assets/calendario.svg';
+import { vetorImg } from "../../../shared/components/imagens";
 
 export const Somos = () => {
     return(
@@ -7,7 +7,7 @@ export const Somos = () => {
                 <h1 className="rowdies">QUEM SOMOS</h1>
                 <div>
                     <div className="calendario">
-                        <img src={Imagem} alt="" />
+                        <img src={vetorImg[0]} alt="" />
                         <h2 className="rowdies">AGENDAMENTO</h2>
                     </div>
                     <div className="proposta ">

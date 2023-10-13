@@ -7,8 +7,18 @@
     justify-content: end;
 }
 
+.img .onda1{
+    width: 60%;
+}
+
+.imgDoe{
+    margin-top: 15%;
+    margin-right: 5%;
+    width: 40%;
+    position: absolute;
+}
+
 .header1 {
-    margin: 0.1%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -16,20 +26,18 @@
 }
 
 .componente1 {
-    width: 50%;
+    width: 30%;
     display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 
-.componente1 a {
-    padding-left: 10%;
-    list-style: none;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+.componente1 a{
+    color: var(--preto);
 }
 
 .nextPage {
-    width: 45%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     align-items: end;

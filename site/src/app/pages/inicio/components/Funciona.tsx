@@ -1,7 +1,4 @@
-import  Icon1  from '../../../../html-css-template/assets/🦆 icon _Clipboard List_.svg';
-import  Icon2  from '../../../../html-css-template/assets/🦆 icon _Calendar Check_.svg';
-import  Icon3  from '../../../../html-css-template/assets/🦆 icon _Envelope Open-text_.svg';
-import  Icon4  from '../../../../html-css-template/assets/🦆 icon _Heartbeat_.svg';
+import { vetorIcon } from "../../../shared/components/imagens";
 
 export const Funciona = () => {
     return(
@@ -11,16 +8,16 @@ export const Funciona = () => {
                 <h2 className="roboto regular-24">Novo Doador</h2>
                 <div className="info">
                     <div className="imgInfo">
-                        <img src={Icon1} alt="" />
+                        <img src={vetorIcon[3]} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={Icon2} alt="" />
+                        <img src={vetorIcon[2]} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={Icon3} alt="" />
+                        <img src={vetorIcon[4]} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={Icon4} alt="" />
+                        <img src={vetorIcon[5]} alt="" />
                     </div>
                 </div>
                 <div className="info">

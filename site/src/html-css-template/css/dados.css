@@ -1,44 +1,48 @@
 @import url(geral.css);
 
-.img {
-    width: 120%;
+.img3 {
+    width: 100%;
     position: absolute;
     display: flex;
     justify-content: end;
 }
 
+.img3 .onda3{
+    width: 55.5%;
+}
+
+.img3 .imgDoe3{
+    margin-top: 5%;
+    margin-right: 5%;
+    width: 35%;
+    position: absolute;
+}
+
 .header3 {
-    margin: 0.1%;
     width: 100%;
     display: flex;
     flex-direction: row;
     position: relative;
 }
 
-.componente2 {
-    width: 50%;
+.header3 .componente2 {
+    margin-top: 0.6%;
+    width: 18.2%;
     display: flex;
+    justify-content: center;
     align-items: center;
-}
-
-.componente2 a {
-    padding-left: 10%;
-    list-style: none;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
 }
 
 .container2 {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     position: relative;
 }
 
 .container2 .formulario2 {
 
-    width: 50%;
+    width: 60%;
     height: 70vh;
 
     display: flex;
@@ -58,12 +62,6 @@
 
     font-family: 'Roboto', sans-serif;
     margin-bottom: 10px;
-}
-
-.container2 .imgDoe {
-    height: 75vh;
-    margin-top: 3%;
-    margin-right: 8%;
 }
 
 .formulario2 h1 {
@@ -89,7 +87,7 @@
 }
 
 
-.inputs {
+.inputsDados {
     width: 80%;
     display: flex;
 } 
@@ -117,7 +115,7 @@
     font-family: 'Roboto', sans-serif;
     justify-content: space-between;
     height: 10vh;
-    width: 83%;
+    width: 63%;
     display: flex;
 }
 

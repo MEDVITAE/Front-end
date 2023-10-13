@@ -1,24 +1,34 @@
+import { useNavigate } from 'react-router-dom';
 import '../../../html-css-template/css/dados.css'
+import { vetorImg } from '../../shared/components/imagens';
+import { vetorIcon } from '../../shared/components/imagens';
 
 export const CadastroDados = () => {
+    const navegando = useNavigate();
+
+    const navegarClick = () => {
+        navegando("/login");
+    }
+    
     return (
         <>
-            <div className="img">
-                <img src="../assets/ONDA - CADASTRO.svg" alt="" />
+            <div className="img3">
+                <img className="onda3" src={vetorImg[10]} alt="" />
+                <img className="imgDoe3" src={vetorImg[13]} alt="" />
             </div>
             <header className='header3'>
-                <div className="componente">
-                    <img src="../assets/LogoVitai.png" alt="Vitae" />
+                <div className="componente2">
+                    <img src={vetorImg[3]} alt="Vitae" />
                 </div>
             </header>
 
-            <div className="container">
-                <div className="formulario">
+            <div className="container2">
+                <div className="formulario2">
                     <div className="dados">
                         <h1>Dados do usuarío</h1>
                         <h1 className="text-title">Cadastre os demais dados pessoais</h1>
                     </div>
-                    <div className="inputs">
+                    <div className="inputsDados">
                         <div className="input-right">
                             <input className="input-size" type="text" placeholder="Nome completo" />
                             <input className="input-size" type="text" placeholder="CPF" />
@@ -37,16 +47,11 @@ export const CadastroDados = () => {
                             value="valorDaCaixaDeSelecao" />
                         <h3>Desejo ser informado de campanhas e doações de emergencia ?</h3>
                     </div>
-                    <button className="btn cadastrar bold-20">
+                    <button onClick={navegarClick} className="btn cadastrar bold-20">
                         Finalizar
-                        <img src="../assets/BackArrow.png" alt="" />
+                        <img src={vetorIcon[0]} alt="" />
                     </button>
                 </div>
-
-
-                <img className="imgDoe" src="../assets/World Blood Donor Day PNG 7.png" alt="" />
-
-
             </div>
         </>
     );

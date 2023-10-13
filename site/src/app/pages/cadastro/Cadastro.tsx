@@ -1,16 +1,32 @@
+import { useNavigate } from 'react-router-dom';
+import { vetorImg } from '../../shared/components/imagens';
+import { vetorIcon } from '../../shared/components/imagens';
+
 import '../../../html-css-template/css/Cadastro.css'
+import '../../../html-css-template/css/geral.css'
 
 export const Cadastro = () => {
+    const navegando = useNavigate();
+
+    const navegarClick = () => {
+        navegando("/cadastro-usuario/complementar");
+    }
+
+    const navegarClick2 = () => {
+        navegando("/login");
+    }
+
     return(
         <>
          <div className="img">
-        <img src="../assets/ONDA - CADASTRO.svg" alt=""  />
+        <img className="onda1" src={vetorImg[4]} alt=""  />
+        <img className="imgDoe" src={vetorImg[12]} alt=""  />
     </div>
   
     <header className='header1'>
         <div className="componente1">
-            <img src="../assets/LogoVitai.png" alt="Vitae"  />
-            <a href="">Home</a>
+            <img src={vetorImg[3]} alt="Vitae"  />
+            <a className='roboto bold-20' href="/pagina-inicial">Home</a>
         </div>
 
         <div className="nextPage">
@@ -19,9 +35,9 @@ export const Cadastro = () => {
                 <h3>Então vamos logar!</h3>
             </div>
 
-            <button className="btn logar bold-20" >
+            <button onClick={navegarClick2} className="btn logar bold-20" >
                 Logar
-                <img src="../assets/BackArrow.png" alt="" />
+                <img src={vetorIcon[0]} alt="" />
             </button>
         </div>
     </header>
@@ -39,16 +55,12 @@ export const Cadastro = () => {
                 <input className="input-size" type="text" placeholder="Confirmar senha" />
             </div>
             <div className="button">
-                <button className="btn cadastrar bold-20" >
+                <button onClick={navegarClick} className="btn cadastrar bold-20" >
                     Cadastrar
-                    <img src="../assets/BackArrow.png" alt="" />
+                    <img src={vetorIcon[0]} alt="" />
                 </button>
             </div>
         </div>
-
-
-        <img className="imgDoe" src="../assets/WorldBloodDonorDay.png" alt=""  />
-
 
     </div>
         </>

@@ -22,6 +22,7 @@ import imagem6 from '../../../html-css-template/assets/ONDA - MAPA 2.svg';
 import imagem7 from '../../../html-css-template/assets/ONDA - PROXIMA DOAÇÃO.svg';
 import imagem8 from '../../../html-css-template/assets/pessoas.png';
 import imagem9 from '../../../html-css-template/assets/Rectangle.svg';
+import imagem00 from '../../../html-css-template/assets/ONDA - CADASTRO2.svg';
 import imagem01 from '../../../html-css-template/assets/TuboEnsaio.png';
 import imagem02 from '../../../html-css-template/assets/WorldBloodDonorDay.png';
 import imagem03 from '../../../html-css-template/assets/World Blood Donor Day PNG 7.png';
@@ -54,6 +55,7 @@ export const vetorImg = [
     imagem7,
     imagem8,
     imagem9,
+    imagem00,
     imagem01,
     imagem02,
     imagem03,

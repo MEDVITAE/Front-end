@@ -7,7 +7,7 @@
     justify-content: end;
 }
 
-.imgRetangulo {
+.imgOndaHeader {
     width: 53%;
     position: absolute;
 }
@@ -67,7 +67,7 @@
     justify-content: space-evenly;
 }
 
-.doar {
+.comoDoar {
     margin-top: 10%;
     width: 100%;
     height: 80vh;
@@ -78,7 +78,7 @@
     align-items: center;
 }
 
-.doar .conteudoDoar {
+.comoDoar .conteudoDoar {
     width: 100%;
     height: 50vh;
     padding-left: 6%;
@@ -89,7 +89,7 @@
     align-items: center;
 }
 
-.doar .conteudoDoar .imgTuboEnsaio {
+.comoDoar .conteudoDoar .imgTuboEnsaio {
     width: 60%;
     height: 60vh;
 
@@ -97,7 +97,7 @@
     justify-content: end;
 }
 
-.doar .conteudoDoar li {
+.comoDoar .conteudoDoar li {
     font-family: 'Roboto';
     font-size: 24px;
     font-weight: var(--regular);
@@ -279,7 +279,7 @@
 .facaParte {
     margin-top: 10%;
     width: 100%;
-    height: 100vh;
+    height: 120vh;
 
     display: flex;
     flex-direction: column;
