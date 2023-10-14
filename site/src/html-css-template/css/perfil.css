@@ -1,11 +1,19 @@
-main {
+.mainPerfil {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: row;
+    align-items: top;
+    position: relative;
+}
+
+.divPerfil {
+    height: 100vh;
+    width: 75%;
+    display: flex;
     flex-direction: column;
     align-items: top;
-    padding: 65px;
-    margin-left: 100px;
+    margin-left: 5%;
 }
 
 
@@ -27,7 +35,6 @@ main {
     display: flex;
     justify-content: flex-start;
     align-items: top;
-    margin: 10px;
 }
 
 .statusBoxItem {
@@ -45,7 +52,7 @@ main {
     width: 24%;
     align-items: start;
     justify-content: start;
-    margin: 10px 20px;
+    margin: 00px 20px;
 }
 
 
@@ -77,7 +84,7 @@ main {
 }
 
 
-#picture__input {
+#picture__inputPerfil {
     display: none;
 }
 
@@ -109,6 +116,6 @@ main {
     background: #eee;
 }
 
-.picture__img {
+.picture__image {
     max-width: 100%;
 }

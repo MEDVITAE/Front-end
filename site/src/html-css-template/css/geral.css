@@ -58,11 +58,6 @@ li {
     --bold: 700;
     --extrabold: 800;
 
-    /*COR FONTE*/
-    .now {
-        color: var(--vermelho-claro);
-    }
-
     /*COR BACKGROUND*/
     .bg-azulEscuro {
         background-color: var(--azul-escuro);
@@ -253,7 +248,7 @@ li {
         margin-right: 4%;
         width: 135px;
         height: 21vh;
-        position: relative;
+        position: absolute;
     }
     
 }

@@ -1,21 +1,16 @@
 import '../../../../html-css-template/css/telaDetalheHospital.css'
 
-import { MenuPerfil } from "../../../shared/components";
+import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
 
 
 export const HospitalDetalhes = () => {
     return (
         <>
+        <OndaLateralEsquerda />
             <div className="flexContainer">
-                <div className="imgOnda">
-                    <img className="imgOndaDentro" src="../assets/ONDA - PROXIMA DOAÇÃO.svg" alt="" />
-                </div>
-                <div className="imgLogo">
-                    <img className="imgOndaDentro" src="../assets/LogoVitai.png" alt="" />
-                </div>
                 <MenuPerfil nome="Diego" />
-                <div className="conteudoQuiz">
-                    <div className="containerAptidao">
+                <div className="conteudoHospital">
+                    <div className="containerHospital">
                         <h1 className="rowdies bold-30" >VER MAPA</h1>
                     </div>
                     <div className="primeiroQuadro">

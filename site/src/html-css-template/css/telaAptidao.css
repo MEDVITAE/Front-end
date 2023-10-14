@@ -1,77 +1,49 @@
 @import url(geral.css);
 
 .flexContainer {
-    display: flex;
+    width: 100%;
+    position: relative;
     /* border: solid 1px yellow; */
 }
 
-.imgOnda {
-    width: 104.8%;
-    height: 100vh;
-    display: flex;
-    justify-content: end;
-    position: absolute;
-    /* border: solid 1px black; */
-    z-index: -999;
-}
-
-.imgOnda .imgOndaDentro {
-    height: 105vh;
-    /* border: solid 1px black; */
-}
-
-.flexContainer .imgTuboEnsaio {
-    width: 50%;
-    height: 90vh;
-    display: flex;
+.flexContainer .divImgAptidao {
+    width: 20%;
+    margin-top: 14%;
     position: relative;
-    justify-content: end;
     /* border: solid 1px  yellow; */
 }
 
-.flexContainer .imgTubo {
-    height: 65vh;
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    margin-top: 24%;
-    /* border: solid 1px red; */
-}
-
-.flexContainer .imgLogo {
-    font-family: 'Roboto';
-    font-weight: bold;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-around;
-    position: absolute;
-    right: 0;
-    margin-right: 2.5%;
-    padding: 10px;
-    margin-bottom: 50%;
+.flexContainer .divImgAptidao .imgTuboAptidao {
+    width: 100%;
     /* border: solid 1px red; */
 }
 
 .flexContainer .conteudoQuiz {
-    width: 80%;
+    width: 60%;
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
     flex-direction: column;
+}
+
+.flexContainer .conteudoQuiz .containerAptidao {
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.flexContainer .conteudoQuiz .primeiroQuiz {
+    width: 80%;
+    height: 40vh;
     /* border: solid 1px red; */
 }
 
-.conteudoQuiz .containerAptidao {
-    position: absolute;
-    top: 0;
-    margin-right: 30%;
-    margin-top: 3.5%;
-    font-size: 10px;
+.flexContainer .conteudoQuiz .primeiroQuiz h3 {
+    height: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* border: solid 1px blue; */
 }
 
-.conteudoQuiz .quizUm {
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm {
     width: 110%;
     height: 39vh;
     border-radius: 5px;
@@ -80,28 +52,16 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: solid 1px black;
 }
-
-.opitionUm {
-    font-family: "rowdies";
-    font-size: 18px;
-    border-radius: 5px;
-    width: 85%;
-    height: 20%;
-    border: solid 1px black;
-    font-weight: bold;
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 69.9%;
+    margin-left: 3%;
+    /* border: solid 1px black; */
 }
 
-.opitionDois {
-    font-family: "rowdies";
-    font-size: 18px;
-    border-radius: 5px;
-    width: 85%;
-    height: 20%;
-    border: solid 1px black;
-    font-weight: bold;
-}
-
-input {
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz  .inputQuiz {
     text-align: left;
     width: 24%;
     height: 20%;
@@ -115,30 +75,22 @@ input {
     color: black;
 }
 
-.quizUm .inputsQuiz {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 69.9%;
-    margin-left: 3%;
-    /* border: solid 1px black; */
-}
-
-.flexContainer .primeiroQuadro {
+.flexContainer .conteudoQuiz .segundoQuiz {
     width: 80%;
     height: 39vh;
     /* border: solid 1px red; */
 }
 
-.primeiroQuadro h3 {
+.flexContainer .conteudoQuiz .segundoQuiz h3 {
     height: 23%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 3%;
     /* border: solid 1px blue; */
 }
 
-.conteudoQuiz .quizDois {
+.flexContainer .conteudoQuiz .segundoQuiz .quizDois {
     width: 110%;
     height: 39vh;
     border-radius: 5px;
@@ -148,7 +100,7 @@ input {
     border: solid 1px black;
 }
 
-.quizDois .comboBox {
+.flexContainer .conteudoQuiz .segundoQuiz .quizDois .comboBox {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -157,19 +109,14 @@ input {
     /* border: solid 1px black; */
 }
 
-.flexContainer .segundoQuadro {
-    width: 80%;
-    height: 39vh;
-    /* border: solid 1px red; */
-}
-
-.segundoQuadro h3 {
-    height: 23%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 3%;
-    /* border: solid 1px blue; */
+.quizOpition {
+    font-family: "rowdies";
+    font-size: 18px;
+    border-radius: 5px;
+    width: 85%;
+    height: 20%;
+    border: solid 1px black;
+    font-weight: bold;
 }
 
 .btn:hover {

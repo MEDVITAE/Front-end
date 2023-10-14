@@ -19,8 +19,8 @@ export const Header = () => {
                     <a className="bold-20" href="">Perguntas Frequentes</a>
                     <a className="bold-20" href="">Contato</a>
                     <li className="bold-20">|</li>
-                    <a className="bold-20" href="">Login</a>
-                    <a className="bold-20" href="">Cadastre-se</a>
+                    <a className="bold-20" href="/login">Login</a>
+                    <a className="bold-20" href="/cadastro-usuario">Cadastre-se</a>
                 </div>
 
                 <div className="altCor">
