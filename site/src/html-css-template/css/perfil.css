@@ -101,7 +101,7 @@
     font-family: sans-serif;
     outline: none;
     overflow: hidden;
-    margin: 10px 0 0 0px;
+    margin: 10px 0 -16% 0px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     font-weight: 600;
 }

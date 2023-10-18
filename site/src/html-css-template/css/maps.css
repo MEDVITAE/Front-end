@@ -1,6 +1,12 @@
 @import url(geral.css);
 
-.conteudo {
+.conteudo1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.mapaMundi {
     width: 80%;
     height: 100vh;
     font-weight: var(--semibold);
@@ -10,6 +16,7 @@
 }
 
 .topo {
+    margin-top: 2%;
     width: 95%;
     height: 15vh;
     display: flex;

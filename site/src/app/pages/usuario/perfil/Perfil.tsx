@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import '../../../../html-css-template/css/perfil.css'
-//import '../../../../js/menuPerfil.js'
 
 import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
+import { Anexo } from '../../../shared/contexts/Anexo';
+
+const Anexar = () =>{
+    useEffect(() =>{
+        Anexo();
+    }, []); 
+}
 
 export const Perfil = () => {
     return (
