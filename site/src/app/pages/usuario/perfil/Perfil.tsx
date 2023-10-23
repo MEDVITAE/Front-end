@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import '../../../../html-css-template/css/perfil.css'
 
 import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
-import { Anexo } from '../../../shared/contexts/Anexo';
+import { Anexo } from '../../../shared/contexts';
 
 const Anexar = () =>{
     useEffect(() =>{
@@ -11,6 +11,8 @@ const Anexar = () =>{
 }
 
 export const Perfil = () => {
+    Anexar();
+    
     return (
         <>
             <OndaLateralEsquerda />

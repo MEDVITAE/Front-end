@@ -3,8 +3,10 @@ import { ApiException } from "../ApiException";
 
 export interface ITarefa {
     id: number;
-    title: string;
-    isCompleted: boolean;
+    nome?: string;
+    email: string;
+    senha: string;
+    role: string;
 }
 
 const getAll = async (): Promise<ITarefa[] | ApiException> => { 
@@ -17,6 +19,7 @@ const getAll = async (): Promise<ITarefa[] | ApiException> => {
     }
 
 };
+
 const getById = async (id: number): Promise<ITarefa | ApiException> => { 
     try{
         const { data } = await Api().get(`/tarefas/${id}`);
@@ -28,9 +31,10 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
 
 };
 
+//Criar outro método para inserção de dados
 const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiException> => { 
     try{
-        const { data } = await Api().post<any>('/tarefas', dataToCreate);
+        const { data } = await Api().post<any>('/register', dataToCreate);
         return data;
     }
     catch (error: any){
