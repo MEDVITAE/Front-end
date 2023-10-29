@@ -1,11 +1,10 @@
 import '../../../html-css-template/css/menu.css'
 
 interface IMenuPerfil{
-    nome: string,
-    itemNow?: boolean,
+    nome: string;
 }
 
-export const MenuPerfil: React.FC<IMenuPerfil> = ({ nome, itemNow }) => {
+export const MenuPerfil: React.FC<IMenuPerfil> = ({ nome }) => {
 
     return (
         <>

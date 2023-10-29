@@ -1,25 +1,17 @@
 import '../../../../html-css-template/css/CadastroDoacao.css'
+import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components'
+import { vetorIcon } from '../../../shared/components/imagens';
+import { vetorImg } from '../../../shared/components/imagens';
 
 export const CadastroDoacao = () => {
   return (
     <>
+      <OndaLateralEsquerda />
       <div className="tela">
-        <div className="menu">
-          <h1 className="rowdies bold-30">Olá,Nome usuário</h1>
-          <div className="menuItens">
-            <div>
-              <a href="" className="now roboto sbold-20">Cadastro Funcionário</a>
-              <a href="" className="item roboto sbold-20">Requisitar Doação</a>
-              <a href="" className="item roboto sbold-20">Cadastrar Doação</a>
-            </div>
-          </div>
-          <button className="btn bg-vermelhoClaro">Sair</button>
-        </div>
-
+        <MenuPerfil nome="Paternezi" />
         <div className="cadastrarDoacao">
           <div className="topoTela">
             <h1 className="rowdies bold-30">CADASTRAR DOAÇÂO</h1>
-            <img src="../assets/LogoVitai.png" alt="" />
           </div>
           <div className="campos">
             <input className="camposInput rowdies" type="number" placeholder="CPF" />
@@ -29,23 +21,22 @@ export const CadastroDoacao = () => {
               placeholder="Litros Doados"
             />
           </div>
-          <div className="quadro">
+          <div className="quadro bg-branco">
             <div className="perfil">
-              <img src="../assets/image 4.png" alt="" width="150%" />
-              <h3 className="item roboto sbold-20">Nome usuário</h3>
+              <img className='imgPerfil' src={vetorImg[2]} alt="" />
+              <h3 className="item roboto sbold-20">Nome Doador</h3>
             </div>
-            <div className="container">
-              <h1 className="rowdies bold-30">Informações Pessoais</h1>
+            <div className="containerDoacao">
               <div className="colunas">
-                <div className="formulario">
-                  <input className="" type="date" placeholder="data de nascimento" />
-                  <input className="" type="number" placeholder="CEP" />
-                  <input className="" type="tel" placeholder="Telefone" />
+                <div className="formularioDoacao">
+                  <input className="campoUsuario roboto" type="date" placeholder="data de nascimento" />
+                  <input className="campoUsuario roboto" type="number" placeholder="CEP" />
+                  <input className="campoUsuario roboto" type="tel" placeholder="Telefone" />
                 </div>
-                <div className="formulario">
-                  <input className="" type="text" placeholder="Sexo Biológico" />
-                  <input className="" type="tel" placeholder="Numero Residencial" />
-                  <input className="" type="text" placeholder="Tipo Sanguíneo" />
+                <div className="formularioDoacao">
+                  <input className="campoUsuario roboto" type="text" placeholder="Sexo Biológico" />
+                  <input className="campoUsuario roboto" type="tel" placeholder="Numero Residencial" />
+                  <input className="campoUsuario roboto" type="text" placeholder="Tipo Sanguíneo" />
                 </div>
               </div>
             </div>
@@ -53,11 +44,11 @@ export const CadastroDoacao = () => {
           <div className="btnFinal">
             <button className="btn NaoConfirmarDoacao">
               Não Confirmar Doacao
-              <img src="../assets/BackArrow.png" alt="" />
+              <img src={vetorIcon[0]} alt="" />
             </button>
             <button className="btn ConfirmarDoacao">
               Confirmar Doação
-              <img src="../assets/BackArrow.png" alt="" />
+              <img src={vetorIcon[0]} alt="" />
             </button>
           </div>
         </div>

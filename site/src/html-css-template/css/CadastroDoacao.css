@@ -4,6 +4,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    position: relative;
 }
 
 .cadastrarDoacao {
@@ -11,6 +12,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .cadastrarDoacao .topoTela{
@@ -50,14 +52,14 @@ margin-right: 20%;
 
 
 .cadastrarDoacao .quadro{
+    margin-left: 5%;
+    width: 80%;
     height: 55%;
     border-radius: 7px;
     border: 2px solid;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-left: 50px;
-    margin-right: 20%;
+    align-items: center;
 }
 
 .cadastrarDoacao .quadro .perfil {
@@ -65,33 +67,41 @@ margin-right: 20%;
     flex-direction: column;
     align-items: center;
     width: 30%;
-    padding-left: 10%;
 }
 
-.cadastrarDoacao .container {
+.cadastrarDoacao .quadro .perfil .imgPerfil {
+    width: 85%;
+}
+
+.cadastrarDoacao .quadro .containerDoacao {
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    padding-left: 10%;
 }
 
-.cadastrarDoacao .container .colunas {
+.cadastrarDoacao .containerDoacao .colunas {
     width: 100%;
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.cadastrarDoacao .container .formulario {
-    width: 50%;
+.cadastrarDoacao .containerDoacao .formularioDoacao {
+    width: 45%;
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    justify-content: center;
 }
 
-.cadastrarDoacao .container .formulario input{
+.cadastrarDoacao .containerDoacao .formularioDoacao input{
     margin-top: 10px;
-    padding-top: 10px;
     width: 100%;
+}
+
+.cadastrarDoacao .containerDoacao .formularioDoacao input::placeholder{
+    align-items: center;
+    color: var(--preto);
 }
 
 .btn{

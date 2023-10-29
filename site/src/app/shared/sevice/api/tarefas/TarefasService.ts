@@ -7,11 +7,12 @@ export interface ITarefa {
     email: string;
     senha: string;
     role: string;
+    cpf: number;
 }
 
 const getAll = async (): Promise<ITarefa[] | ApiException> => { 
     try{
-        const { data } = await Api().get('/tarefas');
+        const { data } = await Api().get('/swagger-ui.html');
         return data;
     }
     catch (error: any){
@@ -34,7 +35,7 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
 //Criar outro método para inserção de dados
 const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiException> => { 
     try{
-        const { data } = await Api().post<any>('/register', dataToCreate);
+        const { data } = await Api().post<any>('/usuario/register', dataToCreate);
         return data;
     }
     catch (error: any){

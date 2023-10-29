@@ -19,6 +19,9 @@ export const Cadastro = () => {
     const navegarClick2 = () => {
         navegando("/login");
     }
+    const navegarClick = () => {
+        TarefasService.getAll();
+    }
 
     const cadastrando = useCallback(() => {
         console.log(email);
@@ -26,7 +29,7 @@ export const Cadastro = () => {
         console.log(confSenha);
 
         if(confSenha === senha){
-            TarefasService.create({nome: 'Diego', email: email, senha: senha, role: 'PACIENTE'});
+            TarefasService.create({nome: 'Diego', email: email, senha: senha, role: 'PACIENTE', cpf: 12345678});
         }
     }, [email, senha, confSenha]);
 
@@ -50,7 +53,7 @@ export const Cadastro = () => {
                         <h3>Então vamos logar!</h3>
                     </div>
 
-                    <button onClick={navegarClick2} className="btn logar bold-20" >
+                    <button onClick={navegarClick2} className="btn logar bold-20">
                         Logar
                         <img src={vetorIcon[0]} alt="" />
                     </button>
@@ -94,7 +97,7 @@ export const Cadastro = () => {
                         />
                     </div>
                     <div className="button">
-                        <button onClick={cadastrando} className="btn cadastrar bold-20" >
+                        <button onClick={navegarClick} className="btn cadastrar bold-20" >
                             Cadastrar
                             <img src={vetorIcon[0]} alt="" />
                         </button>
