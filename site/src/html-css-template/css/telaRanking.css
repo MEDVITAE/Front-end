@@ -1,0 +1,104 @@
+@import url(geral.css);
+
+.flexContainer {
+    display: flex;
+    /* border: solid 1px yellow; */
+}
+
+.containerAptidao {
+    height: 100%;
+    width: 30%;
+    margin-top: 3.4%;
+    margin-left: 40px;
+    /* border: solid 1px blue; */
+}
+
+.imgOnda {
+    width: 104.8%;
+    height: 100vh;
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    /* border: solid 1px black; */
+    z-index: -999;
+}
+
+.imgOnda .imgOndaDentro {
+    height: 105vh;
+    /* border: solid 1px red; */
+}
+
+.flexContainer .imgTuboEnsaio {
+    width: 25%;
+    height: 42vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    border: solid 1px black;
+    /* border-radius: 5px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 16%;
+    margin-left: 13%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.flexContainer .tiposDoacao {
+    display: flex;
+    flex-direction: column;
+    width: 100;
+    align-items: center;
+    justify-content: center;
+    /* border: solid 1px black; */
+    float: right;
+    margin-right: 0.5%;
+    text-align: center;
+    line-height: 27px;
+}
+
+.flexContainer .imgTubo {
+    height: 65vh;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    margin-top: 17%;
+    /* border: solid 1px red; */
+}
+
+.flexContainer .imgLogo {
+    font-family: 'Roboto';
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    right: 0;
+    margin-right: 2.5%;
+    padding: 10px;
+    margin-bottom: 50%;
+    /* border: solid 1px red; */
+}
+
+.fraseRanking {
+    font-family: 'Roboto';
+    width: 90%;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: solid 1px black;
+    font-size: 13px;
+    margin-left: 21.8%;
+}
+
+.btn:hover {
+    background-color: var(--vermelho-escuro);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}

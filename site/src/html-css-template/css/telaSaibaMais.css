@@ -1,0 +1,119 @@
+@import url(geral.css);
+
+.imgOnda {
+    width: 100%;
+    height: 140vh;
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    /* border: solid 1px black; */
+}
+
+.imgOnda .imgOndaDentro {
+    height: 110vh;
+    /* border: solid 1px red; */
+}
+
+.doar .imgLogo{
+    font-family: 'Roboto';
+    font-weight: bold;  
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around; 
+    position: absolute;
+    right: 0; 
+    margin-right: 2.5%; 
+    padding: 10px;
+    margin-bottom: 50%;
+    /* border: solid 1px red; */
+}
+
+.doar .imgLogo .imgOndaDentro {
+    cursor: pointer;
+}
+
+.doar .imgLogo .home {
+    cursor: pointer;
+}
+
+.doar {
+    margin-top: 10%;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* border: solid 1px red; */
+    position: absolute;
+
+}
+
+.doar .rowdies {
+    /* border: solid 1px red; */
+    width: 70%;
+    position: absolute;
+    top: -118px;
+    left: 0;
+    margin-left: 2.5%;
+    padding: 10px;
+    font-size: 23px;
+}
+
+
+.doar .conteudoDoar {
+    width: 100%;
+    height: 50vh;
+    padding-left: 6%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* border: solid 1px red; */
+
+}
+
+.doar .conteudoDoar .imgTuboEnsaio {
+    width: 50%;
+    height: 90vh;
+    display: flex;
+    position: relative;
+    justify-content: end;
+    /* border: solid 1px red; */
+}
+
+.doar .conteudoDoar .imgTubo {
+    height: 80vh;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    margin-bottom: 10%;
+    /* border: solid 1px red; */
+}
+
+.doar .conteudoDoar li {
+    font-family: 'Roboto';
+    font-size: 26px;
+    font-weight: var(--regular);
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    /* border: solid 1px red; */
+}
+
+.doar .conteudoRegras {
+    /* border: solid 1px blue; */
+    max-height: 80vh;
+    max-width: 53.2%;
+    position: relative;
+    top: -57px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    margin-top: 88px;
+}
+
+.doar .conteudoRegras::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

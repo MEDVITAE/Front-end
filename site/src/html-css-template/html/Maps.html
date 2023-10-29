@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+    <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/maps.css">
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-b9znqlJ4a9CNUI-QoaqpXczDscalBc8&callback=initMap">
+    </script> 
+    <script src="../../js/maps.js"></script>
+</head>
+
+<body>
+    <div class="menu">
+        <h1 class="rowdies bold-30">Olá,Pedro</h1>
+        <div class="menuItens">
+            <a href="" class="now roboto sbold-20">Perfil</a>
+            <a href="" class="item roboto sbold-20">Ver mapa</a>
+            <a href="" class="item roboto sbold-20">Quiz de Aptidão</a>
+            <a href="" class="item roboto sbold-20">Histórico de Doações</a>
+            <a href="" class="item roboto sbold-20">Agendar Doação</a>
+            <a href="" class="item roboto sbold-20">Ranking</a>
+        </div>
+        <button class="btn bg-vermelhoClaro">Sair</button>
+    </div>
+    <div class="conteudo">
+        <div class="rowdies topo">
+            <div class="titulo">
+                <h1>Ver mapa</h1>
+            </div>
+
+            <div class="selecionaCep roboto">
+                Informe seu CEP:
+                <input id="cep" maxlength="8" placeholder="08332-394">
+                <button onclick="recuperaEndereco()" style="background-color: var(--vermelho-claro);" class="btn">Pesquisar</button>
+            </div>
+            <div class="logo">
+                <img src="../assets/LogoVitai.png" alt="">
+            </div>
+        </div>
+        <div class="ondas">
+            <div class="waves">
+                <img src="../assets/ONDA - MAPA.svg" alt="">
+            </div>
+        </div>
+        <div class="mapa">
+                <div class="map" id="map"></div>
+        </div>
+        </div>
+
+</body>
+
+</html>

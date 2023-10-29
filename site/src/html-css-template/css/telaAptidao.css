@@ -1,0 +1,130 @@
+@import url(geral.css);
+
+.flexContainer {
+    width: 100%;
+    position: relative;
+    /* border: solid 1px yellow; */
+}
+
+.flexContainer .divImgAptidao {
+    width: 20%;
+    margin-top: 14%;
+    position: relative;
+    /* border: solid 1px  yellow; */
+}
+
+.flexContainer .divImgAptidao .imgTuboAptidao {
+    width: 100%;
+    /* border: solid 1px red; */
+}
+
+.flexContainer .conteudoQuiz {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.flexContainer .conteudoQuiz .containerAptidao {
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.flexContainer .conteudoQuiz .primeiroQuiz {
+    width: 80%;
+    height: 40vh;
+    /* border: solid 1px red; */
+}
+
+.flexContainer .conteudoQuiz .primeiroQuiz h3 {
+    height: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 1px blue; */
+}
+
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm {
+    width: 110%;
+    height: 39vh;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: solid 1px black;
+}
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 69.9%;
+    margin-left: 3%;
+    /* border: solid 1px black; */
+}
+
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz  .inputQuiz {
+    text-align: left;
+    width: 24%;
+    height: 20%;
+    border-radius: 5px;
+    border: solid 1px black;
+}
+
+#placeholder-number::placeholder {
+    font-size: 18px;
+    padding: 10px;
+    color: black;
+}
+
+.flexContainer .conteudoQuiz .segundoQuiz {
+    width: 80%;
+    height: 39vh;
+    /* border: solid 1px red; */
+}
+
+.flexContainer .conteudoQuiz .segundoQuiz h3 {
+    height: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3%;
+    /* border: solid 1px blue; */
+}
+
+.flexContainer .conteudoQuiz .segundoQuiz .quizDois {
+    width: 110%;
+    height: 39vh;
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-left: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: solid 1px black;
+}
+
+.flexContainer .conteudoQuiz .segundoQuiz .quizDois .comboBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 69.9%;
+    margin-left: 3%;
+    /* border: solid 1px black; */
+}
+
+.quizOpition {
+    font-family: "rowdies";
+    font-size: 18px;
+    border-radius: 5px;
+    width: 85%;
+    height: 20%;
+    border: solid 1px black;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: var(--vermelho-escuro);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
