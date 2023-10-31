@@ -1,5 +1,5 @@
 
-let map;
+//let map;
 let vetores = [{ lat: -23.537748, lng: -46.461309 }, { lat: -23.536509, lng: -46.461819 }, { lat: -23.52900, lng: -46.402500 }, { lat: -23.529800, lng: -46.402600 }]
 let longitude = null;
 let latitude = null

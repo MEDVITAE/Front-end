@@ -1,7 +1,5 @@
 import '../../../../html-css-template/css/Agendamento.css'
-
-import { MenuPerfil } from "../../../shared/components";
-import { OndaLateralEsquerda } from '../../../shared/components/OndaLateralEsquerda';
+import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
 
 export const Agendamento = () => {
     return (

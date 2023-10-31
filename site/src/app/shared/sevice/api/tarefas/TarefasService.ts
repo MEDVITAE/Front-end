@@ -3,11 +3,11 @@ import { ApiException } from "../ApiException";
 
 export interface ITarefa {
     id: number;
-    nome?: string;
-    email: string;
-    senha: string;
+    nome: string;
+    email: string | null;
+    senha: string | null;
     role: string;
-    cpf: number;
+    cpf: string;
 }
 
 const getAll = async (): Promise<ITarefa[] | ApiException> => { 

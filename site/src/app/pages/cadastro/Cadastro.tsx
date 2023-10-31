@@ -4,34 +4,32 @@ import { vetorIcon } from '../../shared/components/imagens';
 
 import '../../../html-css-template/css/Cadastro.css'
 import '../../../html-css-template/css/geral.css'
-import { useCallback, useRef, useState } from 'react';
-import { Input } from './components/Input';
-import { TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
+import { useRef, useState } from 'react';
+import { Input } from '../../shared/components';
 
 export const Cadastro = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [confSenha, setConfSenha] = useState('');
 
+    sessionStorage.setItem('sein', email.trim());
+    sessionStorage.setItem('sei', senha.trim());
+    sessionStorage.setItem('se', confSenha);
+
     const navegando = useNavigate();
     const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-    const navegarClick2 = () => {
+    const handleClickNav = () => {
+        if(email === "") return alert("email n pode ser null");
+        if(senha === "") return alert("senha n pode ser null");
+        if (confSenha === senha) {
+            navegando("/cadastro-usuario/complementar")
+        }
+    }
+
+    const handleClickNav2 = () => {
         navegando("/login");
     }
-    const navegarClick = () => {
-        TarefasService.getAll();
-    }
-
-    const cadastrando = useCallback(() => {
-        console.log(email);
-        console.log(senha);
-        console.log(confSenha);
-
-        if(confSenha === senha){
-            TarefasService.create({nome: 'Diego', email: email, senha: senha, role: 'PACIENTE', cpf: 12345678});
-        }
-    }, [email, senha, confSenha]);
 
     return (
 
@@ -53,7 +51,7 @@ export const Cadastro = () => {
                         <h3>Então vamos logar!</h3>
                     </div>
 
-                    <button onClick={navegarClick2} className="btn logar bold-20">
+                    <button onClick={handleClickNav2} className="btn logar bold-20">
                         Logar
                         <img src={vetorIcon[0]} alt="" />
                     </button>
@@ -90,15 +88,20 @@ export const Cadastro = () => {
                             className={"input-size"}
                             placeholder={"Confirmar senha"}
                             type="password"
-                            
+
                             value={confSenha}
                             ref={inputPasswordRef}
                             onChange={newValue => setConfSenha(newValue)}
                         />
                     </div>
                     <div className="button">
+<<<<<<< HEAD
                         <button onClick={cadastrando} className="btn cadastrar bold-20" >
                             Cadastrar
+=======
+                        <button onClick={handleClickNav} className="btn cadastrar bold-20" >
+                            Avançar
+>>>>>>> mapaReactT
                             <img src={vetorIcon[0]} alt="" />
                         </button>
                     </div>
