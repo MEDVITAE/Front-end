@@ -1,4 +1,4 @@
-import { vetorImg } from "./imagens";
+import { vetorImg } from "../imagens";
 import '../../../html-css-template/css/geral.css'
 
 export const OndaLateralEsquerda = () => {

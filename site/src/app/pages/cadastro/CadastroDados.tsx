@@ -1,15 +1,49 @@
-import { useNavigate } from 'react-router-dom';
 import '../../../html-css-template/css/dados.css'
+
 import { vetorImg } from '../../shared/components/imagens';
 import { vetorIcon } from '../../shared/components/imagens';
+
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
+import { Input } from '../../shared/components';
 
 export const CadastroDados = () => {
     const navegando = useNavigate();
 
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [cep, setCep] = useState('');
+    const [numero, setNumero] = useState('');
+    const [dtNascimento, setDtNascimento] = useState('');
+    const [sexo, setSexo] = useState('');
+    const [sangue, setSangue] = useState('');
+    const [tel, setTel] = useState('');
+
+    sessionStorage.getItem('sein');
+    sessionStorage.getItem('sei');
+    sessionStorage.getItem('se');
+
+    const cadastrando = useCallback(() => {
+        console.log(sessionStorage.getItem('sein'));
+        console.log(sessionStorage.getItem('sei'));
+        console.log(sessionStorage.getItem('se'));
+
+        TarefasService.create({
+            nome: nome,
+            email: sessionStorage.getItem('sein'),
+            senha: sessionStorage.getItem('sei'),
+            role: 'PACIENTE',
+            cpf: cpf
+        });
+    }, []);
+
     const navegarClick = () => {
-        navegando("/login");
+        //navegando("/login");
+        cadastrando();
     }
-    
+
     return (
         <>
             <div className="img3">
@@ -30,10 +64,34 @@ export const CadastroDados = () => {
                     </div>
                     <div className="inputsDados">
                         <div className="input-right">
-                            <input className="input-size" type="text" placeholder="Nome completo" />
-                            <input className="input-size" type="text" placeholder="CPF" />
-                            <input className="input-size" type="text" placeholder="CEP" />
-                            <input className="input-size" type="text" placeholder="Número" />
+                            <Input
+                                className={"input-size"}
+                                placeholder={"Nome completo"}
+
+                                value={nome}
+                                onChange={newValue => setNome(newValue)}
+                            />
+                            <Input
+                                className={"input-size"}
+                                placeholder={"CPF"}
+
+                                value={cpf}
+                                onChange={newValue => setCpf(newValue)}
+                            />
+                            <Input
+                                className={"input-size"}
+                                placeholder={"CEP"}
+
+                                value={cep}
+                                onChange={newValue => setCep(newValue)}
+                            />
+                            <Input
+                                className={"input-size"}
+                                placeholder={"Número"}
+
+                                value={numero}
+                                onChange={newValue => setNumero(newValue)}
+                            />
                         </div>
                         <div className="input-left">
                             <input className="input-size" type="text" placeholder="Data de nascimento" />

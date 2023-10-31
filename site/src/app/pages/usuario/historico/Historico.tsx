@@ -1,4 +1,4 @@
-import { MenuPerfil } from "../../../shared/components";
+import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
 
 export const Historico = () =>{
     return(

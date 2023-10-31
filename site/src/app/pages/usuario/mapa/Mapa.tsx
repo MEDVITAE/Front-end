@@ -1,11 +1,9 @@
 import '../../../../html-css-template/css/maps.css'
 //import '../../../../js/maps.js'
-import './test'
+import { vetorIcon } from '../../../shared/components/imagens';
 
 import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
-import { useEffect } from 'react';
-import { initMap } from './test';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 export const Mapa = () => {
     const mapStyles = {
@@ -17,6 +15,7 @@ export const Mapa = () => {
         lat: -23.537748,
         lng: -46.461309,
     };
+
 
     return (
         <>
@@ -41,12 +40,17 @@ export const Mapa = () => {
                         </div>
                     </div>
                     <div className="mapa">
+
                         <LoadScript googleMapsApiKey="AIzaSyB-b9znqlJ4a9CNUI-QoaqpXczDscalBc8">
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
                                 zoom={10}
                                 center={defaultCenter}
-                            ></GoogleMap>
+                            >
+                                <Marker
+                                    position={{ lat: -23.537748, lng: -46.461309 }}
+                                />
+                            </GoogleMap>
                         </LoadScript>
                     </div>
                 </div>
