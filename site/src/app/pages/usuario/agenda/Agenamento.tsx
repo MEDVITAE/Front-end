@@ -1,5 +1,6 @@
 import '../../../../html-css-template/css/Agendamento.css'
 import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
+import { Agenda } from './component/Agenda';
 
 export const Agendamento = () => {
     return (
@@ -11,7 +12,7 @@ export const Agendamento = () => {
                     <header className="clearfix">
                         <h1 className="rowdies">AGENDA</h1>
                     </header>
-                    
+                    <Agenda />
                 </div>
                 <div className="confirmar">
                     <div className="escolha">

@@ -37,6 +37,8 @@ export const CadastroDados = () => {
             role: 'PACIENTE',
             cpf: cpf
         });
+
+        sessionStorage.clear();
     }, []);
 
     const navegarClick = () => {

@@ -95,13 +95,8 @@ export const Cadastro = () => {
                         />
                     </div>
                     <div className="button">
-<<<<<<< HEAD
-                        <button onClick={cadastrando} className="btn cadastrar bold-20" >
-                            Cadastrar
-=======
                         <button onClick={handleClickNav} className="btn cadastrar bold-20" >
                             Avançar
->>>>>>> mapaReactT
                             <img src={vetorIcon[0]} alt="" />
                         </button>
                     </div>
