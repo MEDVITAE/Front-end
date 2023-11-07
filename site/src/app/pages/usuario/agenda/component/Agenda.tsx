@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { enUS } from 'date-fns/locale';
+
+import '../../../../../html-css-template/css/Agenda.css'
 
 
 export const Agenda = () => {
   const hoje = new Date();
   const [dataSelecionada, setDataSelecionada] = useState<Date | Date[]>(hoje);
+
+  sessionStorage.setItem('data', dataSelecionada.toLocaleString());
 
 
   const handleDateChange = (date: Date | Date[]) => {
@@ -20,8 +23,7 @@ export const Agenda = () => {
   };
 
   return (
-    <div>
-      <h2>Calendário</h2>
+    <div className='calendario roboto'>
       <Calendar
         onChange={handleDateChange as any} // Forçar conversão de tipo para contornar o erro
         value={dataSelecionada as Date} // Forçar conversão de tipo para contornar o erro
@@ -29,8 +31,6 @@ export const Agenda = () => {
         locale={'pt-BR'} // Aplica o idioma personalizado
         selectRange={false} // Desabilita a seleção de intervalo
       />
-      <p>Data selecionada: {dataSelecionada instanceof Date ? dataSelecionada.toDateString() : ''}</p>
-      {/* Você pode adicionar mais lógica aqui com base na data selecionada */}
     </div>
   );
 }
