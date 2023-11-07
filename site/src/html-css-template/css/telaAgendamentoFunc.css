@@ -101,18 +101,6 @@
     /* border: solid 1px red; */
 }
 
-h3 {
-    width: 40.5%;
-    height: 100%;
-    margin-left: 4.5%;
-    font-size: 20px;
-    text-align: start;
-    font-family: 'roboto';
-    font-weight: bold;
-    color: black;
-    border-radius: 5px;
-    border: solid 1px black;
-}
 
 .doadoresDisponiveis p{
     width: 90%;

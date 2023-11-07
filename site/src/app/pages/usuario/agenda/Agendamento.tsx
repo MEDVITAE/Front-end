@@ -2,21 +2,42 @@ import { useCallback, useState } from 'react';
 import '../../../../html-css-template/css/Agendamento.css'
 import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
 import { vetorIcon } from '../../../shared/components/imagens';
-import { Agenda } from './component/Agenda';
+import { Agenda } from './components/Agenda';
 import { useNavigate } from 'react-router-dom';
+import { Hemocentro } from './components/Hemocentro';
+import { Horario } from './components/Horario';
 
 export const Agendamento = () => {
     const [hospital, setHospital] = useState('');
     const [hora, setHora] = useState('');
 
+    const [isMostrarHemo, setIsMostrarHemo] = useState(false);
+    const [isMostrarHora, setIsMostrarHora] = useState(false);
+
     const navegando = useNavigate();
     sessionStorage.getItem('data');
 
-    const hospitalChange = ((newValue: string)  =>{
+    const hospitalChange = ((newValue: string) => {
         setHospital(newValue);
     });
 
-    const agendar = useCallback(() =>{
+    const mostrarComponenteHemo = () => {
+        setIsMostrarHemo(true);
+    }
+
+    const fecharComponenteHemo = () => {
+        setIsMostrarHemo(false);
+    }
+
+    const mostrarComponenteHora = () => {
+        setIsMostrarHora(true);
+    }
+
+    const fecharComponenteHora = () => {
+        setIsMostrarHora(false);
+    }
+
+    const agendar = useCallback(() => {
         sessionStorage.getItem('data');
 
         alert("Agendamento realizado com sucesso");
@@ -25,7 +46,7 @@ export const Agendamento = () => {
 
     return (
         <>
-        <OndaLateralEsquerda />
+            <OndaLateralEsquerda />
             <div className="container">
                 <MenuPerfil nome="Diego" />
                 <div className="agenda">
@@ -33,18 +54,24 @@ export const Agendamento = () => {
                         <h1 className="rowdies">AGENDA</h1>
                     </header>
                     <Agenda />
+                    {isMostrarHemo &&
+                        <Hemocentro onChange={fecharComponenteHemo} />
+                    }
+                    {isMostrarHora &&
+                        <Horario onChange={fecharComponenteHora} />
+                    }
                 </div>
                 <div className="confirmar">
                     <div className="escolha">
                         <h2 className="rowdies">HEMOCENTRO</h2>
-                        <button className="btn roboto bg-vermelhoClaro">
+                        <button onClick={mostrarComponenteHemo} className="btn roboto bg-vermelhoClaro">
                             Escolha um Hemocentro
                             <img src={vetorIcon[0]} alt="" />
                         </button>
                     </div>
                     <div className="escolha margem">
                         <h2 className="rowdies">HORÁRIO</h2>
-                        <button className="btn roboto bg-vermelhoClaro">
+                        <button onClick={mostrarComponenteHora} className="btn roboto bg-vermelhoClaro">
                             Escolha um Horário
                             <img src={vetorIcon[0]} alt="" />
                         </button>

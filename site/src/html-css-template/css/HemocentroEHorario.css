@@ -1,0 +1,51 @@
+@import url(geral.css);
+
+
+.caixaHemo {
+    width: 60%;
+    height: 50vh;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+}
+
+.caixaHemo .formularioAgenda {
+    width: 60%;
+    height: 50vh;
+
+    background-color: var(--vermelho-claro);
+}
+
+.caixaHemo .formularioAgenda .headerHomo {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+ .hemo {
+    flex-direction: column;
+    font-size: 18px;
+    width: 50%;
+    height: 18%;
+    /* border: solid 1px blue; */
+}
+
+.caixaHemo .formularioAgenda h3{
+    width: 40.5%;
+    height: 13.5%;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    background-color: white;
+    border: solid 1px black;
+    cursor: pointer;
+}
