@@ -1,25 +1,21 @@
-import { useCallback, useState } from 'react';
 import '../../../../html-css-template/css/Agendamento.css'
-import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
-import { vetorIcon } from '../../../shared/components/imagens';
-import { Agenda } from './components/Agenda';
+
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Hemocentro } from './components/Hemocentro';
+
+import { Agenda } from './components/Agenda';
 import { Horario } from './components/Horario';
+import { Hemocentro } from './components/Hemocentro';
+import { vetorIcon } from '../../../shared/components/imagens';
+import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
 
 export const Agendamento = () => {
-    const [hospital, setHospital] = useState('');
-    const [hora, setHora] = useState('');
-
     const [isMostrarHemo, setIsMostrarHemo] = useState(false);
     const [isMostrarHora, setIsMostrarHora] = useState(false);
 
-    const navegando = useNavigate();
+    {/* Dado vindo de "Agenda.tsx" */}
     sessionStorage.getItem('data');
-
-    const hospitalChange = ((newValue: string) => {
-        setHospital(newValue);
-    });
+    const navegando = useNavigate();
 
     const mostrarComponenteHemo = () => {
         setIsMostrarHemo(true);
@@ -44,6 +40,8 @@ export const Agendamento = () => {
         navegando("/perfil-usuario/historico")
     }, []);
 
+    
+
     return (
         <>
             <OndaLateralEsquerda />
@@ -55,7 +53,7 @@ export const Agendamento = () => {
                     </header>
                     <Agenda />
                     {isMostrarHemo &&
-                        <Hemocentro onChange={fecharComponenteHemo} />
+                       <Hemocentro onChange={fecharComponenteHemo} />
                     }
                     {isMostrarHora &&
                         <Horario onChange={fecharComponenteHora} />

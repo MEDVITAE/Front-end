@@ -12,40 +12,87 @@
 
 .caixaHemo .formularioAgenda {
     width: 60%;
-    height: 50vh;
+    height: 66vh;
+    overflow-y: scroll;
 
-    background-color: var(--vermelho-claro);
+    background-color: var(--branco);
+    border-style: solid;
+    border-color: var(--vermelho-escuro);
 }
 
 .caixaHemo .formularioAgenda .headerHomo {
     width: 100%;
+    height: 8vh;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: end;
 }
 
- .hemo {
-    flex-direction: column;
-    font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
+.caixaHemo .formularioAgenda .caixaPesquisa {
+    margin-top: 5%;
+    width: 100%;
+    height: auto;
 
-.caixaHemo .formularioAgenda h3{
-    width: 40.5%;
-    height: 13.5%;
-    font-size: 20px;
-    text-align: center;
+
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.caixaHemo .formularioAgenda .caixaPesquisa .inputPesquisar {
+    width: 90%;
+    height: 8vh;
+    padding-left: 2%;
+    border-radius: 6px;
+
+}
+
+.caixaHemo .formularioAgenda .headerHomo h1 {
+    margin-left: 10%;
+}
+
+.caixaHemo .formularioAgenda .historicoAgenda {
+    margin-top: 5%;
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixaHemo .formularioAgenda .historicoAgenda .hemo {
+    width: 90%;
+    height: 11vh;
+
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+
     font-weight: bold;
-    color: black;
+
+    background-color: var(--azul-claro);
+    border: solid 3px var(--vermelho-escuro);
     border-radius: 5px;
-    background-color: white;
-    border: solid 1px black;
+}
+
+.btnFechar {
+    width: 10%;
+    height: 6vh;
+    border-radius: 7px;
+    border: none;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.btnFechar:hover {
+    background-color: var(--azul-escuro);
+    transition-duration: 0.4s;
     cursor: pointer;
 }

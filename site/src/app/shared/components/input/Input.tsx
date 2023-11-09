@@ -1,13 +1,14 @@
 import React from "react";
 
 interface IInputProps {
-    value: string;
+    value?: string;
     type?: string;
     placeholder: string;
     className: string;
 
     onChange: (newValue: string) => void;
     onPressEnter?: () => void;
+    aoMudarTextoDeBusca?: (novoTexto: string) => void;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
