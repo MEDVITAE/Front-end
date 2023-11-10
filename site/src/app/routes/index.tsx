@@ -25,7 +25,7 @@ export const Routes = () => {
 
                 <Route path="/perfil-usuario" element={<Perfil />} />
                 <Route path="/perfil-usuario/ranking" element={<Ranking />} />
-                <Route path="/perfil-usuario/quiz" element={<Quiz />} />
+                <Route path="/perfil-usuario/quiz" element={<Quiz  />} />
                 <Route path="/perfil-usuario/mapa" element={<Mapa />} />
                 <Route path="/perfil-usuario/mapa/detalhes" element={<HospitalDetalhes />} />
                 <Route path="/perfil-usuario/historico" element={<Historico />} />
