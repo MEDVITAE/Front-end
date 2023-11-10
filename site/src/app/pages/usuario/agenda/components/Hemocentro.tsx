@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import '../../../../../html-css-template/css/HemocentroEHorario.css';
-import { Input, InputPesquisa } from '../../../../shared/components';
+import { InputPesquisa } from '../../../../shared/components';
 import { IListagemHemocentro, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import '../../../../../html-css-template/css/HemocentroEHorario.css';
 
 interface IHemocentroProps {
     onChange: () => void;
@@ -36,13 +37,12 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
 
                 setRows(result.data);
             }
-        });*/
-
-            const resultadosFiltrados = vetorExemplo.filter((item) =>
-                item.nome.toLowerCase().includes(busca.toLowerCase())
-            );
-            setRows(resultadosFiltrados);
-        }
+        });*/}
+        
+    const resultadosFiltrados = vetorExemplo.filter((item) =>
+        item.nome.toLowerCase().includes(busca.toLowerCase())
+    );
+    setRows(resultadosFiltrados);
     }, [pesquisa, setPesquisa]);
 
     return (
@@ -50,9 +50,9 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
             <div className="caixaHemo">
                 <div className="formularioAgenda">
                     <div className="headerHomo">
-                        <h1 className="rodiews">Hemocentro</h1>
+                        <h1 className="rowdies">HEMOCENTRO</h1>
                         <button className="btnFechar bg-azulClaro" onClick={onChange}>
-                            <p className="rodiews sbold-24">x</p>
+                            <p className="roboto sbold-24">x</p>
                         </button>
                     </div>
 
@@ -61,7 +61,7 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
                             className={"inputPesquisar"}
                             placeholder={"Pesquisar..."}
                             aoMudarTextoDeBusca={(texto) => {
-                                setPesquisa({ busca: texto }, { replace: true })
+                                setPesquisa({ busca: texto }, { replace: true });
                                 history(`?busca=${texto}`);
                             }}
                         />

@@ -16,15 +16,43 @@ export interface IListagemHemocentro {
     cep: string;
 }
 
+export interface IListagemDeHorarioDisponivel {
+    id: number;
+    hora: number;
+    hospital: IListagemHemocentro[];
+}
+
+type THoraDisponivelComTotalCount = {
+    data: IListagemHemocentro[];
+}
+
 type THemocentroComTotalCount = {
     data: IListagemHemocentro[];
 }
+
+const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Error> => {
+    try {
+
+        const { data } = await Api().get('/');
+
+        if (data) {
+            return {
+                data
+            };
+        }
+
+        return new Error('Erro ao listar registros.');
+    } catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
+};
 
 const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
 
-        const { data, headers } = await Api().get(urlRelativa);
+        const { data } = await Api().get(urlRelativa);
 
         if (data) {
             return {
