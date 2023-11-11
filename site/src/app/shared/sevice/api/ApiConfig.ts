@@ -5,3 +5,4 @@ export const Api = () => {
         baseURL: 'http://localhost:8082'
     });
 }
+export default Api;

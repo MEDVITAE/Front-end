@@ -13,6 +13,7 @@
     border-right-style: solid;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .topo {
@@ -33,7 +34,7 @@
     margin-left: 20px;
 }
 
-.selecionaCep {
+/* .selecionaCep {
     width: 25%;
     height: 100%;
     display: flex;
@@ -50,7 +51,7 @@
     font-size: 25px;
     text-align: center;
     font-family: 'roboto';
-}
+} */
 
 .logo {
     height: 100%;
@@ -77,14 +78,14 @@
 }
 .mapa{
     width: 92%;
-    height: 85vh;
-   
+    height: 70vh;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
+ 
 }
 .map{
-    border-radius: 20px;
+    border-radius: 100px;
     width: 90%;
-    height: 70%;
+    height: 100%;
 }
