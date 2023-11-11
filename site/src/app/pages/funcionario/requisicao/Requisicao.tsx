@@ -32,14 +32,14 @@ export const Requisicao = () => {
                     <div className="selectTipos roboto">
                         <h2>Selecione o tipo sanguíneo</h2>
                         <div className="tiposSanguineos">
-                            <h3>Tipo: O-</h3>
-                            <h3>Tipo: O+</h3>
-                            <h3>Tipo: AB-</h3>
-                            <h3>Tipo: AB+</h3>
-                            <h3>Tipo: B-</h3>
-                            <h3>Tipo: B+</h3>
-                            <h3>Tipo: A-</h3>
-                            <h3>Tipo: A+</h3>
+                            <h3 className="h3Req">Tipo: O-</h3>
+                            <h3 className="h3Req">Tipo: O+</h3>
+                            <h3 className="h3Req">Tipo: AB-</h3>
+                            <h3 className="h3Req">Tipo: AB+</h3>
+                            <h3 className="h3Req">Tipo: B-</h3>
+                            <h3 className="h3Req">Tipo: B+</h3>
+                            <h3 className="h3Req">Tipo: A-</h3>
+                            <h3 className="h3Req">Tipo: A+</h3>
                         </div>
                     </div>
                     <div className="selectDoadores roboto">

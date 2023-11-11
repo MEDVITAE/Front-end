@@ -6,6 +6,10 @@ interface IMenuPerfil{
 
 export const MenuPerfil: React.FC<IMenuPerfil> = ({ nome }) => {
 
+    const limparSessionStorage = () =>{
+        sessionStorage.clear();
+    };
+
     return (
         <>
             <div className="menu">
@@ -15,7 +19,7 @@ export const MenuPerfil: React.FC<IMenuPerfil> = ({ nome }) => {
                     <a href="/perfil-usuario/mapa" className="item roboto bold-30">Ver mapa</a>
                     <a href="/perfil-usuario/quiz" className="item roboto bold-30">Quiz de Aptidão</a>
                     <a href="/perfil-usuario/historico" className="item roboto bold-30">Histórico de Doações</a>
-                    <a href="/perfil-usuario/agendamento" className="item roboto bold-30">Agendar Doação</a>
+                    <a href="/perfil-usuario/agendamento" onClick={limparSessionStorage} className="item roboto bold-30">Agendar Doação</a>
                     <a href="/perfil-usuario/ranking" className="item roboto bold-30">Ranking</a>
                 </div>
                 <button className="btn bg-vermelhoClaro bold-30">Sair</button>

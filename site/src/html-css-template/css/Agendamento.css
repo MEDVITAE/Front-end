@@ -9,7 +9,15 @@
 .agenda {
 	width: 58%;
 	height: 100vh;
-	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.tituloAgenda h1{
+	padding-left: 10%;
+	margin-bottom: 4%;
 }
 
 .confirmar {
@@ -35,8 +43,4 @@
 .confirmar .ok {
 	margin-top: 27%;
 }
-
-/*-----------------------------*/
-/*      CALENDARIO SETADO      */
-/*-----------------------------*/
 
