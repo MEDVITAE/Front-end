@@ -2,13 +2,16 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import '../../../../../html-css-template/css/HemocentroEHorario.css'
 import { IListagemDeHorarioDisponivel, IListagemHemocentro } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { useCallback, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 interface IHorarioProps {
     onChange: () => void;
 }
 
 export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
-    const [status, setStatus] = useState<'(Disponível)' | '(Indisponível)'>();
+    const [horario, setHorario] = useState<number>(0);
+
+    sessionStorage.setItem('hora', horario.toString());
 
     const vetorHora = [
         {
@@ -126,6 +129,54 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
         }
     };
 
+    const showChosenTime = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+    
+        Toast.fire({
+            icon: "info",
+            title: message
+        });
+    };
+
+    const showChosenWrongTime = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+    
+        Toast.fire({
+            icon: "error",
+            title: message
+        });
+    };
+
+    const horaEscolhida = useCallback((hora: number) => {
+        if (horarioIndisponivel(hora) === '(Disponível)') {
+            setHorario(hora);
+            showChosenTime("Agora, finalize selecionando o botão de agendar.");
+        }
+        else {
+            showChosenWrongTime("Horário indisponível, selecione outro.");
+        }
+    }, []);
+
     return (
         <>
             <div className="caixaHemo">
@@ -141,8 +192,8 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
                     </div>
                     <div className="historicoHorario">
                         {vetorHora.map((vetor) => {
-                            return <div className="caixaHora">
-                                <h3 className="hora roboto regular-20" key={vetor.id}>
+                            return <div className="caixaHora" key={vetor.id}>
+                                <h3 onClick={() => horaEscolhida(vetor.hora)} className="hora roboto regular-20">
                                     <p>{vetor.hora}h</p>
                                     <p>{horarioIndisponivel(vetor.hora)}</p>
                                 </h3>
