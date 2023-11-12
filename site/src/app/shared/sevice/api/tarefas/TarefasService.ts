@@ -19,7 +19,7 @@ export interface IListagemHemocentro {
 export interface IListagemDeHorarioDisponivel {
     id: number;
     hora: number;
-    hospital: IListagemHemocentro[];
+    hospital?: IListagemHemocentro[];
 }
 
 type THoraDisponivelComTotalCount = {
@@ -29,6 +29,25 @@ type THoraDisponivelComTotalCount = {
 type THemocentroComTotalCount = {
     data: IListagemHemocentro[];
 }
+
+export interface IHistoricoAgendamento {
+    idUsuario: number;
+    horaMarcada: IListagemDeHorarioDisponivel;
+    hospital: IListagemHemocentro;
+}
+
+const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
+    try {
+
+        const { data } = await Api().get('/');
+
+        return data;
+    }
+    catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
+};
 
 const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Error> => {
     try {
@@ -124,9 +143,10 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
 };
 
 export const TarefasService = {
-    getAllHospital,
     getAll,
+    getAllHospital,
     getById,
+    getByIdHistoricoAgendamentoAtual,
     create,
     updateById,
     deleteById,
