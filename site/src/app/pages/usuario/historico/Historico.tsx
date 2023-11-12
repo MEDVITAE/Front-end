@@ -1,9 +1,20 @@
 import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
+import { HistoricoDoacao } from './components/HistoricoDoacao';
+import { ProximaDoacao } from './components/ProximaDoacao';
 
-export const Historico = () =>{
-    return(
+import '../../../../html-css-template/css/HistoricoDoacao.css'
+
+export const Historico = () => {
+    return (
         <>
-        <MenuPerfil nome="Diego"/>
+            <OndaLateralEsquerda />
+            <div className="historico">
+                <MenuPerfil nome="Diego" />
+                <div className="historicoConteudo">
+                   <ProximaDoacao />
+                    <HistoricoDoacao />
+                </div>
+            </div>
         </>
     );
 }
