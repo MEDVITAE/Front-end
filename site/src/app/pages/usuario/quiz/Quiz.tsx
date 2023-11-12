@@ -23,12 +23,12 @@ export const Quiz = () => {
         setAltura(event.target.value);
     };
 
-   //função handlePesoChange chamada quando o valor do campo peso é alterado.
+    //função handlePesoChange chamada quando o valor do campo peso é alterado.
     const handlePesoChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setPeso(event.target.value);
     };
 
-   //função handleOptionChange chamada quando o valor das Options é alterado.
+    //função handleOptionChange chamada quando o valor das Options peso é alterado.
     const handleOptionChange = (event: { target: { value: string; }; }, setState: (arg0: string) => void) => {
         setState(event.target.value);
     };
@@ -53,7 +53,7 @@ export const Quiz = () => {
     };
 
     const validateAltura = () => {
-        if (parseFloat(altura) <= 0) {
+        if (parseFloat(altura) <= 0 || parseFloat(altura) > 3) {
             showValidationErrorModal(
                 "Altura inválida. Por favor, insira uma altura válida.");
             return false;
@@ -123,75 +123,57 @@ export const Quiz = () => {
         }
         return true;
     };
+    const navigate = useNavigate();
 
-    const validateForm = () => {
-
-        // Verificar se algum campo está vazio
+    const handleAvancarClick = async () => {
+        // Validar campos em branco primeiro
         if (
-            altura === '' ||
-            peso === '' ||
-            tatuagem === '' ||
-            relacaoSexual === '' ||
-            desconforto === '' ||
-            usoMedicamento === '' ||
-            dst === '' ||
-            vacinaCovid === ''
+            altura.trim() === '' ||
+            peso.trim() === '' ||
+            tatuagem.trim() === '' ||
+            relacaoSexual.trim() === '' ||
+            desconforto.trim() === '' ||
+            usoMedicamento.trim() === '' ||
+            dst.trim() === '' ||
+            vacinaCovid.trim() === ''
         ) {
             showValidationErrorModal("Por favor, preencha todos os campos do formulário.");
-            return false;
+            return;
         }
-
-        // Chamando todas as funções de validação
-        return (
-            validateAltura() &&
-            validatePeso() &&
-            validateTatuagem() &&
-            validateRelacaoSexual() &&
-            validateDesconforto() &&
-            validateUsoMedicamento() &&
-            validateDst() &&
-            validateVacinaCovid() &&
-            true
-        );
-    };
-
-    const navigate = useNavigate();
-    const handleAvancarClick = async () => {
-        // Validar todos os campos individualmente
-        // if (
-        //     !validateAltura() ||
-        //     !validatePeso() ||
-        //     !validateTatuagem() ||
-        //     !validateRelacaoSexual() ||
-        //     !validateDesconforto() ||
-        //     !validateUsoMedicamento() ||
-        //     !validateDst() ||
-        //     !validateVacinaCovid()) {
-        //     return; // Se alguma validação falhar, não avança para a próxima etapa
-        // }
-
+    
+        // Validar outros campos individualmente
+        if (
+            !validateAltura() ||
+            !validatePeso() ||
+            !validateTatuagem() ||
+            !validateRelacaoSexual() ||
+            !validateDesconforto() ||
+            !validateUsoMedicamento() ||
+            !validateDst() ||
+            !validateVacinaCovid()
+        ) {
+            return; // Se alguma validação falhar, não avança para a próxima etapa
+        }
+    
         // Para o caso de todos os campos estarem validados
-        if (validateForm()) {
-            // Todos os campos foram preenchidos e o usuário está apto
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2100,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-
-            Toast.fire({
-                icon: "success",
-                title: "Você está apto para doar!"
-            });
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            navigate("/perfil-usuario");
-        } 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+    
+        Toast.fire({
+            icon: "success",
+            title: "Direcionando para a tela de perfil!"
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        navigate("/perfil-usuario");
     };
     // ------------------------------------------
 
