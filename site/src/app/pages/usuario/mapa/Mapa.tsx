@@ -15,8 +15,16 @@ export const Mapa = () => {
   const navigate = useNavigate();
  
   const handleClick = (id: number | undefined) => {
-    console.log(id + "meu id")
+    console.log(id + "meu idkdlsjkfjdljfskljdkkkkkkkkkkkkkkkkkkkkkkkk")
+    
+    console.log("number", id)
+    console.log("session",sessionStorage.getItem("id"))
+    if( sessionStorage.getItem("id")){
+      sessionStorage.removeItem("id");
+    }
+    
     if(id){
+      console.log(id.toString())
       sessionStorage.setItem("id",id.toString());
     }
     // Redirecionar o usuário para outra rota
@@ -34,6 +42,7 @@ export const Mapa = () => {
   const [position, setPosition] = useState({});
   const [lista, setLista] = useState<IEndereco[] | null>(null);
   const [coordenadas, setCoordenadas] = useState([{}]);
+  
 
 
   useEffect(() => {
@@ -100,6 +109,7 @@ export const Mapa = () => {
       console.error("Geolocalização não é suportada no seu navegador.");
     }
   }, [lista]);
+  
 
 
 
@@ -124,12 +134,15 @@ export const Mapa = () => {
               <APIProvider apiKey={'AIzaSyB-b9znqlJ4a9CNUI-QoaqpXczDscalBc8'}>
                 <Map center={position} zoom={14} >
                   {coordenadas?.map((vetor, index) => (
+                    <>
                     <Marker key={index} position={vetor}  onClick={() => handleClick(lista?.[index].fkHospital)} />
+                    </>
                   ))}
+              
                 </Map>
               </APIProvider>
             </div>
-          </div>
+          </div>  
         </div>
       </div>
     </>

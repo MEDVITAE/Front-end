@@ -14,17 +14,15 @@ import { Mapa } from './Mapa';
 
 
 export const HospitalDetalhes = () => {
-   
-  
-
-
     const [Hosp, setHosp] = useState<IHospital | null>(null);
+
     useEffect(() => {
         HospitalService.getAll()
             .then((result) => {
                 if (result instanceof Error) {
                     alert(result.message);
                 } else {
+                    console.log("result", result)
                     setHosp(result);
                 }
             })

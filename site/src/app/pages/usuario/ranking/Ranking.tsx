@@ -1,5 +1,5 @@
 import { MenuPerfil,OndaLateralEsquerda } from "../../../shared/components";
-import { RankService } from  "../../../shared/sevice/api/tarefas/RankService";
+import { IPosicao, IRank, RankService } from  "../../../shared/sevice/api/tarefas/RankService";
 import '../../../../html-css-template/css/telaRanking.css'
 import React, { useEffect, useRef,useState } from "react";
 import Chart from "chart.js/auto";
@@ -11,39 +11,53 @@ import {Api} from "../../../shared/sevice/api/ApiConfig"
 
 
 export const Ranking = () => {
-    const [rank, listaPessoas] = useState([]);
+    const [rank, setRank] = useState<IRank[]>([]);
+    const [colocacao, setColocacao] = useState<IPosicao | null>(null);
+   
     useEffect(() => {
-       listar();
-     }, []);
-     function listar() {
-        RankService.getAll
-        ()
-          .then((respostaObtida) => {
-            console.log(respostaObtida);
-         
+        RankService.getAll()
+          .then((result) => {
+            if (result instanceof Error) {
+              alert(result.message);
+            } else {
+                console.log(result)
+              setRank(result);
+            }
           })
-          .catch((erroOcorrido) => {
-            console.log(erroOcorrido);
+          .catch((error) => {
+            alert(error.message || 'Erro ao buscar dados.');
           });
+          RankService.getById()
+          .then((result) => {
+            if (result instanceof Error) {
+              alert(result.message);
+            } else {
+                console.log(result)
+              setColocacao(result);
+            }
+          })
+          .catch((error) => {
+            alert(error.message || 'Erro ao buscar dados.');
+          });
+    }, []); // Nenhum dependência aqui, será executado uma vez na montagem do componente
+    
+      const Data: any[] = [];
+      const color =  ['aqua', 'blue', 'light green', 'pink', 'purple']
+      for(let i = 0; i < rank.length;i++){
+        
+        Data.push({
+            id: i+1,
+            nome:rank[i].nome,
+            quantidade:rank[i].totalDoado,
+            backgroundColor:color[i]
+      });
+    
+      
       }
-    const Data = [
-        {
-            id: 1,
-            ano: 2016,
-            userGain: 80000,
-            userLost: 823
-        }, {
-            id: 2,
-            ano: 2017,
-            userGain: 45677,
-            userLost: 345
-        },
-        {
-            id: 3, ano: 2018,
-            userGain: 78888,
-            userLost: 555
-        }
-    ];
+     
+ 
+      
+
 
     const chartRef = useRef<HTMLCanvasElement | null>(null);
     const chartInstanceRef = useRef<Chart | null>(null);
@@ -56,18 +70,22 @@ export const Ranking = () => {
             }
 
             const ctx = chartRef.current.getContext("2d");
+           
             if (ctx) {
+                
+                Data.map(item => console.log(item.nome))
                 chartInstanceRef.current = new Chart(ctx, {
                     type: "bar",
                     data: {
-                        labels: Data.map(item => item.ano),
+                        labels:Data.map(item => item.nome),
+                        
                         datasets: [
                             {
-                                label: "Litros de sangue doados",
-                                data: Data.map(item => item.userGain),
-                                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                                borderColor: "rgba(75, 192, 192, 1)",
-                                borderWidth: 1,
+                                label: "Pontos de sangue doados",
+                                data: Data.map(item => item.quantidade),
+                                backgroundColor:Data.map(item => item.backgroundColor) ,
+                            
+                          
                             }
                         ],
                     },
@@ -84,7 +102,7 @@ export const Ranking = () => {
                 });
             }
         }
-    }, []);
+    }, [Data]);
     
     return (
         <>     
@@ -113,7 +131,7 @@ export const Ranking = () => {
                     </div>
                 </div>
                 <div className="colocacao">
-                <h3 className="rowdies bold-30">Sua posição no Ranking: 10° posição</h3>
+                <h3 className="rowdies bold-30">Sua posição no Ranking: {colocacao?.posicao} posição</h3>
                 
                 </div>
             </div>
