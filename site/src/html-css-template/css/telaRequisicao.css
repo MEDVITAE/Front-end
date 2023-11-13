@@ -129,7 +129,7 @@
     /* border: solid 1px red; */
 }
 
-h3 {
+.h3Req {
     width: 40.5%;
     height: 100%;
     margin-left: 4.5%;
@@ -142,7 +142,7 @@ h3 {
     border: solid 1px black;
 }
 
-.selectTipos h3 {
+.selectTipos .h3Req {
     width: 40.5%;
     height: 13.5%;
     font-size: 20px;
@@ -159,7 +159,7 @@ h3 {
     cursor: pointer;
 }
 
-.selectDoadores h3 {
+.selectDoadores .h3Req {
     width: 40.5%;
     height: 13.5%;
     font-size: 20px;
