@@ -12,7 +12,7 @@ export * from './funcionario/requisicao/Requisicao';
 
 export * from './login/Login';
 
-export * from './usuario/agenda/Agenamento';
+export * from './usuario/agenda/Agendamento';
 export * from './usuario/historico/Historico';
 export * from './usuario/mapa/Mapa';
 export * from './usuario/mapa/HospitalDetalhes';

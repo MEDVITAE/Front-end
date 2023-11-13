@@ -50,7 +50,7 @@ export const Perfil = () => {
                                 <div className="campoUsuario roboto bold-30">Sexo</div>
                                 <div className="campoUsuario roboto bold-30">Data de Nascimento</div>
                                 <div className="campoUsuario roboto bold-30">Peso</div>
-                                <div className="campoUsuario roboto bold-30">Altura</div>
+                                <div className="campoUsuario roboto bold-30">Perfil</div>
                             </div>
                             <div className="statusBoxItemColmun">
                                 <div className="campoUsuario roboto bold-30">Email</div>

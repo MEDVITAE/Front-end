@@ -115,14 +115,6 @@
     font-weight: bold;
 }
 
-input {
-    text-align: left;
-    width: 24%;
-    height: 20%;
-    border-radius: 5px;
-    border: solid 1px black;
-}
-
 #placeholder-number::placeholder {
     font-size: 18px;
     padding: 10px;
