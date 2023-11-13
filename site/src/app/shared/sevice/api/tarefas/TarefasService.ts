@@ -22,6 +22,13 @@ export interface IListagemDeHorarioDisponivel {
     hospital?: IListagemHemocentro[];
 }
 
+export interface IAgendamento {
+    id: number;
+    pontos: number;
+    horaMarcada: IListagemDeHorarioDisponivel;
+    hospital: IListagemHemocentro;
+}
+
 type THoraDisponivelComTotalCount = {
     data: IListagemHemocentro[];
 }
@@ -31,19 +38,38 @@ type THemocentroComTotalCount = {
 }
 
 export interface IHistoricoAgendamento {
-    idUsuario: number;
-    horaMarcada: IListagemDeHorarioDisponivel;
-    hospital: IListagemHemocentro;
+    id: number;
+    agenda: IAgendamento;
 }
 
-const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
+type THistoricoAgendamento = {
+    data: IHistoricoAgendamento[];
+}
+
+const getAll = async (): Promise<ITarefa[] | ApiException> => {
+    try {
+        const { data } = await Api().get('/swagger-ui.html');
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao consultar Api.');
+    }
+
+};
+
+const getAllHistoricoAgendamento = async (): Promise<THistoricoAgendamento | Error> => {
     try {
 
         const { data } = await Api().get('/');
 
-        return data;
-    }
-    catch (error) {
+        if (data) {
+            return {
+                data
+            };
+        }
+
+        return new Error('Erro ao listar registros.');
+    } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || 'Erro ao listar registros.');
     }
@@ -86,16 +112,7 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
     }
 };
 
-const getAll = async (): Promise<ITarefa[] | ApiException> => {
-    try {
-        const { data } = await Api().get('/swagger-ui.html');
-        return data;
-    }
-    catch (error: any) {
-        return new ApiException(error.message || 'Erro ao consultar Api.');
-    }
 
-};
 
 const getById = async (id: number): Promise<ITarefa | ApiException> => {
     try {
@@ -106,6 +123,20 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
         return new ApiException(error.message || 'Erro ao consultar registro.');
     }
 
+};
+
+
+const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
+    try {
+
+        const { data } = await Api().get('/');
+
+        return data;
+    }
+    catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
 };
 
 //Criar outro método para inserção de dados

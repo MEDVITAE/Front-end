@@ -24,18 +24,6 @@
     justify-content: center;
 }
 
-/*COMPONENTE DOACAO ANTERIOR*/
-
-.historico .historicoConteudo .doacaoAnterior{
-    width: 100%;
-    height: 45vh;
-    padding-left: 5%;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 /*CARD GERAL*/
 
 .historico .historicoConteudo .doacao{
@@ -83,6 +71,23 @@
 }
 
 /* DIV DOAÇÃO ANTERIOR */
+
+.historico .historicoConteudo .doacaoAnterior h2 {
+    margin-bottom: 10px;
+}
+
+.historico .historicoConteudo .doacaoAnterior {
+    width: 100%;
+    height: 45vh;
+    padding-left: 5%;
+    overflow-y: auto;  /* Adiciona a barra de rolagem quando necessário */
+    overflow-x: hidden;  /* Esconde a barra de rolagem horizontal */
+    scrollbar-width: thin;  /* Largura da barra de rolagem para Firefox */
+}
+
+.historico .historicoConteudo .doacaoAnterior::-webkit-scrollbar {
+    display: none;  /* Esconde a barra de rolagem para Webkit */
+}
 
 .historico .historicoConteudo .doacaoAnterior .doacao .caixaLitros {
     width: 20%;

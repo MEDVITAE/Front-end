@@ -17,28 +17,36 @@ export const ProximaDoacao = () => {
         {
             usuario: {
                 idUsuario: 1,
-                horaMarcada: {
-                    idHora: 3,
-                    hora: 9.30,
-                },
-                hospital: {
-                    idHospital: 4,
-                    nome: 'São Camilo',
-                    cep: '042444002'
+                agenda: {
+                    id: 2,
+                    pontos: 5,
+                    horaMarcada: {
+                        idHora: 3,
+                        hora: 9.30,
+                    },
+                    hospital: {
+                        idHospital: 4,
+                        nome: 'São Camilo',
+                        cep: '042444002'
+                    }
                 }
             }
         },
         {
             usuario: {
                 idUsuario: 2,
-                horaMarcada: {
-                    idHora: 4,
-                    hora: 10.00,
-                },
-                hospital: {
-                    idHospital: 1,
-                    nome: 'Santa Cruz Azul',
-                    cep: '042444000'
+                agenda: {
+                    id: 1,
+                    pontos: 5,
+                    horaMarcada: {
+                        idHora: 4,
+                        hora: 10.00,
+                    },
+                    hospital: {
+                        idHospital: 1,
+                        nome: 'Santa Cruz Azul',
+                        cep: '042444000'
+                    }
                 }
             }
         },
@@ -48,33 +56,37 @@ export const ProximaDoacao = () => {
         {/*TarefasService.getByIdHistoricoAgendamentoAtual(vetorExemplo[0].usuario.idUsuario);*/ }
 
         setAgenda({
-            idUsuario: vetorExemplo[0].usuario.idUsuario,
-            horaMarcada: {
-                id: vetorExemplo[0].usuario.horaMarcada.idHora,
-                hora: vetorExemplo[0].usuario.horaMarcada.hora,
-            },
-            hospital: {
-                id: vetorExemplo[0].usuario.hospital.idHospital,
-                nome: vetorExemplo[0].usuario.hospital.nome,
-                cep: vetorExemplo[0].usuario.hospital.cep
-            },
+            id: vetorExemplo[0].usuario.idUsuario,
+            agenda: {
+                id: 0,
+                pontos: 0,
+                horaMarcada: {
+                    id: vetorExemplo[0].usuario.agenda.horaMarcada.idHora,
+                    hora: vetorExemplo[0].usuario.agenda.horaMarcada.hora,
+                },
+                hospital: {
+                    id: vetorExemplo[0].usuario.agenda.hospital.idHospital,
+                    nome: vetorExemplo[0].usuario.agenda.hospital.nome,
+                    cep: vetorExemplo[0].usuario.agenda.hospital.cep
+                },
+            }
         });
 
         setData(0);
-        setHora(agenda?.horaMarcada.hora);
-        setHemocentro(agenda?.hospital.nome);
-        setLocal(agenda?.hospital.cep);
-        setCep(agenda?.hospital.cep);
+        setHora(agenda?.agenda.horaMarcada.hora);
+        setHemocentro(agenda?.agenda.hospital.nome);
+        setLocal(agenda?.agenda.hospital.cep);
+        setCep(agenda?.agenda.hospital.cep);
 
     }, [agenda]);
 
-    const deletarAgendamento = useCallback(() => { 
-        
+    const deletarAgendamento = useCallback(() => {
+
     }, []);
     const alterarAgendamento = useCallback(() => {
         deletarAgendamento();
         navegando("/perfil-usuario/agendamento")
-     }, []);
+    }, []);
 
     return (
         <>
