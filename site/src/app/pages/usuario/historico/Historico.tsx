@@ -2,9 +2,10 @@ import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
 import { HistoricoDoacao } from './components/HistoricoDoacao';
 import { ProximaDoacao } from './components/ProximaDoacao';
 
-import '../../../../html-css-template/css/HistoricoDoacao.css'
+import '../../../../html-css-template/css/HistoricoDoacao.css';
 
 export const Historico = () => {
+    
     return (
         <>
             <OndaLateralEsquerda />

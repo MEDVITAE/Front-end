@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { IHistoricoAgendamento, TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const ProximaDoacao = () => {
     const [agenda, setAgenda] = useState<IHistoricoAgendamento>();
@@ -80,12 +81,53 @@ export const ProximaDoacao = () => {
 
     }, [agenda]);
 
-    const deletarAgendamento = useCallback(() => {
+    const showConfirmUpdate = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
 
+        Toast.fire({
+            icon: "info",
+            title: message
+        });
+    };
+
+    const showDelete = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        Toast.fire({
+            icon: "success",
+            title: message
+        });
+    };
+
+    const deletarAgendamento = useCallback(() => {
+       showDelete("Agendamento anterior apagado.");
     }, []);
-    const alterarAgendamento = useCallback(() => {
+
+    const alterarAgendamento = useCallback(async () => {
         deletarAgendamento();
-        navegando("/perfil-usuario/agendamento")
+        showConfirmUpdate("Alternando para página de Agenamento.");
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        navegando("/perfil-usuario/agendamento");
     }, []);
 
     return (
