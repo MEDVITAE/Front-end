@@ -4,7 +4,7 @@ import '../../html-css-template/css/geral.css';
 import {
     AgendaHistorico,
     Agendamento, Cadastro, CadastroDados,
-    CadastroDoacao, CadastroEmpresa, CadastroFuncionario,
+    CadastroDoacao, CadastroEmpresa, CadastroEmpresaDados, CadastroFuncionario,
     Historico, HospitalDetalhes, Login,
     Mapa, PaginaInicial, Perfil,
     Quiz, Ranking, Requisicao, SaibaMais
@@ -20,6 +20,7 @@ export const Routes = () => {
                 <Route path="/cadastro-usuario" element={<Cadastro />} />
                 <Route path="/cadastro-usuario/complementar" element={<CadastroDados />} />
                 <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
+                <Route path="/cadastro-empresa/complementar" element={<CadastroEmpresaDados /> } />
 
                 <Route path="/login" element={<Login />} />
 

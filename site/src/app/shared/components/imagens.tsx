@@ -1,9 +1,9 @@
 import icon0 from '../../../html-css-template/assets/BackArrow.png';
 import icon1 from '../../../html-css-template/assets/CheckAll.png';
-import icon2 from '../../../html-css-template/assets/🦆 icon _Calendar Check_.svg';
-import icon3 from '../../../html-css-template/assets/🦆 icon _Clipboard List_.svg';
-import icon4 from '../../../html-css-template/assets/🦆 icon _Envelope Open-text_.svg';
-import icon5 from '../../../html-css-template/assets/🦆 icon _Heartbeat_.svg';
+import icon2 from '../../../html-css-template/assets/icon _Calendar Check_.svg';
+import icon3 from '../../../html-css-template/assets/icon _Clipboard List_.svg';
+import icon4 from '../../../html-css-template/assets/icon _Envelope Open-text_.svg';
+import icon5 from '../../../html-css-template/assets/icon _Heartbeat_.svg';
 import icon6 from '../../../html-css-template/assets/Call.png';
 import icon7 from '../../../html-css-template/assets/facebook.png';
 import icon8 from '../../../html-css-template/assets/google.png';

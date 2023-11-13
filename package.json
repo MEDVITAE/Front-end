@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "swal": "^0.1.0",
+    "sweetalert2-react-content": "^5.0.7"
+  }
+}

@@ -4,6 +4,7 @@ export * from './inicio/saiba-mais/SaibaMais';
 export * from './cadastro/Cadastro';
 export * from './cadastro/CadastroDados';
 export * from './cadastro/CadastroEmpresa';
+export * from './cadastro/CadastroEmpresaDados';
 
 export * from './funcionario/cadastro-doacao/CadastroDoacao';
 export * from './funcionario/cadastro-funcionario/CadastroFuncionario';
