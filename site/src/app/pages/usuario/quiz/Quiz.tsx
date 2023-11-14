@@ -1,7 +1,7 @@
 import { SetStateAction, useRef, useState } from 'react';
-import '../../../../html-css-template/css/telaAptidao.css'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import '../../../../html-css-template/css/telaAptidao.css';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
 import { useNavigate } from 'react-router-dom';
