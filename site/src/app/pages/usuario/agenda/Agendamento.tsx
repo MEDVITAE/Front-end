@@ -7,7 +7,7 @@ import { Agenda } from './components/Agenda';
 import { Horario } from './components/Horario';
 import { Hemocentro } from './components/Hemocentro';
 import { vetorIcon } from '../../../shared/components/imagens';
-import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
+import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
 import Swal from 'sweetalert2';
 
 export const Agendamento = () => {
@@ -101,7 +101,9 @@ export const Agendamento = () => {
             showConfirmForm("Agendamento realizado com sucesso, indo para aba Histórico");
             await new Promise(resolve => setTimeout(resolve, 2000));
             navegando("/perfil-usuario/historico");
-            sessionStorage.clear();
+            sessionStorage.removeItem('data');
+            sessionStorage.removeItem('hemocentro');
+            sessionStorage.removeItem('hora');
         }
     }, []);
 
@@ -111,7 +113,7 @@ export const Agendamento = () => {
         <>
             <OndaLateralEsquerda />
             <div className="container">
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="agenda">
                     <header className="tituloAgenda">
                         <h1 className="rowdies">AGENDA</h1>

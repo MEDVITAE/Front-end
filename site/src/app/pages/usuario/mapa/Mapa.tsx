@@ -2,7 +2,7 @@ import '../../../../html-css-template/css/maps.css'
 //import '../../../../js/maps.js'
 import { vetorIcon } from '../../../shared/components/imagens';
 
-import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
+import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 export const Mapa = () => {
@@ -22,7 +22,7 @@ export const Mapa = () => {
 
             <OndaLateralEsquerda />
             <div className="conteudo1">
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="mapaMundi">
                     <div className="rowdies topo">
                         <div className="titulo">

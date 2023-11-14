@@ -1,3 +1,9 @@
+
+import '../../../../html-css-template/css/CadastroDoacao.css'
+import { MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
+import { vetorIcon } from '../../../shared/components/imagens';
+import { vetorImg } from '../../../shared/components/imagens';
+
 import { title } from "process";
 import "../../../../html-css-template/css/CadastroDoacao.css";
 
@@ -9,6 +15,7 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
+
 
 export const CadastroDoacao = () => {
   const [cpf, setCpf] = useState("");
@@ -271,7 +278,7 @@ export const CadastroDoacao = () => {
     <>
       <OndaLateralEsquerda />
       <div className="tela">
-        <MenuPerfil nome="Paternezi" />
+      <MenuPerfilFuncionario nome="Paternezi" />
         <div className="cadastrarDoacao">
           <div className="topoTela">
             <h1 className="rowdies bold-30">CADASTRAR DOAÇÂO</h1>

@@ -1,18 +1,11 @@
 import { vetorIcon } from "../../../shared/components/imagens";
 import '../../../../html-css-template/css/telaRequisicao.css'
+import { MenuPerfilFuncionario } from "../../../shared/components";
 
 export const Requisicao = () => {
     return (
         <>
-            <div className="menu">
-                <h1 className="rowdies bold-30">Nome Usuário</h1>
-                <div className="menuItens">
-                    <a href="" className="now roboto sbold-20">Cadastro Funcionario</a>
-                    <a href="" className="item roboto sbold-20">Requisitar Doação</a>
-                    <a href="" className="item roboto sbold-20">Cadastrar Doação</a>
-                </div>
-                <button className="btn bg-vermelhoClaro">Sair</button>
-            </div>
+           <MenuPerfilFuncionario nome="Paternezi" />
             <div className="conteudo">
                 <div className="rowdies topo">
                     <div className="titulo">

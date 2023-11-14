@@ -19,7 +19,14 @@ export interface IListagemHemocentro {
 export interface IListagemDeHorarioDisponivel {
     id: number;
     hora: number;
-    hospital: IListagemHemocentro[];
+    hospital?: IListagemHemocentro[];
+}
+
+export interface IAgendamento {
+    id: number;
+    pontos: number;
+    horaMarcada: IListagemDeHorarioDisponivel;
+    hospital: IListagemHemocentro;
 }
 
 type THoraDisponivelComTotalCount = {
@@ -29,6 +36,44 @@ type THoraDisponivelComTotalCount = {
 type THemocentroComTotalCount = {
     data: IListagemHemocentro[];
 }
+
+export interface IHistoricoAgendamento {
+    id: number;
+    agenda: IAgendamento;
+}
+
+type THistoricoAgendamento = {
+    data: IHistoricoAgendamento[];
+}
+
+const getAll = async (): Promise<ITarefa[] | ApiException> => {
+    try {
+        const { data } = await Api().get('/swagger-ui.html');
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao consultar Api.');
+    }
+
+};
+
+const getAllHistoricoAgendamento = async (): Promise<THistoricoAgendamento | Error> => {
+    try {
+
+        const { data } = await Api().get('/');
+
+        if (data) {
+            return {
+                data
+            };
+        }
+
+        return new Error('Erro ao listar registros.');
+    } catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
+};
 
 const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Error> => {
     try {
@@ -67,16 +112,7 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
     }
 };
 
-const getAll = async (): Promise<ITarefa[] | ApiException> => {
-    try {
-        const { data } = await Api().get('/swagger-ui.html');
-        return data;
-    }
-    catch (error: any) {
-        return new ApiException(error.message || 'Erro ao consultar Api.');
-    }
 
-};
 
 const getById = async (id: number): Promise<ITarefa | ApiException> => {
     try {
@@ -87,6 +123,20 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
         return new ApiException(error.message || 'Erro ao consultar registro.');
     }
 
+};
+
+
+const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
+    try {
+
+        const { data } = await Api().get('/');
+
+        return data;
+    }
+    catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
 };
 
 //Criar outro método para inserção de dados
@@ -123,11 +173,24 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
 
 };
 
+const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiException> => {
+    try {
+        await Api().delete(`/tarefas/${id}`);
+        return undefined;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao apagar registro.');
+    }
+
+};
+
 export const TarefasService = {
-    getAllHospital,
     getAll,
+    getAllHospital,
     getById,
+    getByIdHistoricoAgendamentoAtual,
     create,
     updateById,
     deleteById,
+    deleteByIdAgedamento,
 };

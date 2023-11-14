@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import '../../../../html-css-template/css/perfil.css'
 
-import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
+import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { Anexo } from '../../../shared/contexts';
 
 const Anexar = () =>{
@@ -17,7 +17,7 @@ export const Perfil = () => {
         <>
             <OndaLateralEsquerda />
             <main className='mainPerfil'>
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="divPerfil">
                     <div className="statusBox">
                         <h2 className="rowdies mr-bt">STATUS</h2>

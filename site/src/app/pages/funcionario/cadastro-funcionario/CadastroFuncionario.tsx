@@ -5,7 +5,7 @@ import { vetorIcon } from "../../../shared/components/imagens";
 
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../../shared/components";
+import { MenuPerfilFuncionario, Input } from "../../../shared/components";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -180,23 +180,7 @@ export const CadastroFuncionario = () => {
   return (
     <>
       <div className="geral">
-        <div className="menu">
-          <h1 className="rowdies bold-30">Olá,Pedro!</h1>
-          <div className="menuItens">
-            <a href="" className="now roboto sbold-20">
-              Cadastro Funcionario
-            </a>
-            <a href="" className="item roboto sbold-20">
-              Requisitar Doação
-            </a>
-            <a href="" className="item roboto sbold-20">
-              Cadastrar Doação
-            </a>
-          </div>
-          <button onClick={handleClickNav2} className="btn bg-vermelhoClaro">
-            Sair
-          </button>
-        </div>
+        <MenuPerfilFuncionario nome="Paternezi" />
         <div className="conteudo">
           <div className="rowdies topo">
             <div className="titulo">
