@@ -1,5 +1,5 @@
 import '../../../../html-css-template/css/CadastroDoacao.css'
-import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components'
+import { MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
 import { vetorIcon } from '../../../shared/components/imagens';
 import { vetorImg } from '../../../shared/components/imagens';
 
@@ -8,7 +8,7 @@ export const CadastroDoacao = () => {
     <>
       <OndaLateralEsquerda />
       <div className="tela">
-        <MenuPerfil nome="Paternezi" />
+      <MenuPerfilFuncionario nome="Paternezi" />
         <div className="cadastrarDoacao">
           <div className="topoTela">
             <h1 className="rowdies bold-30">CADASTRAR DOAÇÂO</h1>

@@ -1,9 +1,9 @@
-import { MenuPerfil } from "../../../shared/components";
+import { MenuPerfilUsuario } from "../../../shared/components";
 
 export const Ranking = () => {
     return(
         <>
-        <MenuPerfil nome="Diego"/>
+        <MenuPerfilUsuario nome="Diego"/>
         </>
     );
 }

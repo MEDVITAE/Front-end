@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { IHistoricoAgendamento, TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ApiException } from "../../../../shared/sevice/api/ApiException";
+import { de } from "date-fns/locale";
 
 export const ProximaDoacao = () => {
     const [agenda, setAgenda] = useState<IHistoricoAgendamento>();
@@ -79,7 +81,7 @@ export const ProximaDoacao = () => {
         setLocal(agenda?.agenda.hospital.cep);
         setCep(agenda?.agenda.hospital.cep);
 
-    }, [agenda]);
+    }, []);
 
     const showConfirmUpdate = (message: string) => {
         const Toast = Swal.mixin({
@@ -119,13 +121,41 @@ export const ProximaDoacao = () => {
         });
     };
 
-    const deletarAgendamento = useCallback(() => {
-       showDelete("Agendamento anterior apagado.");
+    const showErrorNetwork = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        Toast.fire({
+            icon: "error",
+            title: message
+        });
+    };
+
+    const deletarAgendamento = useCallback((id: number) => {
+        TarefasService.deleteByIdAgedamento(id)
+            .then((result) => {
+                if (result instanceof ApiException) {
+                    showErrorNetwork(result.message + ", aguarde.");
+                }
+                else {
+                    showDelete("Agendamento anterior apagado.");
+                }
+            }
+            );
     }, []);
 
-    const alterarAgendamento = useCallback(async () => {
-        deletarAgendamento();
-        showConfirmUpdate("Alternando para página de Agenamento.");
+    const alterarAgendamento = useCallback(async (id: number) => {
+        deletarAgendamento(id);
+        showConfirmUpdate("Alternando para página de Agenamento, escolha um novo dia, hemocentro e horário para doar.");
         await new Promise(resolve => setTimeout(resolve, 3000));
         navegando("/perfil-usuario/agendamento");
     }, []);
@@ -149,8 +179,8 @@ export const ProximaDoacao = () => {
                         </div>
                     </div>
                     <div className="botaoDoacao">
-                        <button onClick={alterarAgendamento} className='btn bg-azulClaro roboto'>Alterar Agendamento</button>
-                        <button onClick={deletarAgendamento} className='btn bg-azulClaro roboto'>Cancelar Agendamento</button>
+                        <button onClick={() => alterarAgendamento(vetorExemplo[0].usuario.idUsuario)} className='btn bg-azulClaro roboto'>Alterar Agendamento</button>
+                        <button onClick={() => deletarAgendamento(vetorExemplo[0].usuario.idUsuario)} className='btn bg-azulClaro roboto'>Cancelar Agendamento</button>
                     </div>
                 </div>
             </div>

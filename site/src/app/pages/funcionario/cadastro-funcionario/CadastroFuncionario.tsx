@@ -1,17 +1,10 @@
 import '../../../../html-css-template/css/novoFuncionario.css'
+import { MenuPerfilFuncionario } from '../../../shared/components';
 
 export const CadastroFuncionario = () => {
     return (
         <>
-            <div className="menu">
-                <h1 className="rowdies bold-30">Olá,Pedro!</h1>
-                <div className="menuItens">
-                    <a href="" className="now roboto sbold-20">Cadastro Funcionario</a>
-                    <a href="" className="item roboto sbold-20">Requisitar Doação</a>
-                    <a href="" className="item roboto sbold-20">Cadastrar Doação</a>
-                </div>
-                <button className="btn bg-vermelhoClaro">Sair</button>
-            </div>
+           <MenuPerfilFuncionario nome="Paternezi" />
             <div className="conteudo">
                 <div className="rowdies topo">
                     <div className="titulo">

@@ -2,7 +2,7 @@ import { SetStateAction, useRef, useState } from 'react';
 import '../../../../html-css-template/css/telaAptidao.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
+import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
 import { useNavigate } from 'react-router-dom';
 
@@ -203,7 +203,7 @@ export const Quiz = () => {
         <>
             <OndaLateralEsquerda />
             <div className="flexContainer">
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="conteudoQuiz">
                     <div className="containerAptidao">
                         <h1 className="rowdies bold-30">QUIZ DE APTIDÃO</h1>

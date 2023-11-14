@@ -173,6 +173,17 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
 
 };
 
+const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiException> => {
+    try {
+        await Api().delete(`/tarefas/${id}`);
+        return undefined;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao apagar registro.');
+    }
+
+};
+
 export const TarefasService = {
     getAll,
     getAllHospital,
@@ -181,4 +192,5 @@ export const TarefasService = {
     create,
     updateById,
     deleteById,
+    deleteByIdAgedamento,
 };

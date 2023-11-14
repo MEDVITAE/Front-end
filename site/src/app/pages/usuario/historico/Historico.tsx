@@ -1,4 +1,4 @@
-import { MenuPerfil, OndaLateralEsquerda } from '../../../shared/components';
+import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
 import { HistoricoDoacao } from './components/HistoricoDoacao';
 import { ProximaDoacao } from './components/ProximaDoacao';
 
@@ -10,7 +10,7 @@ export const Historico = () => {
         <>
             <OndaLateralEsquerda />
             <div className="historico">
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="historicoConteudo">
                    <ProximaDoacao />
                     <HistoricoDoacao />

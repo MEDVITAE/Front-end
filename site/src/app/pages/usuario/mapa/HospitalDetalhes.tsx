@@ -1,6 +1,6 @@
 import '../../../../html-css-template/css/telaDetalheHospital.css'
 
-import { MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
+import { MenuPerfilFuncionario, MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 
 
 export const HospitalDetalhes = () => {
@@ -8,7 +8,7 @@ export const HospitalDetalhes = () => {
         <>
         <OndaLateralEsquerda />
             <div className="flexContainer">
-                <MenuPerfil nome="Diego" />
+                <MenuPerfilUsuario nome="Diego" />
                 <div className="conteudoHospital">
                     <div className="containerHospital">
                         <h1 className="rowdies bold-30" >VER MAPA</h1>
