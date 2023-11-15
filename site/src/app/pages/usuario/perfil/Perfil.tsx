@@ -3,6 +3,7 @@ import '../../../../html-css-template/css/perfil.css'
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { Anexo } from '../../../shared/contexts';
+import { TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
 
 const Anexar = () =>{
     useEffect(() =>{
@@ -41,20 +42,19 @@ export const Perfil = () => {
                         <h2 className="rowdies mr-bt">DADOS DO USUÁRIO</h2>
                         <div className="statusBoxRow">
                             <div className="statusBoxItemColmun">
-                                <div className="campoUsuario roboto bold-30">Nome Completo</div>
-                                <div className="campoUsuario roboto bold-30">CPF</div>
-                                <div className="campoUsuario roboto bold-30">CEP</div>
-                                <div className="campoUsuario roboto bold-30">Número</div>
+                                <input className="campoUsuario roboto bold-30" type="text" placeholder='Nome Completo'/>
+                                <input className="campoUsuario roboto bold-30" type="text" placeholder='CPF'/>
+                                <input className="campoUsuario roboto bold-30" type="text" placeholder='CEP'/>
+                                <input className="campoUsuario roboto bold-30" type="number" placeholder='Número'/>
                             </div>
                             <div className="statusBoxItemColmun">
-                                <div className="campoUsuario roboto bold-30">Sexo</div>
-                                <div className="campoUsuario roboto bold-30">Data de Nascimento</div>
-                                <div className="campoUsuario roboto bold-30">Peso</div>
-                                <div className="campoUsuario roboto bold-30">Altura</div>
+                                <input className="campoUsuario roboto bold-30" type="text" placeholder='Sexo Biológico'/>
+                                <input className="campoUsuario roboto bold-30" type="text" placeholder='Data de Nascimento (dd/mm/aaaa)'/>
+                                <input className="campoUsuario roboto bold-30" type="double" placeholder='Peso'/>
+                                <input className="campoUsuario roboto bold-30" type="double" placeholder='Altura'/>
                             </div>
                             <div className="statusBoxItemColmun">
-                                <div className="campoUsuario roboto bold-30">Email</div>
-                                <div className="campoUsuario roboto bold-30">Senha</div>
+                                <input className="campoUsuario roboto bold-30" type="email" placeholder='Email'/>
                                 <label className="picture" htmlFor="picture__inputPerfil" tabIndex={0}>
                                     <span className="picture__image"></span>
                                 </label>

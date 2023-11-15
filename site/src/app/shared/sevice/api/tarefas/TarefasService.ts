@@ -10,6 +10,20 @@ export interface ITarefa {
     cpf: string;
 }
 
+export interface IDetalheUser {
+    quantidade: number;
+    tipo: string;
+    nome: string;
+    cpf: string;
+    numero: number;
+    sexo: string;
+    nascimento: string;
+    peso: number;
+    email: string;
+    altura: number;
+    apto: string;
+}
+
 export interface IListagemHemocentro {
     id: number;
     nome: string;
@@ -93,10 +107,11 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
     }
 };
 
+
 const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
-
+        
         const { data } = await Api().get(urlRelativa);
 
         if (data) {
@@ -104,7 +119,7 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
                 data
             };
         }
-
+        
         return new Error('Erro ao listar registros.');
     } catch (error) {
         console.error(error);
@@ -113,6 +128,15 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
 };
 
 
+const getDetalhesUsuario = async (id: number) : Promise<IDetalheUser | ApiException> => {
+    try {
+        const { data } = await Api().get(`/detalhes/${id}`);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao consultar detalhes do usuario.');
+    }
+}
 
 const getById = async (id: number): Promise<ITarefa | ApiException> => {
     try {
@@ -124,7 +148,6 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
     }
 
 };
-
 
 const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
     try {
@@ -187,6 +210,7 @@ const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiExceptio
 export const TarefasService = {
     getAll,
     getAllHospital,
+    getDetalhesUsuario,
     getById,
     getByIdHistoricoAgendamentoAtual,
     create,
