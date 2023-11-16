@@ -1,15 +1,11 @@
 
 import '../../../../html-css-template/css/CadastroDoacao.css'
-import { MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
+import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
 import { vetorIcon } from '../../../shared/components/imagens';
 import { vetorImg } from '../../../shared/components/imagens';
 
 import { title } from "process";
 import "../../../../html-css-template/css/CadastroDoacao.css";
-
-import { Input, MenuPerfil, OndaLateralEsquerda } from "../../../shared/components";
-import { vetorIcon } from "../../../shared/components/imagens";
-import { vetorImg } from "../../../shared/components/imagens";
 
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
