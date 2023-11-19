@@ -3,13 +3,8 @@ import '../../../../html-css-template/css/CadastroDoacao.css'
 import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
 import { vetorIcon } from '../../../shared/components/imagens';
 import { vetorImg } from '../../../shared/components/imagens';
-
-import { title } from "process";
 import "../../../../html-css-template/css/CadastroDoacao.css";
-
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
 import Swal from "sweetalert2";
 
 
@@ -39,7 +34,43 @@ export const CadastroDoacao = () => {
       });
       Toast.fire({
         icon: "error",
-        title: "CPF incorreto",
+        title: message,
+      });
+    }
+
+    const validacaoCerto = (message: string) => {
+      const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "success",
+          title: message,
+        });
+      }
+
+      const validacaoInfo = (message: string) => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "info",
+        title: message,
       });
     }
 
@@ -54,57 +85,18 @@ export const CadastroDoacao = () => {
       telefone === "" ||
       tipoSanguineo === ""
     ) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Preencha todos os campos obrigatórios",
-      });
+      validacaoErro("Preencha todos os campos")
     }
 
-    else if (cpf.length << 0 || litros.length << 0 || numero.length << 0 || telefone.length << 0) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Valores negativos inseridos",
-      });
+    else if (parseInt(cpf) < 0 || parseInt(litros) < 0 || parseInt(numero) < 0 || parseInt(telefone) < 0) {
+      validacaoErro("Valores negativos inseridos");
     }
+    // else if (cpf.length < 0 || litros.length < 0 || numero.length < 0 || telefone.length < 0) {
+    //   validacaoErro("Valores negativos inseridos")
+    // } 
 
     else if (cpf.length != 11) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "CPF incorreto",
-      });
+     validacaoErro("CPF inválido");
     }
 
     else if (
@@ -115,159 +107,52 @@ export const CadastroDoacao = () => {
       !sexo.includes("FEMININO") &&
       !sexo.includes("MASCULINO")
     ) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Sexo incorreto",
-      });
+      validacaoErro("Sexo inválido");
     }
 
     else if (/\s/.test(cep) || /\s/.test(numero) || /\s/.test(telefone)) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Valores numerícos não pode conter espaços",
-      });
+      validacaoErro("Valores numerícos não pode conter espaços"
+      );
     }
+
     else if (cep.length < 8 || cep.length > 8) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "CEP inválido",
-      });
+      validacaoErro("CEP inválido")
     }
 
     else if (telefone.length > 15 || telefone.length < 8) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Número de telefone incorreto",
-      });
+      validacaoErro("Número de telefone inválido")
     }
 
     else if (!tipoSanguineo.toUpperCase) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Tipo sanguíneo deve conter letras maiusculas",
-      });
+      validacaoErro("Tipo sanguineo deve conter letras maiusculas")
     }
 
-    else if (
-      !tipoSanguineo.includes("A") &&
-      !tipoSanguineo.includes("A+") &&
-      !tipoSanguineo.includes("A-") &&
-      !tipoSanguineo.includes("B") &&
-      !tipoSanguineo.includes("B+") &&
-      !tipoSanguineo.includes("B-") &&
-      !tipoSanguineo.includes("AB") &&
-      !tipoSanguineo.includes("AB+") &&
-      !tipoSanguineo.includes("AB-") &&
-      !tipoSanguineo.includes("O") &&
-      !tipoSanguineo.includes("O+") &&
-      !tipoSanguineo.includes("O-")
-    ) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Tipo sanguíneo incorreto",
-      });
-    } 
+    else if (!/^(A|A\+|A-|B|B\+|B-|AB|AB\+|AB-|O|O\+|O-)$/.test(tipoSanguineo)) {
+      validacaoErro("Tipo sanguíneo inválido");
+    }
+    // else if (
+    //   !tipoSanguineo.includes("A") &&
+    //   !tipoSanguineo.includes("A+") &&
+    //   !tipoSanguineo.includes("A-") &&
+    //   !tipoSanguineo.includes("B") &&
+    //   !tipoSanguineo.includes("B+") &&
+    //   !tipoSanguineo.includes("B-") &&
+    //   !tipoSanguineo.includes("AB") &&
+    //   !tipoSanguineo.includes("AB+") &&
+    //   !tipoSanguineo.includes("AB-") &&
+    //   !tipoSanguineo.includes("O") &&
+    //   !tipoSanguineo.includes("O+") &&
+    //   !tipoSanguineo.includes("O-")
+    // ) {
+    //   validacaoErro("Tipo sanguineo inválido")
+    // } 
     else {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Doação registrada",
-      });
+      validacaoCerto("Doação Registrada")
     }
   };
 
   const handleClickNav2 = () => {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      },
-    });
-    Toast.fire({
-      icon: "success",
-      title: "Doação não registrada",
-    });
+    validacaoInfo("Doação não Registrada")
   };
 
   return (

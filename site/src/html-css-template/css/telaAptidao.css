@@ -3,19 +3,16 @@
 .flexContainer {
     width: 100%;
     position: relative;
-    /* border: solid 1px yellow; */
 }
 
 .flexContainer .divImgAptidao {
     width: 20%;
     margin-top: 14%;
     position: relative;
-    /* border: solid 1px  yellow; */
 }
 
 .flexContainer .divImgAptidao .imgTuboAptidao {
     width: 100%;
-    /* border: solid 1px red; */
 }
 
 .flexContainer .conteudoQuiz {
@@ -32,7 +29,6 @@
 .flexContainer .conteudoQuiz .primeiroQuiz {
     width: 80%;
     height: 40vh;
-    /* border: solid 1px red; */
 }
 
 .flexContainer .conteudoQuiz .primeiroQuiz h3 {
@@ -40,28 +36,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: solid 1px blue; */
 }
 
 .flexContainer .conteudoQuiz .primeiroQuiz .quizUm {
     width: 110%;
     height: 39vh;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: solid 1px black;
 }
+
 .flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 69.9%;
     margin-left: 3%;
-    /* border: solid 1px black; */
 }
 
-.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz  .inputQuiz {
+.flexContainer .conteudoQuiz .primeiroQuiz .quizUm .divQuiz .inputQuiz {
     text-align: left;
     width: 24%;
     height: 20%;
@@ -71,14 +66,18 @@
 
 #placeholder-number::placeholder {
     font-size: 18px;
-    padding: 10px;
+    padding: 0.5px;
     color: black;
+}
+
+.inputQuiz {
+    padding: 8px;
+    font-size: 14px;
 }
 
 .flexContainer .conteudoQuiz .segundoQuiz {
     width: 80%;
     height: 39vh;
-    /* border: solid 1px red; */
 }
 
 .flexContainer .conteudoQuiz .segundoQuiz h3 {
@@ -87,14 +86,13 @@
     justify-content: center;
     align-items: center;
     margin-right: 3%;
-    /* border: solid 1px blue; */
 }
 
 .flexContainer .conteudoQuiz .segundoQuiz .quizDois {
     width: 110%;
     height: 39vh;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: solid 1px black;
@@ -106,7 +104,6 @@
     justify-content: space-evenly;
     height: 69.9%;
     margin-left: 3%;
-    /* border: solid 1px black; */
 }
 
 .quizOpition {
@@ -131,4 +128,8 @@
 
 .swal2-popup {
     font-family: sans-serif !important;
+}
+
+.divBtn {
+    transform: translateY(99px) translateX(-50px);
 }
