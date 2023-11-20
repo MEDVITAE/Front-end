@@ -1,10 +1,11 @@
-import { SetStateAction, useRef, useState } from 'react';
-import '../../../../html-css-template/css/telaAptidao.css';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
+import { SetStateAction, useCallback, useRef, useState } from 'react';
+import '../../../../html-css-template/css/telaAptidao.css'
+import Swal from 'sweetalert2'
+import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
 import { useNavigate } from 'react-router-dom';
+import { IQuiz, QuizService } from '../../../shared/sevice/api/tarefas/quizService';
+import { ApiException } from '../../../shared/sevice/api/ApiException';
 
 
 export const Quiz = () => {
@@ -16,29 +17,26 @@ export const Quiz = () => {
     const [usoMedicamento, setUsoMedicamento] = useState('');
     const [dst, setDst] = useState('');
     const [vacinaCovid, setVacinaCovid] = useState('');
+    const [apto, setApto] = useState(Boolean);
 
-
-    //função handleAlturaChange chamada quando o valor do campo altura e peso é alterado.
     const handleAlturaChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setAltura(event.target.value);
     };
-
-   //função handlePesoChange chamada quando o valor do campo peso é alterado.
     const handlePesoChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setPeso(event.target.value);
     };
-
-   //função handleOptionChange chamada quando o valor das Options é alterado.
     const handleOptionChange = (event: { target: { value: string; }; }, setState: (arg0: string) => void) => {
         setState(event.target.value);
     };
 
-    const showValidationErrorModal = (message: string) => {
+    const navigate = useNavigate();
+
+    const modalErro = (message: string) => {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
-            timer: 5000,
+            timer: 2500,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.onmouseenter = Swal.stopTimer;
@@ -52,149 +50,97 @@ export const Quiz = () => {
         });
     };
 
-    const validateAltura = () => {
-        if (parseFloat(altura) <= 0) {
-            showValidationErrorModal(
-                "Altura inválida. Por favor, insira uma altura válida.");
-            return false;
-        }
-        return true;
+    const modalInfo = async () => {
+        await Swal.fire({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            },
+            icon: 'info',
+            title: 'Você está sendo direcionado para a tela de perfil.',
+        });
     };
 
-    const validatePeso = () => {
-        if (parseFloat(peso) < 50) {
-            showValidationErrorModal(
-                "Para doar sangue, é necessário ter mais de 50kg.");
-            return false;
-        }
-        return true;
+    const modalSucesso = async () => {
+        await Swal.fire({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            },
+            icon: 'success',
+            title: 'Direcionando para a tela de perfil.',
+        });
     };
 
-    const validateTatuagem = () => {
-        if (tatuagem === 'sim') {
-            showValidationErrorModal(
-                "Você precisa esperar pelo menos 12 mês após a última tatuagem para doar.");
-            return false;
-        }
-        return true;
-    };
+    const funcaoAoClicar = useCallback(async () => {
 
-    const validateRelacaoSexual = () => {
-        if (relacaoSexual === 'sim') {
-            showValidationErrorModal(
-                "Você precisa esperar pelo menos 7 dias após a última relação sexual para doar.");
-            return false;
-        }
-        return true;
-    };
+    
+        const camposVazios = [
+            altura,
+            peso,
+            tatuagem,
+            relacaoSexual,
+            desconforto,
+            usoMedicamento,
+            dst,
+            vacinaCovid
+        ].some((campo) => campo.trim() === '');
 
-    const validateDesconforto = () => {
-        if (desconforto === 'sim') {
-            showValidationErrorModal(
-                "Consulte um médico antes de doar.");
-            return false;
-        }
-        return true;
-    };
-
-    const validateUsoMedicamento = () => {
-        if (usoMedicamento === 'sim') {
-            showValidationErrorModal(
-                "Aguarde sete dias após o fim do tratamento para doar.");
-            return false;
-        }
-        return true;
-    };
-
-    const validateDst = () => {
-        if (dst === 'sim') {
-            showValidationErrorModal(
-                "Esperar 6 meses após ter um caso de DST para realizar a doação.");
-            return false;
-        }
-        return true;
-    };
-
-    const validateVacinaCovid = () => {
-        if (vacinaCovid === 'sim') {
-            showValidationErrorModal(
-                "Tempo de espera para doar: Coronavac após dois dias. AstraZeneca, Pfizer-BioNTech e Janssen após sete dias.");
-            return false;
-        }
-        return true;
-    };
-
-    const validateForm = () => {
-
-        // Verificar se algum campo está vazio
-        if (
-            altura === '' ||
-            peso === '' ||
-            tatuagem === '' ||
-            relacaoSexual === '' ||
-            desconforto === '' ||
-            usoMedicamento === '' ||
-            dst === '' ||
-            vacinaCovid === ''
-        ) {
-            showValidationErrorModal("Por favor, preencha todos os campos do formulário.");
-            return false;
+        if (camposVazios) {
+            modalErro("Por favor, preencha todos os campos do formulário.");
+            return;
         }
 
-        // Chamando todas as funções de validação
-        return (
-            validateAltura() &&
-            validatePeso() &&
-            validateTatuagem() &&
-            validateRelacaoSexual() &&
-            validateDesconforto() &&
-            validateUsoMedicamento() &&
-            validateDst() &&
-            validateVacinaCovid() &&
-            true
-        );
-    };
+        if (parseFloat(altura) <= 1 || parseFloat(altura) > 3) {
+            modalErro("Altura inválida. Por favor, insira uma altura válida.");
+            return;
+        }
 
-    const navigate = useNavigate();
-    const handleAvancarClick = async () => {
-        // Validar todos os campos individualmente
-        // if (
-        //     !validateAltura() ||
-        //     !validatePeso() ||
-        //     !validateTatuagem() ||
-        //     !validateRelacaoSexual() ||
-        //     !validateDesconforto() ||
-        //     !validateUsoMedicamento() ||
-        //     !validateDst() ||
-        //     !validateVacinaCovid()) {
-        //     return; // Se alguma validação falhar, não avança para a próxima etapa
-        // }
+        console.log('Antes de setApto(true):', apto);
+        setApto(true);
+        console.log('Depois de setApto(true):', apto);
 
-        // Para o caso de todos os campos estarem validados
-        if (validateForm()) {
-            // Todos os campos foram preenchidos e o usuário está apto
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2100,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
 
-            Toast.fire({
-                icon: "success",
-                title: "Você está apto para doar!"
-            });
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            navigate("/perfil-usuario");
-        } 
-    };
-    // ------------------------------------------
+        console.log('tatuagem:', apto);
+        console.log('dst:', apto);
+        console.log('peso:', apto);
 
+        if (tatuagem === 'sim' || dst === 'sim' || parseFloat(peso) < 50 || parseFloat(peso) >= 150) {
+            console.log('Condição para setApto(false) atendida');
+            setApto(false);
+            console.log('Esta apto:', apto);
+            await modalInfo();
+        }
+
+        const quizData: IQuiz = {
+            altura: parseFloat(altura),
+            peso: parseFloat(peso),
+            apto: apto,
+        };
+
+          // Chame a função updateById para atualizar o perfil
+          const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
+          
+            // Verifique se a atualização foi bem-sucedida
+            if (resultado instanceof ApiException) {
+                modalErro("Erro ao atualizar perfil.");
+                return;
+            } else{
+
+                await modalSucesso();
+                setTimeout(() => navigate("/perfil-usuario"), 0);
+            } 
+    }, [altura, peso, tatuagem, relacaoSexual, desconforto, usoMedicamento, dst, vacinaCovid, apto, navigate]);
 
     // ------------------------------------------
     //Tela
@@ -296,7 +242,7 @@ export const Quiz = () => {
                 <div className="divImgAptidao">
                     <img className="imgTuboAptidao" src={vetorImg[11]} alt="" />
                     <div className='divBtn'>
-                        <button onClick={handleAvancarClick} className="btn cadastrar bold-20" >
+                        <button onClick={funcaoAoClicar} className="btn avancar bold-20" >
                             Avançar
                             <img src={vetorIcon[0]} alt="" />
                         </button>
@@ -306,6 +252,3 @@ export const Quiz = () => {
         </>
     );
 }
-
-
-

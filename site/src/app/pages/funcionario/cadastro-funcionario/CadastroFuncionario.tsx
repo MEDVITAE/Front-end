@@ -3,9 +3,10 @@ import "../../../../html-css-template/css/novoFuncionario.css";
 import { vetorImg } from "../../../shared/components/imagens";
 import { vetorIcon } from "../../../shared/components/imagens";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuPerfilFuncionario, Input } from "../../../shared/components";
+import { Input } from "../../../shared/components";
+import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -14,6 +15,7 @@ export const CadastroFuncionario = () => {
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
   const [cargo, setCargo] = useState("");
+  const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [confSenha, setConfSenha] = useState("");
 
@@ -24,47 +26,42 @@ export const CadastroFuncionario = () => {
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-  const handleClickNav = () => {
-    if (email === "" || nome === "" || cargo === "" || senha === "" || confSenha === "") {
+  const showValidationErrorModal = (message: string) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
 
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Preencha todos os campos obrigatórios",
-      });
+    Toast.fire({
+      icon: "error",
+      title: message,
+    });
+  };
 
-    }
-
+  const validateForm = () => {
+    if (
+      email === "" ||
+      nome === "" ||
+      cargo === "" ||
+      senha === "" ||
+      confSenha === ""
+    ) {
+      showValidationErrorModal("Os Campos não podem estar em branco");
+      return false;
+    } 
+    
     else if (!email.includes("@")) {
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Email precisa conter @",
-      });
-
-    }
-
+      showValidationErrorModal("Email deve conter @");
+      return false;
+    } 
+    
     else if (
       !email.includes("outlook.com") &&
       !email.includes("hotmail.com") &&
@@ -72,115 +69,102 @@ export const CadastroFuncionario = () => {
       !email.includes("yahoo.com") &&
       !email.includes("icloud.com")
     ) {
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Insira um dominio valido",
-      });
-
-    }
-
-    else if (senha === "") if (senha.length < 8) {
-        
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Digite uma senha forte",
-      });
-    }
-
+      showValidationErrorModal("Insira um domínio válido");
+      return false;
+    } 
+    
+    else if (parseInt(cpf) < 0) {
+      showValidationErrorModal("Valores negativos inseridos");
+      return false;
+    } 
+    
+    else if (cpf.length !== 11) {
+      showValidationErrorModal("CPF inválido");
+      return false;
+    } 
+    
+    else if (senha.length < 8) {
+      showValidationErrorModal("Digite uma senha forte");
+      return false;
+    } 
     
     else if (!/\s/.test(nome) && nome.length < 15) {
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Digite o nome completo",
-      });
-    }
-
+      showValidationErrorModal("Digite o nome completo");
+      return false;
+    } 
+    
     else if (nome.length > 80) {
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Nome incorreto",
-      });
-    }
-
-    else if (confSenha === "") {
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Confirmar sua senha"
-      });
-    }
-
+      showValidationErrorModal("Nome incorreto");
+      return false;
+    } 
+    
     else if (confSenha === senha) {
-      navegando("/perfil-funcionario/cadastro-funcionario");
+      return true;
+    } 
+    
+    else {
+      showValidationErrorModal("Senhas diferentes");
+      return false;
     }
+
   };
 
-  const handleClickNav2 = () => {
+  const handleCadastroFuncionario = useCallback( async () => {
+    try {
+      if (validateForm()) {
+        await CadastroFuncionarioService.create({
+          nome: nome,
+          email: email,
+          senha: senha,
+          role: cargo,
+          cpf: cpf,
+        });
+        
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Funcionario cadastrado",
+        });
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar funcionário:", error);
+    }
+  }, [nome, email, senha, cargo, cpf, validateForm]);
+
+  const handleClickNav = () => {
     navegando("/pagina-inicial");
   };
 
   return (
     <>
       <div className="geral">
-        <MenuPerfilFuncionario nome="Paternezi" />
+        <div className="menu">
+          <h1 className="rowdies bold-30">Olá,Pedro!</h1>
+          <div className="menuItens">
+            <a href="" className="now roboto sbold-20">
+              Cadastro Funcionario
+            </a>
+            <a href="" className="item roboto sbold-20">
+              Requisitar Doação
+            </a>
+            <a href="" className="item roboto sbold-20">
+              Cadastrar Doação
+            </a>
+          </div>
+          <button onClick={handleClickNav} className="btn bg-vermelhoClaro">
+            Sair
+          </button>
+        </div>
         <div className="conteudo">
           <div className="rowdies topo">
             <div className="titulo">
@@ -209,6 +193,14 @@ export const CadastroFuncionario = () => {
                 />
                 <Input
                   className={"input-size"}
+                  type="number"
+                  placeholder={"CPF"}
+                  value={cpf}
+                  ref={inputPasswordRef}
+                  onChange={(newValue) => setCpf(newValue)}
+                />
+                <Input
+                  className={"input-size"}
                   type="text"
                   placeholder={"Cargo"}
                   value={cargo}
@@ -223,13 +215,13 @@ export const CadastroFuncionario = () => {
                   ref={inputPasswordRef}
                   onChange={(newValue) => setEmail(newValue)}
                 />
-                <Input
-                  className={"input-size"}
-                  placeholder={"Senha"}
-                  value={senha}
-                  onChange={(newValue) => setSenha(newValue)}
-                />
                 <div className="confirmaSenha">
+                  <Input
+                    className={"input-size"}
+                    placeholder={"Senha"}
+                    value={senha}
+                    onChange={(newValue) => setSenha(newValue)}
+                  />
                   <Input
                     className={"input-size"}
                     type="text"
@@ -241,7 +233,7 @@ export const CadastroFuncionario = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClickNav} className="btnCadastrar btn">
+            <button onClick={handleCadastroFuncionario} className="btnCadastrar btn">
               Cadastrar
             </button>
           </div>
