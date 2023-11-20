@@ -139,7 +139,7 @@ export const Quiz = () => {
 
                 await modalSucesso();
                 setTimeout(() => navigate("/perfil-usuario"), 0);
-            }
+            } 
     }, [altura, peso, tatuagem, relacaoSexual, desconforto, usoMedicamento, dst, vacinaCovid, apto, navigate]);
 
     // ------------------------------------------
