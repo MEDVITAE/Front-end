@@ -50,22 +50,6 @@ export const Quiz = () => {
         });
     };
 
-    // const modalInfo = async () => {
-    //     await Swal.fire({
-    //         toast: true,
-    //         position: "top-end",
-    //         showConfirmButton: false,
-    //         timer: 2500,
-    //         timerProgressBar: true,
-    //         didOpen: (toast) => {
-    //             toast.onmouseenter = Swal.stopTimer;
-    //             toast.onmouseleave = Swal.resumeTimer;
-    //         },
-    //         icon: 'info',
-    //         title: 'Você está sendo direcionado para a tela de perfil.',
-    //     });
-    // };
-
     const modalSucesso = async () => {
         await Swal.fire({
             toast: true,
@@ -96,13 +80,11 @@ export const Quiz = () => {
             vacinaCovid
         ].some((campo) => campo.trim() === '');
 
-        // Verifique se altura é negativa
         if (parseFloat(altura) < 0) {
             modalErro("Altura não pode ser negativa.");
             return;
         }
 
-        // Verifique se peso é negativo
         if (parseFloat(peso) < 0) {
             modalErro("Peso não pode ser negativo.");
             return;
@@ -132,7 +114,6 @@ export const Quiz = () => {
             console.log('Condição para setApto(false) atendida');
             teste = false;
             console.log('Esta apto:', apto);
-            // await modalInfo();
         }
 
         const quizData: IQuiz = {
@@ -141,10 +122,8 @@ export const Quiz = () => {
             apto: teste,
         };
 
-        // Chame a função updateById para atualizar o perfil
         const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
 
-        // Verifique se a atualização foi bem-sucedida
         if (resultado instanceof ApiException) {
             modalErro("Erro ao atualizar perfil.");
             return;
