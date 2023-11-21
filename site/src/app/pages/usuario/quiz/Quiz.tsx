@@ -122,6 +122,7 @@ export const Quiz = () => {
             apto: teste,
         };
 
+
         const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
 
         if (resultado instanceof ApiException) {
@@ -131,7 +132,6 @@ export const Quiz = () => {
             await modalSucesso();
             setTimeout(() => navigate("/perfil-usuario"), 0);
         }
-
     }, [altura, peso, tatuagem, relacaoSexual, desconforto, usoMedicamento, dst, vacinaCovid, apto, navigate]);
 
 
