@@ -8,6 +8,7 @@ export interface IQuiz {
     peso: number;
     apto: boolean;
 }   
+
 const updateById = async (id: String | null, dataToUpdate: IQuiz): Promise<IQuiz | ApiException> => {
     try {
         console.log(dataToUpdate);
