@@ -62,7 +62,7 @@ export const HistoricoDoacao: React.FC = () => {
             }
         }));
 
-        setHistorico(rows);
+       // setHistorico(rows);
     }, []);
 
     return (
@@ -82,7 +82,7 @@ export const HistoricoDoacao: React.FC = () => {
                         </div>
                         <div className="item">
                             <h2 className='roboto'>Hemocentro: {historico.agenda.hospital.nome}</h2>
-                            <h2 className='roboto'>Local: {historico.agenda.hospital.cep}</h2>
+                            <h2 className='roboto'>Local: </h2>
                         </div>
                     </div>
                     <div className="caixaLitros">

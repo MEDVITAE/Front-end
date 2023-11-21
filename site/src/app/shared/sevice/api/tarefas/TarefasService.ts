@@ -21,9 +21,8 @@ export interface ITokenId {
 }
 
 export interface IListagemHemocentro {
-    id: number;
+    idHospital: number;
     nome: string;
-    cep: string;
 }
 
 export interface IListagemDeHorarioDisponivel {
@@ -103,11 +102,16 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
     }
 };
 
-const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
+const getAllHospital = async (filter = '', token: string): Promise<THemocentroComTotalCount | Error> => {
     try {
-        const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
+        const urlRelativa = `/hospital?nome_like=${filter}`;
 
-        const { data } = await Api().get(urlRelativa);
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          };
+
+        const { data } = await Api().get(urlRelativa, { headers });
 
         if (data) {
             return {

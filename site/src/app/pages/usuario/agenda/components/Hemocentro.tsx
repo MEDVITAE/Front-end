@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { InputPesquisa } from '../../../../shared/components';
-import { IListagemHemocentro, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
+import { IListagemHemocentro, ITokenId, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import '../../../../../html-css-template/css/HemocentroEHorario.css';
@@ -16,6 +16,7 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
 
     const history = useNavigate();
 
+    const tokenSession = sessionStorage.getItem('token');
 
     const showChosenHemocentro = (message: string) => {
         const Toast = Swal.mixin({
@@ -56,7 +57,8 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
     }, []);
 
     useEffect(() => {
-        {/*TarefasService.getAllHospital(pesquisa)
+        console.log(tokenSession);
+        TarefasService.getAllHospital(pesquisa.toString(), tokenSession ? tokenSession : '')
         .then((result) => {
 
             if (result instanceof Error) {
@@ -64,14 +66,16 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
             } else {
                 console.log(result);
 
-                setRows(result.data);
+                setRows(result.data.filter((item) =>
+                item.nome.toLowerCase().includes(busca.toLowerCase())
+            ));
             }
-        });*/}
+        });
 
-        const resultadosFiltrados = vetorExemplo.filter((item) =>
+       {/* const resultadosFiltrados = vetorExemplo.filter((item) =>
             item.nome.toLowerCase().includes(busca.toLowerCase())
         );
-        setRows(resultadosFiltrados);
+       setRows(resultadosFiltrados);*/}
     }, [pesquisa, setPesquisa]);
 
     return (
@@ -97,9 +101,9 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
                     </div>
                     <div className="historicoAgenda">
                         {rows.map((vetor) => {
-                            return <h3 onClick={() => hemocentroEscolhido(vetor.id)} className="hemo roboto regular-20" key={vetor.id}>
+                            return <h3 onClick={() => hemocentroEscolhido(vetor.idHospital)} className="hemo roboto regular-20" key={vetor.idHospital}>
                                 <p>Hemocentro: {vetor.nome}</p>
-                                <p>CEP: {vetor.cep}</p>
+                                <p>CEP:</p>
                             </h3>
                         })}
                     </div>
