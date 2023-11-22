@@ -50,22 +50,6 @@ export const Quiz = () => {
         });
     };
 
-    const modalInfo = async () => {
-        await Swal.fire({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 2500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            },
-            icon: 'info',
-            title: 'Você está sendo direcionado para a tela de perfil.',
-        });
-    };
-
     const modalSucesso = async () => {
         await Swal.fire({
             toast: true,
@@ -84,7 +68,7 @@ export const Quiz = () => {
 
     const funcaoAoClicar = useCallback(async () => {
 
-    
+
         const camposVazios = [
             altura,
             peso,
@@ -95,6 +79,16 @@ export const Quiz = () => {
             dst,
             vacinaCovid
         ].some((campo) => campo.trim() === '');
+
+        if (parseFloat(altura) < 0) {
+            modalErro("Altura não pode ser negativa.");
+            return;
+        }
+
+        if (parseFloat(peso) < 0) {
+            modalErro("Peso não pode ser negativo.");
+            return;
+        }
 
         if (camposVazios) {
             modalErro("Por favor, preencha todos os campos do formulário.");
@@ -110,38 +104,38 @@ export const Quiz = () => {
         setApto(true);
         console.log('Depois de setApto(true):', apto);
 
-
         console.log('tatuagem:', apto);
         console.log('dst:', apto);
         console.log('peso:', apto);
 
+        var teste = true;
+
         if (tatuagem === 'sim' || dst === 'sim' || parseFloat(peso) < 50 || parseFloat(peso) >= 150) {
             console.log('Condição para setApto(false) atendida');
-            setApto(false);
+            teste = false;
             console.log('Esta apto:', apto);
-            await modalInfo();
         }
 
         const quizData: IQuiz = {
             altura: parseFloat(altura),
             peso: parseFloat(peso),
-            apto: apto,
+            apto: teste,
         };
 
-          // Chame a função updateById para atualizar o perfil
-          const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
-          
-            // Verifique se a atualização foi bem-sucedida
-            if (resultado instanceof ApiException) {
-                modalErro("Erro ao atualizar perfil.");
-                return;
-            } else{
 
-                await modalSucesso();
-                setTimeout(() => navigate("/perfil-usuario"), 0);
-            } 
+        const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
+
+        if (resultado instanceof ApiException) {
+            modalErro("Erro ao atualizar perfil.");
+            return;
+        } else {
+            await modalSucesso();
+            setTimeout(() => navigate("/perfil-usuario"), 0);
+        }
     }, [altura, peso, tatuagem, relacaoSexual, desconforto, usoMedicamento, dst, vacinaCovid, apto, navigate]);
 
+
+    
     // ------------------------------------------
     //Tela
     // ------------------------------------------
