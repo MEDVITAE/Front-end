@@ -38,6 +38,12 @@ export interface IAgendamento {
     hospital: IListagemHemocentro;
 }
 
+export interface IAgenda {
+    idAgendamento: number;
+    fkHospital: number;
+    horario: Date;
+}
+
 type THoraDisponivelComTotalCount = {
     data: IListagemHemocentro[];
 }
@@ -51,8 +57,8 @@ export interface IHistoricoAgendamento {
     agenda: IAgendamento;
 }
 
-type THistoricoAgendamento = {
-    data: IHistoricoAgendamento[];
+type TAgenda = {
+    data: IAgenda[];
 }
 
 const getAll = async (): Promise<ITarefa[] | ApiException> => {
@@ -66,28 +72,15 @@ const getAll = async (): Promise<ITarefa[] | ApiException> => {
 
 };
 
-const getAllHistoricoAgendamento = async (): Promise<THistoricoAgendamento | Error> => {
+const getAllHistoricoAgendamento = async (token: string): Promise<TAgenda | ApiException> => {
     try {
 
-        const { data } = await Api().get('/');
-
-        if (data) {
-            return {
-                data
-            };
-        }
-
-        return new Error('Erro ao listar registros.');
-    } catch (error) {
-        console.error(error);
-        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
-    }
-};
-
-const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Error> => {
-    try {
-
-        const { data } = await Api().get('/');
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        
+        const { data } = await Api().get('/Agenda', { headers });
 
         if (data) {
             return {
@@ -212,6 +205,7 @@ const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiExceptio
 export const TarefasService = {
     getAll,
     getAllHospital,
+    getAllHistoricoAgendamento,
     getById,
     postLogin,
     getByIdHistoricoAgendamentoAtual,

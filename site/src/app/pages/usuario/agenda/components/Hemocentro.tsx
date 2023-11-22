@@ -57,7 +57,6 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
     }, []);
 
     useEffect(() => {
-        console.log(tokenSession);
         TarefasService.getAllHospital(pesquisa.toString(), tokenSession ? tokenSession : '')
         .then((result) => {
 
