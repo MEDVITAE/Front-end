@@ -1,213 +1,203 @@
-import '../../../html-css-template/css/Cadastro.css'
-import '../../../html-css-template/css/geral.css'
+import "../../../html-css-template/css/Cadastro.css";
+import "../../../html-css-template/css/geral.css";
 
-import { useNavigate } from 'react-router-dom';
-import { vetorImg } from '../../shared/components/imagens';
-import { vetorIcon } from '../../shared/components/imagens';
+import { useNavigate } from "react-router-dom";
+import { vetorImg } from "../../shared/components/imagens";
+import { vetorIcon } from "../../shared/components/imagens";
 
-import { useRef, useState } from 'react';
-import { Input } from '../../shared/components';
+import { useCallback, useRef, useState } from "react";
+import { Input } from "../../shared/components";
 import Swal from "sweetalert2";
+import { CadastroEmpresaService, ICadastroEmpresa } from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaService";
 
 export const CadastroEmpresaDados = () => {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confSenha, setConfSenha] = useState('');
 
-    sessionStorage.setItem('email', email.trim());
-    sessionStorage.setItem('senha', senha.trim());
-    sessionStorage.setItem('confSenha', confSenha);
+  const [nome, setNome] = useState("");
+  const [cnpj, setCnpj] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confSenha, setConfSenha] = useState("");
 
-    const navegando = useNavigate();
-    const inputPasswordRef = useRef<HTMLInputElement>(null);
+  const navegando = useNavigate();
+  const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-    const handleClickNav = () => {
+  const showValidationErrorModal = (message: string) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
 
-        if (email === "" || senha === "" || confSenha === "") {
+    Toast.fire({
+      icon: "error",
+      title: message,
+    });
+  };
 
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "Preencha todos os campos obrigatórios",
-            });
-      
-          }
-      
-          else if (!email.includes("@")) {
-            
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "Email precisa conter @",
-            });
-      
-          }
-      
-          else if (
-            !email.includes("outlook.com") &&
-            !email.includes("hotmail.com") &&
-            !email.includes("gmail.com") &&
-            !email.includes("yahoo.com") &&
-            !email.includes("icloud.com")
-          ) {
-            
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "Insira um dominio valido",
-            });
-      
-          }
-      
-          else if (senha === "") if (senha.length < 8) {
-              
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "Digite uma senha forte",
-            });
-          }
-      
-          else if (confSenha === "") {
-            
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "Confirmar sua senha"
-            });
-          }
-      
-          else if (confSenha === senha) {
-            navegando("cadastro-empresa");
-          }
-        };
-
-    const handleClickNav2 = () => {
-        navegando("/login");
+  const validateForm = () => {
+    
+    if (email === "" || senha === "" || confSenha === "" || nome === "" || cnpj === "") {
+      showValidationErrorModal("Os Campos não pode estar em branco");
+      return false;
+    } 
+    
+    else if (!email.includes("@")) {
+      showValidationErrorModal("Email deve conter @");
+      return false;
+    } 
+    
+    else if (
+      !email.includes("outlook.com") &&
+      !email.includes("hotmail.com") &&
+      !email.includes("gmail.com") &&
+      !email.includes("yahoo.com") &&
+      !email.includes("icloud.com")
+    ) {
+      showValidationErrorModal("Insira um dominio valido");
+      return false;
     }
 
-    return (
+    else if (senha.length < 8) {
+      showValidationErrorModal("Digite uma senha forte");
+      return false;
+    } 
 
-        <>
-            <div className="img">
-                <img className="onda1" src={vetorImg[4]} alt="" />
-                <img className="imgDoe" src={vetorImg[1]} alt="" />
-            </div>
+    else if (cnpj.length !== 14) {
+      showValidationErrorModal("CNPJ inválido");
+    } 
 
-            <header className='header1'>
-                <div className="componente1">
-                    <img src={vetorImg[3]} alt="Vitae" />
-                    <a className='roboto bold-20' href="/pagina-inicial">Home</a>
-                </div>
+    else if (/[^a-zA-Z0-9\s]/.test(nome)) {
+      showValidationErrorModal("Nome não pode conter caracteres especiais");
+    }
+    
+    else if (confSenha === senha) {
+      navegando("/cadastro-empresa");
+      return true;
+    }
 
-                <div className="nextPage">
-                    <div>
-                        <h3>Já tem conta ?</h3>
-                        <h3>Então vamos logar!</h3>
-                    </div>
+    else {
+        showValidationErrorModal(
+            "Senhas diferentes");
+            return false;
+    }
 
-                    <button onClick={handleClickNav2} className="btn logar bold-20">
-                        Logar
-                        <img src={vetorIcon[0]} alt="" />
-                    </button>
-                </div>
-            </header>
+  };
 
-            <div className="container1">
-                <div className="formulario1">
-                    <div className="cadastro" >
-                        <h1>Cadastre-se</h1>
-                        <h1 className="text-title">Bem vindo!!</h1>
-                        <h1 className="text-title">Cadastre as informações do Hemocentro</h1>
-                    </div>
-                    <div className="inputs">
-                        <Input
-                            className={"input-size"}
-                            placeholder={"Email"}
+  const handleCadastroEmpresa = useCallback(async () => {
+    try {
+      if (validateForm()) {
+        const cadatroHospitalData: ICadastroEmpresa = {
+          cnpj: cnpj,
+          email: email,
+          nome: nome,
+          senha: senha,
+      };
 
-                            value={email}
-                            onChange={newValue => setEmail(newValue)}
-                            onPressEnter={() => inputPasswordRef.current?.focus()}
-                        />
-                        <Input
-                            className={"input-size"}
-                            placeholder={"Senha"}
-                            type="password"
+      const resultado = CadastroEmpresaService.create(cadatroHospitalData);
 
-                            value={senha}
-                            ref={inputPasswordRef}
-                            onChange={newValue => setSenha(newValue)}
-                            onPressEnter={() => inputPasswordRef.current?.focus()}
-                        />
-                        <Input
-                            className={"input-size"}
-                            placeholder={"Confirmar senha"}
-                            type="password"
+    }
+    } catch (error) {
+      console.error("Erro ao cadastrar empresa:", error);
+    }
+  }, [nome, email, senha, cnpj, validateForm]);
 
-                            value={confSenha}
-                            ref={inputPasswordRef}
-                            onChange={newValue => setConfSenha(newValue)}
-                        />
-                    </div>
-                    <div className="button">
-                        <button onClick={handleClickNav} className="btn cadastrar bold-20" >
-                            Avançar
-                            <img src={vetorIcon[0]} alt="" />
-                        </button>
-                    </div>
-                </div>
 
-            </div>
-        </>
-    );
-}
+  const handleClickNav = () => {
+    navegando("/login");
+  };
+
+  return (
+    <>
+      <div className="img">
+        <img className="onda1" src={vetorImg[4]} alt="" />
+        <img className="imgDoe" src={vetorImg[1]} alt="" />
+      </div>
+
+      <header className="header1">
+        <div className="componente1">
+          <img src={vetorImg[3]} alt="Vitae" />
+          <a className="roboto bold-20" href="/pagina-inicial">
+            Home
+          </a>
+        </div>
+
+        <div className="nextPage">
+          <div>
+            <h3>Já tem conta ?</h3>
+            <h3>Então vamos logar!</h3>
+          </div>
+
+          <button onClick={handleClickNav} className="btn logar bold-20">
+            Logar
+            <img src={vetorIcon[0]} alt="" />
+          </button>
+        </div>
+      </header>
+
+      <div className="container1">
+        <div className="formulario1">
+          <div className="cadastro">
+            <h1>Cadastre-se</h1>
+            <h1 className="text-title">Bem vindo!!</h1>
+            <h1 className="text-title">
+              Cadastre as informações do Hemocentro
+            </h1>
+          </div>
+          <div className="inputs">
+          <Input
+              className={"input-size"}
+              placeholder={"Nome"}
+              value={nome}
+              onChange={(newValue) => setNome(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"CNPJ"}
+              type="number"
+              value={cnpj}
+              onChange={(newValue) => setCnpj(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"Email"}
+              value={email}
+              onChange={(newValue) => setEmail(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"Senha"}
+              type="password"
+              value={senha}
+              ref={inputPasswordRef}
+              onChange={(newValue) => setSenha(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"Confirmar senha"}
+              type="password"
+              value={confSenha}
+              ref={inputPasswordRef}
+              onChange={(newValue) => setConfSenha(newValue)}
+            />
+          </div>
+          <div className="button">
+            <button onClick={handleCadastroEmpresa} className="btn cadastrar bold-20">
+              Avançar
+              <img src={vetorIcon[0]} alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

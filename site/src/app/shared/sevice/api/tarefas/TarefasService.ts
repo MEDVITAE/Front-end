@@ -10,6 +10,7 @@ export interface IPrimeiroCadastro {
     cpf: string;
 }
 
+
 export interface ISegundoCadastroEndereco{
     cidade: string;
     bairro: string;
@@ -27,6 +28,17 @@ export interface ISegundoCadastroCaracteristicas{
     nascimento: string;
     apto: boolean;
     fkUsuario: number;
+}
+
+export interface ILogin {
+    email: string;
+    senha: string;
+}
+
+export interface ITokenId {
+    Id: string;
+    token: string;
+
 }
 
 export interface IListagemHemocentro {
@@ -144,6 +156,17 @@ const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> =>
 
 };
 
+const postLogin = async (dataToUpdate: ILogin): Promise<ITokenId | ApiException> => {
+    try {
+        const { data } = await Api().post(`/auth/login`, dataToUpdate);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao realizar o login.');
+    }
+
+};
+
 
 const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
     try {
@@ -229,6 +252,7 @@ export const TarefasService = {
     getAll,
     getAllHospital,
     getById,
+    postLogin,
     getByIdHistoricoAgendamentoAtual,
     createUsuario,
     createUsuarioEndereco,

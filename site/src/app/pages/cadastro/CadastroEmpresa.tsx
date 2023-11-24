@@ -2,101 +2,96 @@ import "../../../html-css-template/css/homocentro.css";
 import { vetorImg } from "../../shared/components/imagens";
 import { vetorIcon } from "../../shared/components/imagens";
 
-import { useRef, useState } from "react";
+import { useRef, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Input } from "../../shared/components";
 import Swal from "sweetalert2";
+import { CadastroEmpresaEnderecoService, ICadastroEmpresaEndereco } from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaEnderecoService";
 
-export const CadastroEmpresa = () => {
-  const [cep, setCep] = useState("");
-  const [numero, setNumero] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [complemento, setComplemento] = useState("");
+  export const CadastroEmpresa = () => {
 
-  const navegando = useNavigate();
-  const inputPasswordRef = useRef<HTMLInputElement>(null);
-
-  const handleClickNav = () => {
-    if (cep === "" ||
-        numero === "" ||
-        logradouro === "") {
-          
+    const [cep, setCep] = useState("");
+    const [numero, setNumero] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [rua, setRua] = useState("");
+  
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
+    const navegando = useNavigate();
+    
+    const showValidationErrorModal = (message: string) => {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 5000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
           toast.onmouseleave = Swal.resumeTimer;
         },
       });
+  
       Toast.fire({
         icon: "error",
-        title: "Preencha todos os campos obrigatórios",
+        title: message,
       });
-    }
+    };
+    
+  
+    const validateForm = () => {
+      if (cidade === "" || bairro === "" || rua === "") {
+        showValidationErrorModal("Os Campos não podem estar em branco");
+        return false;
+      } 
+      else if (Number(cep) !== 8) {
+        showValidationErrorModal("CEP inválido");
+        return false;
+      } 
+      else if (Number(numero) <= 0) {
+        showValidationErrorModal("Valores negativos inseridos");
+        return false;
+      } 
 
-    else if (cep.length < 8 || cep.length > 8) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "CEP invalído",
-      });
-    }
+      else if (/[^a-zA-Z0-9\s]/.test(rua)) {
+        showValidationErrorModal("Logradouro não pode conter caracteres especiais");
+      }
 
-    else if (numero.length << 0) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Valores negativos inseridos",
-      });
-    }
+      else if (/[^a-zA-Z0-9\s]/.test(bairro)) {
+        showValidationErrorModal("bairro não pode conter caracteres especiais");
+      }
 
-    else if (/[^a-zA-Z0-9\s]/.test(logradouro)) {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Logradouro não pode conter caracteres especiais",
-      });
-    } 
+      else if (/[^a-zA-Z0-9\s]/.test(cidade)) {
+        showValidationErrorModal("Cidade não pode conter caracteres especiais");
+      }
 
-    else {
-      navegando("/login");
-    }
-  };
+      else {
+        navegando("/login");
+        return true;
+      }
+      
+    };
+
+    const handleCadastroEmpresaEndereco = useCallback(async () => {
+      try {
+        if (validateForm()) {
+          const enderecoData: ICadastroEmpresaEndereco = {
+            cidade: cidade,
+            bairro: bairro,
+            cep: parseInt(cep),
+            logradouro: "Rua",
+            rua: rua,
+            numero: parseInt(numero),
+            fkUsuario: null,
+            fkHospital: sessionStorage.getItem("idHospital")
+        };
+          const resultado = CadastroEmpresaEnderecoService.create(enderecoData);
+        }
+      } catch (error) {
+        console.error("Erro ao cadastrar empresa:", error);
+      }
+    }, [cidade, bairro, cep, rua, numero, validateForm]);
 
   const handleClickNav2 = () => {
     navegando("/login");
@@ -150,6 +145,33 @@ export const CadastroEmpresa = () => {
             />
             <Input
               className={"input-size"}
+              placeholder={"Cidade"}
+              type="text"
+              value={cidade}
+              ref={inputPasswordRef}
+              onChange={(newValue) => setCidade(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"Bairro"}
+              type="text"
+              value={bairro}
+              ref={inputPasswordRef}
+              onChange={(newValue) => setBairro(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
+              placeholder={"Rua"}
+              type="text"
+              value={rua}
+              ref={inputPasswordRef}
+              onChange={(newValue) => setRua(newValue)}
+              onPressEnter={() => inputPasswordRef.current?.focus()}
+            />
+            <Input
+              className={"input-size"}
               placeholder={"Número"}
               type="number"
               value={numero}
@@ -157,23 +179,9 @@ export const CadastroEmpresa = () => {
               onChange={(newValue) => setNumero(newValue)}
               onPressEnter={() => inputPasswordRef.current?.focus()}
             />
-            <Input
-              className={"input-size"}
-              placeholder={"Logradouro"}
-              value={logradouro}
-              ref={inputPasswordRef}
-              onChange={(newValue) => setLogradouro(newValue)}
-            />
-            <Input
-              className={"input-size"}
-              placeholder={"Complemento"}
-              value={complemento}
-              ref={inputPasswordRef}
-              onChange={(newValue) => setComplemento(newValue)}
-            />
           </div>
           <div className="button">
-            <button onClick={handleClickNav} className="btn cadastrar bold-20">
+            <button onClick={handleCadastroEmpresaEndereco} className="btn cadastrar bold-20">
               Cadastrar
               <img src={vetorIcon[0]} alt="" />
             </button>
