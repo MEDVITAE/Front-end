@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+
+import '../../../../html-css-template/css/CadastroDoacao.css'
+import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from '../../../shared/components'
+import { vetorIcon } from '../../../shared/components/imagens';
+import { vetorImg } from '../../../shared/components/imagens';
+
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+=======
 import "../../../../html-css-template/css/CadastroDoacao.css";
 
 import {
@@ -9,6 +19,7 @@ import { vetorIcon } from "../../../shared/components/imagens";
 import { vetorImg } from "../../../shared/components/imagens";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+>>>>>>> qa
 
 import Swal from "sweetalert2";
 import {
