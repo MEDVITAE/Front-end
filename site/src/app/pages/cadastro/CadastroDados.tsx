@@ -193,7 +193,8 @@ export const CadastroDados = () => {
                 apto: false,
                 fkUsuario: usuario.id,
             })
-
+            await new Promise(result => setTimeout(result, 2000));
+            navegando("/login");
         sessionStorage.clear();
             }
         }
@@ -282,7 +283,7 @@ export const CadastroDados = () => {
                             />
                         <h3>Desejo ser informado de campanhas e doações de emergencia ?</h3>
                     </div>
-                    <button onClick={navegarClick} className="btn cadastrar bold-20">
+                    <button onClick={cadastrando} className="btn cadastrar bold-20">
                         Finalizar
                         <img src={vetorIcon[0]} alt="" />
                     </button>
