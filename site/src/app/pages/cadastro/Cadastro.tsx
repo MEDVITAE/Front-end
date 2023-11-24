@@ -71,7 +71,7 @@ export const Cadastro = () => {
         title: "Formato de e-mail inválido",
       });
     }
-    else if (senha.length < 6) {
+    else if (senha.length < 8) {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -85,7 +85,7 @@ export const Cadastro = () => {
       });
       Toast.fire({
         icon: "error",
-        title: "A senha deve ter pelo menos 6 caracteres",
+        title: "A senha deve ter pelo menos 8 caracteres",
       });
     }
     
