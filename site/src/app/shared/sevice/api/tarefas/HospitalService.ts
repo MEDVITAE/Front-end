@@ -6,12 +6,13 @@ export interface IHospital {
     rua: String;
     cep: String;
     numero:number;
-    bairro: String
+    bairro: String;
 }
 
-const id = sessionStorage?.getItem("id")
 
 const getAll = async (): Promise<IHospital  | Error> => {
+    
+const id = sessionStorage?.getItem("id")
     try {
         const { data } = await Api().get(`/hospital/detalhes/${id}`);
         console.log("data", data)

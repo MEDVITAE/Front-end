@@ -20,7 +20,7 @@ const getAll = async (): Promise<IRank[] | ApiException> => {
     }
 
 };
-const id = 6;
+const id = 6
 const getById = async (): Promise<IPosicao | ApiException> => { 
     try{
         const { data } = await Api().get(`/Doacao/Posicao/${id}`);

@@ -42,7 +42,7 @@ export const Ranking = () => {
     }, []); // Nenhum dependência aqui, será executado uma vez na montagem do componente
     
       const Data: any[] = [];
-      const color =  ['aqua', 'blue', 'light green', 'pink', 'purple']
+      const color =  ["#66a0fa","#66a0fa","#66a0fa","#66a0fa","#66a0fa"]
       for(let i = 0; i < rank.length;i++){
         
         Data.push({
@@ -85,7 +85,6 @@ export const Ranking = () => {
                                 data: Data.map(item => item.quantidade),
                                 backgroundColor:Data.map(item => item.backgroundColor) ,
                             
-                          
                             }
                         ],
                     },
@@ -116,7 +115,7 @@ export const Ranking = () => {
                     <canvas  className = "chat"ref={chartRef} />
                     </div>
                     <div className="pontos">
-                        <div>
+                        <div >
                         <h1 className="rowdies bold-30">Regras de Pontuação</h1>
               <br />
                 <h3 className="now roboto sbold-20">Doação de sangue Nominal:<br />

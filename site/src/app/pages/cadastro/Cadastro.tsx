@@ -29,6 +29,7 @@ export const Cadastro = () => {
         console.log(confSenha);
 
         if(confSenha === senha){
+            
             TarefasService.create({nome: 'Diego', email: email, senha: senha, role: 'PACIENTE', cpf: 12345678});
         }
     }, [email, senha, confSenha]);

@@ -126,7 +126,6 @@
     align-items: center;
 }
 .pontos{
-
     width: 30%;
     height: 55%;
     border-radius: 10px;
@@ -136,9 +135,6 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-
-
-   
 }
 .colocacao{
     text-align: center;
