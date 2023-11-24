@@ -78,8 +78,6 @@ export const CadastroDoacao = () => {
               alert(result.message);
             } else {
               console.log("result", result);
-              
-               sessionStorage.setItem("idAgenda",result.idAgenda) 
               setgetUsuario(result);
             }
           })
@@ -127,7 +125,7 @@ export const CadastroDoacao = () => {
           const DoacaoData: ICadastroDoacaoCreate = {
             quantidade: parseFloat(litros),
             tipo: tipoSanguineo,
-            fkAgenda: sessionStorage.getItem("idAgenda"),
+            fkAgenda: null,
           };
           const resultado = CadastroDoacaoService.create(DoacaoData);
           showValidationSuccessModal("Doação confirmada!");

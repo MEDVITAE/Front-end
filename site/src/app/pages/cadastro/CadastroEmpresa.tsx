@@ -45,7 +45,7 @@ import { CadastroEmpresaEnderecoService, ICadastroEmpresaEndereco } from "../../
         showValidationErrorModal("Os Campos não podem estar em branco");
         return false;
       } 
-      else if (cep.length !== 8) {
+      else if (Number(cep) !== 8) {
         showValidationErrorModal("CEP inválido");
         return false;
       } 
@@ -54,8 +54,16 @@ import { CadastroEmpresaEnderecoService, ICadastroEmpresaEndereco } from "../../
         return false;
       } 
 
-      else if (/[^a-zA-Z0-9\s]/.test(rua) || /[^a-zA-Z0-9\s]/.test(bairro) || /[^a-zA-Z0-9\s]/.test(cidade)) {
-        showValidationErrorModal("Endereço não pode conter caracteres especiais");
+      else if (/[^a-zA-Z0-9\s]/.test(rua)) {
+        showValidationErrorModal("Logradouro não pode conter caracteres especiais");
+      }
+
+      else if (/[^a-zA-Z0-9\s]/.test(bairro)) {
+        showValidationErrorModal("bairro não pode conter caracteres especiais");
+      }
+
+      else if (/[^a-zA-Z0-9\s]/.test(cidade)) {
+        showValidationErrorModal("Cidade não pode conter caracteres especiais");
       }
 
       else {

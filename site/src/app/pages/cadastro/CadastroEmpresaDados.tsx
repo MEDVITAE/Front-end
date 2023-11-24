@@ -21,8 +21,6 @@ export const CadastroEmpresaDados = () => {
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   const showValidationErrorModal = (message: string) => {
     const Toast = Swal.mixin({
       toast: true,
@@ -48,12 +46,11 @@ export const CadastroEmpresaDados = () => {
       showValidationErrorModal("Os Campos não pode estar em branco");
       return false;
     } 
-
-    else if (!regexEmail.test(email)) {
-            showValidationErrorModal(
-                "O e-mail deve conter pelo menos um caractere antes e depois do @ e um ponto depois do @");
-            return false;
-        }
+    
+    else if (!email.includes("@")) {
+      showValidationErrorModal("Email deve conter @");
+      return false;
+    } 
     
     else if (
       !email.includes("outlook.com") &&

@@ -29,7 +29,7 @@ const getByCpf = async (cpf : string): Promise<ICadastroDoacao | ApiException> =
         };
 
         const { data } = await Api().get(`/usuario/detalhesDoacao/${cpf}`, config);
-   
+        
         return data;
 
     } catch (error: any) {
@@ -46,7 +46,9 @@ const create = async (dataToCreate: ICadastroDoacaoCreate): Promise<ICadastroDoa
             }
         };
         const { data } = await Api().post<any>('/Doacao', dataToCreate, config);
-        
+
+
+        sessionStorage.setItem("idAgenda", data.idAgenda);
         return data;
     }
     catch (error: any) {

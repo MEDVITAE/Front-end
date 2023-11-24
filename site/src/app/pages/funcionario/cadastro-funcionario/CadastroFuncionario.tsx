@@ -26,8 +26,6 @@ export const CadastroFuncionario = () => {
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   const showValidationErrorModal = (message: string) => {
     const Toast = Swal.mixin({
       toast: true,
@@ -58,19 +56,18 @@ export const CadastroFuncionario = () => {
       showValidationErrorModal("Os Campos não podem estar em branco");
       return false;
     } 
-
-    else if (!regexEmail.test(email)) {
-      showValidationErrorModal(
-          "O e-mail deve conter pelo menos um caractere antes e depois do @ e um ponto depois do @");
+    
+    else if (!email.includes("@")) {
+      showValidationErrorModal("Email deve conter @");
       return false;
-  }
+    } 
     
     else if (
-      !email.includes("@outlook.com") &&
-      !email.includes("@hotmail.com") &&
-      !email.includes("@gmail.com") &&
-      !email.includes("@yahoo.com") &&
-      !email.includes("@icloud.com")
+      !email.includes("outlook.com") &&
+      !email.includes("hotmail.com") &&
+      !email.includes("gmail.com") &&
+      !email.includes("yahoo.com") &&
+      !email.includes("icloud.com")
     ) {
       showValidationErrorModal("Insira um domínio válido");
       return false;
@@ -94,12 +91,7 @@ export const CadastroFuncionario = () => {
     else if (!/\s/.test(nome) && nome.length < 15) {
       showValidationErrorModal("Digite o nome completo");
       return false;
-    }
-    
-    else if (cargo !== "RECEPCAO" && cargo !== "ENFERMEIRA") {
-      showValidationErrorModal("Cargo Incorreto, digite com letras maiusculas");
-      return false;
-    }
+    } 
     
     else if (nome.length > 80) {
       showValidationErrorModal("Nome incorreto");
