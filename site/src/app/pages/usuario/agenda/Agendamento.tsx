@@ -9,11 +9,14 @@ import { Hemocentro } from './components/Hemocentro';
 import { vetorIcon } from '../../../shared/components/imagens';
 import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
 import Swal from 'sweetalert2';
+import { TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
 
 export const Agendamento = () => {
 
     const [isMostrarHemo, setIsMostrarHemo] = useState(false);
     const [isMostrarHora, setIsMostrarHora] = useState(false);
+
+    const tokenSession = sessionStorage.getItem('token');
 
     const navegando = useNavigate();
 
@@ -98,6 +101,19 @@ export const Agendamento = () => {
     const agendar = useCallback(async () => {
 
         if (validacao()) {
+            const idUsuario = sessionStorage.getItem('id');
+            const idHemo = sessionStorage.getItem('hemocentro');
+            const dia = sessionStorage.getItem('data');
+            const hora = sessionStorage.getItem('hora');
+
+            const horario = dia + "T" + hora + ":00";
+
+            TarefasService.createAgendamento({
+                fkHospital: Number(idHemo),
+                fkUsuario: Number(idUsuario),
+                Horario: horario ? horario : ''
+            }, tokenSession ? tokenSession : '');
+            
             showConfirmForm("Agendamento realizado com sucesso, indo para aba Histórico");
             await new Promise(resolve => setTimeout(resolve, 2000));
             navegando("/perfil-usuario/historico");

@@ -120,13 +120,13 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
 
         setHoraOcupada(new Set(horarioIndisponivel.map((item) => {
             const hora = new Date(item.horario);
-            return hora.getHours() + ':' + (hora.getMinutes() < 10 ? '0' : '') + (hora.getMinutes());
+            return (hora.getHours() < 10 ? '0' : '') + hora.getHours() + ':' + (hora.getMinutes() < 10 ? '0' : '') + (hora.getMinutes());
         })));
 
     }, [tokenSession, idHemoSession]);
 
-    const handleHorarioClick = (hora: string) => {
-        if (hora !== '') {
+    const handleHorarioClick = (hora: string, validacao: string) => {
+        if (validacao === 'disponivel') {
             setHorario(hora);
             showChosenTime("Agora, finalize selecionando o botão de agendar.");
         } else {
@@ -159,7 +159,7 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
 
                             return <div className='caixaHora' key={vetor.id}>
                                 <h3
-                                    onClick={() => handleHorarioClick(isHorarioOcupado ? 'indisponivel' : 'disponivel')}
+                                    onClick={() => handleHorarioClick(vetor.hora, isHorarioOcupado ? 'indisponivel' : 'disponivel')}
                                     className={`hora roboto regular-20 ${isHorarioOcupado ? 'indisponivel' : 'disponivel'}`}
                                 >
                                     <p>{vetor.hora}h</p>

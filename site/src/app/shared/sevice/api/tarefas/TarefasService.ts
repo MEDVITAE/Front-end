@@ -44,6 +44,12 @@ export interface IAgenda {
     horario: Date;
 }
 
+export interface ICriarAgendamento {
+    fkUsuario: number;
+    fkHospital: number;
+    Horario: string;
+}
+
 type THoraDisponivelComTotalCount = {
     data: IListagemHemocentro[];
 }
@@ -169,6 +175,23 @@ const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiE
 
 };
 
+const createAgendamento = async (dataToCreate: ICriarAgendamento, token: string): Promise<ICriarAgendamento | ApiException> => {
+    try {
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          };
+
+        const { data } = await Api().post<any>('/Agenda', dataToCreate, { headers });
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao criar registro.');
+    }
+
+};
+
 const updateById = async (id: number, dataToUpdate: ITarefa): Promise<ITarefa | ApiException> => {
     try {
         const { data } = await Api().put(`/tarefas/${id}`, dataToUpdate);
@@ -210,6 +233,7 @@ export const TarefasService = {
     postLogin,
     getByIdHistoricoAgendamentoAtual,
     create,
+    createAgendamento,
     updateById,
     deleteById,
     deleteByIdAgedamento,
