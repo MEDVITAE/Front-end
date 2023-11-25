@@ -15,13 +15,49 @@ export interface IDetalheUser {
     tipo: string;
     nome: string;
     cpf: string;
-    numero: number;
+    cep: string;
+    numeroCasa: string;
     sexo: string;
     nascimento: string;
-    peso: number;
+    peso: string;
     email: string;
-    altura: number;
+    numero: string;
+    altura: string;
     apto: string;
+}
+
+export interface IDetalheUserUpdate {
+    email: string;
+	cpf: string;
+	role: string | null;
+	nome: string;
+}
+
+export interface IUserCaracteristicasUpdate {
+    peso: string;
+    altura: string;
+    sexo: string;
+    nascimento: string;
+}
+
+export interface IUserEnderecoUpdate {
+    cep: string;
+	numero: string;
+}
+
+export interface ILogin {
+    email: string;
+    senha: string;
+}
+
+export interface ITokenId {
+    Id: string;
+    token: string;
+    userRole: string;
+}
+
+export interface IUserId {
+    Id: string;
 }
 
 export interface IListagemHemocentro {
@@ -128,16 +164,6 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
 };
 
 
-const getDetalhesUsuario = async (id: number) : Promise<IDetalheUser | ApiException> => {
-    try {
-        const { data } = await Api().get(`/detalhes/${id}`);
-        return data;
-    }
-    catch (error: any) {
-        return new ApiException(error.message || 'Erro ao consultar detalhes do usuario.');
-    }
-}
-
 const getById = async (id: number): Promise<ITarefa | ApiException> => {
     try {
         const { data } = await Api().get(`/tarefas/${id}`);
@@ -148,6 +174,55 @@ const getById = async (id: number): Promise<ITarefa | ApiException> => {
     }
 
 };
+
+const postLogin = async (dataToUpdate: ILogin): Promise<ITokenId | ApiException> => {
+    try {
+        const { data } = await Api().post(`/auth/login`, dataToUpdate);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao realizar o login.');
+    }
+
+};
+
+const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiException> => {
+    try {
+        const { data } = await Api().get(`/usuario/detalhes/${id}`);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao consultar detalhes do usuario');
+    }
+
+};
+
+const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
+   
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+    };
+
+    try {
+        await Api().put(`/usuario/${id}`, detalhesToUpdate, config);
+    } catch (error :any){
+        alert(error)
+    }
+    try {
+        await Api().put(`/Caracteristicas/${id}`, caracteristicasToUpdate, config);
+    } catch (error :any){
+        alert(2)
+    }
+    try {
+        await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
+    } catch (error :any){
+        alert(3)
+    }
+
+};
+
 
 const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
     try {
@@ -210,8 +285,10 @@ const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiExceptio
 export const TarefasService = {
     getAll,
     getAllHospital,
-    getDetalhesUsuario,
     getById,
+    postLogin,
+    getDetalhesUsuario,
+    postDetalhesUsuario,
     getByIdHistoricoAgendamentoAtual,
     create,
     updateById,

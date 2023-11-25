@@ -5,13 +5,20 @@ import withReactContent from 'sweetalert2-react-content'
 
 import { vetorImg } from '../../shared/components/imagens';
 import { vetorIcon } from '../../shared/components/imagens';
+import { ILogin, ITokenId, TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
 import { useNavigate } from 'react-router-dom';
 import { SetStateAction, useState } from 'react';
+import { ApiException } from '../../shared/sevice/api/ApiException';
 
 export const Login = () => {
     const navegando = useNavigate();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    const loginData: ILogin = {
+        email: email,
+        senha: senha
+    };
 
     const navegarClick2 = () => {
         navegando("/cadastro-usuario");
@@ -57,7 +64,7 @@ export const Login = () => {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regexEmail.test(email)) {
             showValidationErrorModal(
-                "O e-mail deve conter pelo menos um caractere antes e depois do @ e um ponto depois do @");
+                "O e-mail deve conter pelo menos um caractere antes e depois do @ e um 'ponto' depois do @");
             return false;
         }
         return true;
@@ -73,7 +80,7 @@ export const Login = () => {
         return true;
     }
 
-    const validateEmailSenha = () => {
+    const validateEmailSenha = async () => {
 
         // Verificar se algum campo está vazio
         if (
@@ -84,17 +91,29 @@ export const Login = () => {
             return false;
         }
 
+        const result: ITokenId | ApiException = await TarefasService.postLogin(loginData);
+        
+        if('message' in result){
+            showValidationErrorModal("Email ou Senha inválido.");
+        } else {
+            // Salvar token e Id no sessionStorage
+            sessionStorage.setItem("id", result.Id);
+            sessionStorage.setItem("token", result.token);
+            sessionStorage.setItem("userRole", result.userRole);
+            return (
+                validateEmail() &&
+                validateSenha() &&
+                true
+            );
+        }
+
         // Chamando todas as funções de validação
-        return (
-            validateEmail() &&
-            validateSenha() &&
-            true
-        );
+        
     };
 
     const navegarClick = async () => {
         // Para o caso de todos os campos estarem validados
-        if (validateEmailSenha()) {
+        if (await validateEmailSenha()) {
             // Todos os campos foram preenchidos e o usuário está apto
             const Toast = Swal.mixin({
                 toast: true,
@@ -141,7 +160,7 @@ export const Login = () => {
 
             <div className="container5">
                 <div className="imgDoadores">
-                    <img className="imgCara" src={vetorImg[12]} alt="" />;
+                    <img className="imgCara" src={vetorImg[12]} alt="" />
                 </div>
                 <div className="formulario5">
                     <h1 className='rowdies'>LOGIN</h1>
@@ -156,5 +175,5 @@ export const Login = () => {
                 </div>
             </div>
         </>
-    );
+    )
 }

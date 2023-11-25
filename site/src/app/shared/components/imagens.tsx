@@ -27,6 +27,18 @@ import imagem01 from '../../../html-css-template/assets/TuboEnsaio.png';
 import imagem02 from '../../../html-css-template/assets/WorldBloodDonorDay.png';
 import imagem03 from '../../../html-css-template/assets/World Blood Donor Day PNG 7.png';
 import imagem04 from '../../../html-css-template/assets/WorldBloodDonorDayPNG.png';
+import imagem05 from '../../../html-css-template/assets/check.svg';
+import imagem06 from '../../../html-css-template/assets/uncheck.svg';
+
+import iconSangue0 from '../../../html-css-template/assets/AP.svg';
+import iconSangue01 from '../../../html-css-template/assets/AN.svg';
+import iconSangue02 from '../../../html-css-template/assets/BP.svg';
+import iconSangue03 from '../../../html-css-template/assets/BN.svg';
+import iconSangue04 from '../../../html-css-template/assets/ABP.svg';
+import iconSangue05 from '../../../html-css-template/assets/ABN.svg';
+import iconSangue06 from '../../../html-css-template/assets/OP.svg';
+import iconSangue07 from '../../../html-css-template/assets/ON.svg';
+import iconSangue08 from '../../../html-css-template/assets/undefined.svg';
 
 export const vetorIcon = [
     icon0,
@@ -42,6 +54,18 @@ export const vetorIcon = [
     icon01,
     icon02,
     icon03,
+];
+
+export const vetorTipoSangue = [
+    iconSangue0,
+    iconSangue01,
+    iconSangue02,
+    iconSangue03,
+    iconSangue04,
+    iconSangue05,
+    iconSangue06,
+    iconSangue07,
+    iconSangue08,
 ];
 
 export const vetorImg = [
@@ -60,4 +84,6 @@ export const vetorImg = [
     imagem02,
     imagem03,
     imagem04,
+    imagem05,
+    imagem06,
 ];
