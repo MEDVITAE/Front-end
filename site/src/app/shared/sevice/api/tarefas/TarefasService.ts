@@ -1,7 +1,7 @@
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 
-export interface ITarefa {
+export interface IPrimeiroCadastro {
     id: number;
     nome: string;
     email: string | null;
@@ -44,6 +44,24 @@ export interface IUserEnderecoUpdate {
     cep: string;
 	numero: string;
 }
+export interface ISegundoCadastroEndereco{
+    cidade: string;
+    bairro: string;
+    cep: string;
+    logradouro: string;
+    rua: string;
+    numero: number;
+    fkUsuario: number;
+}
+export interface ISegundoCadastroCaracteristicas{
+    peso :string;
+    altura : string;
+    tatto: boolean;
+    sexo: string;
+    nascimento: string;
+    apto: boolean;
+    fkUsuario: number;
+}
 
 export interface ILogin {
     email: string;
@@ -58,6 +76,7 @@ export interface ITokenId {
 
 export interface IUserId {
     Id: string;
+
 }
 
 export interface IListagemHemocentro {
@@ -96,7 +115,7 @@ type THistoricoAgendamento = {
     data: IHistoricoAgendamento[];
 }
 
-const getAll = async (): Promise<ITarefa[] | ApiException> => {
+const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     try {
         const { data } = await Api().get('/swagger-ui.html');
         return data;
@@ -164,7 +183,8 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
 };
 
 
-const getById = async (id: number): Promise<ITarefa | ApiException> => {
+
+const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> => {
     try {
         const { data } = await Api().get(`/tarefas/${id}`);
         return data;
@@ -238,7 +258,7 @@ const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoA
 };
 
 //Criar outro método para inserção de dados
-const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiException> => {
+const createUsuario = async (dataToCreate: Omit<IPrimeiroCadastro, 'id'>): Promise<IPrimeiroCadastro | ApiException> => {
     try {
         const { data } = await Api().post<any>('/usuario/register', dataToCreate);
         return data;
@@ -249,7 +269,29 @@ const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiE
 
 };
 
-const updateById = async (id: number, dataToUpdate: ITarefa): Promise<ITarefa | ApiException> => {
+const createUsuarioEndereco = async (dataToCreate: ISegundoCadastroEndereco): Promise<ISegundoCadastroEndereco | ApiException> => {
+    try {
+        const { data } = await Api().post<any>('/Endereco', dataToCreate);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao criar registro.');
+    }
+
+};
+
+const createUsuarioCaracteristicas = async (dataToCreate: ISegundoCadastroCaracteristicas): Promise<ISegundoCadastroCaracteristicas | ApiException> => {
+    try {
+        const { data } = await Api().post<any>('/Caracteristicas', dataToCreate);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao criar registro.');
+    }
+
+};
+
+const updateById = async (id: number, dataToUpdate: IPrimeiroCadastro): Promise<IPrimeiroCadastro | ApiException> => {
     try {
         const { data } = await Api().put(`/tarefas/${id}`, dataToUpdate);
         return data;
@@ -290,7 +332,9 @@ export const TarefasService = {
     getDetalhesUsuario,
     postDetalhesUsuario,
     getByIdHistoricoAgendamentoAtual,
-    create,
+    createUsuario,
+    createUsuarioEndereco,
+    createUsuarioCaracteristicas,
     updateById,
     deleteById,
     deleteByIdAgedamento,

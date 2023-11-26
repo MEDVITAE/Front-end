@@ -9,15 +9,17 @@ import withReactContent from 'sweetalert2-react-content'
 import { TarefasService,  IDetalheUser, IUserId, IDetalheUserUpdate, IUserCaracteristicasUpdate, IUserEnderecoUpdate} from '../../../shared/sevice/api/tarefas/TarefasService';
 import { ApiException } from '../../../shared/sevice/api/ApiException';
 
-const Anexar = () => {
+export const Perfil = () => {
     useEffect(() => {
         Anexo();
-    }, []);
-}
-
-
-export const Perfil = () => {
-    Anexar();
+        const minhaFuncao =  async () =>{
+            const file = await Anexo();
+            
+            
+        }
+    
+        minhaFuncao();
+    }, [Anexo]);
     
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [cpf, setCpf] = useState('');

@@ -132,7 +132,11 @@ export const Login = () => {
                 title: "Login feito com sucesso!"
             });
             await new Promise(resolve => setTimeout(resolve, 2000));
-            navegando("/perfil-usuario");
+            if (sessionStorage.getItem("userRole") == "PACIENTE"){
+                navegando("/perfil-usuario");
+            } else {
+                navegando("/perfil-funcionario/agenda")
+            }
         }
     };
 

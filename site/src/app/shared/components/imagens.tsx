@@ -1,9 +1,9 @@
 import icon0 from '../../../html-css-template/assets/BackArrow.png';
 import icon1 from '../../../html-css-template/assets/CheckAll.png';
-import icon2 from '../../../html-css-template/assets/🦆 icon _Calendar Check_.svg';
-import icon3 from '../../../html-css-template/assets/🦆 icon _Clipboard List_.svg';
-import icon4 from '../../../html-css-template/assets/🦆 icon _Envelope Open-text_.svg';
-import icon5 from '../../../html-css-template/assets/🦆 icon _Heartbeat_.svg';
+import icon2 from '../../../html-css-template/assets/calendary.svg';
+import icon3 from '../../../html-css-template/assets/clipboard.svg';
+import icon4 from '../../../html-css-template/assets/envelope.svg';
+import icon5 from '../../../html-css-template/assets/heartbeat.svg';
 import icon6 from '../../../html-css-template/assets/Call.png';
 import icon7 from '../../../html-css-template/assets/facebook.png';
 import icon8 from '../../../html-css-template/assets/google.png';
@@ -11,7 +11,6 @@ import icon9 from '../../../html-css-template/assets/linkedin.png';
 import icon01 from '../../../html-css-template/assets/Location.png';
 import icon02 from '../../../html-css-template/assets/Message.png';
 import icon03 from '../../../html-css-template/assets/twitter.png';
-
 import imagem0 from '../../../html-css-template/assets/calendario.svg';
 import imagem1 from '../../../html-css-template/assets/ilustracao-aos-bancos-de-sangue-reduzida 3.png';
 import imagem2 from '../../../html-css-template/assets/image 4.svg';
