@@ -10,7 +10,40 @@ export interface IPrimeiroCadastro {
     cpf: string;
 }
 
+export interface IDetalheUser {
+    quantidade: number;
+    tipo: string;
+    nome: string;
+    cpf: string;
+    cep: string;
+    numeroCasa: string;
+    sexo: string;
+    nascimento: string;
+    peso: string;
+    email: string;
+    numero: string;
+    altura: string;
+    apto: string;
+}
 
+export interface IDetalheUserUpdate {
+    email: string;
+	cpf: string;
+	role: string | null;
+	nome: string;
+}
+
+export interface IUserCaracteristicasUpdate {
+    peso: string;
+    altura: string;
+    sexo: string;
+    nascimento: string;
+}
+
+export interface IUserEnderecoUpdate {
+    cep: string;
+	numero: string;
+}
 export interface ISegundoCadastroEndereco{
     cidade: string;
     bairro: string;
@@ -38,6 +71,11 @@ export interface ILogin {
 export interface ITokenId {
     Id: string;
     token: string;
+    userRole: string;
+}
+
+export interface IUserId {
+    Id: string;
 
 }
 
@@ -124,10 +162,11 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
     }
 };
 
+
 const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
-
+        
         const { data } = await Api().get(urlRelativa);
 
         if (data) {
@@ -135,7 +174,7 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
                 data
             };
         }
-
+        
         return new Error('Erro ao listar registros.');
     } catch (error) {
         console.error(error);
@@ -163,6 +202,43 @@ const postLogin = async (dataToUpdate: ILogin): Promise<ITokenId | ApiException>
     }
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao realizar o login.');
+    }
+
+};
+
+const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiException> => {
+    try {
+        const { data } = await Api().get(`/usuario/detalhes/${id}`);
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao consultar detalhes do usuario');
+    }
+
+};
+
+const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
+   
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+    };
+
+    try {
+        await Api().put(`/usuario/${id}`, detalhesToUpdate, config);
+    } catch (error :any){
+        alert(error)
+    }
+    try {
+        await Api().put(`/Caracteristicas/${id}`, caracteristicasToUpdate, config);
+    } catch (error :any){
+        alert(2)
+    }
+    try {
+        await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
+    } catch (error :any){
+        alert(3)
     }
 
 };
@@ -253,6 +329,8 @@ export const TarefasService = {
     getAllHospital,
     getById,
     postLogin,
+    getDetalhesUsuario,
+    postDetalhesUsuario,
     getByIdHistoricoAgendamentoAtual,
     createUsuario,
     createUsuarioEndereco,

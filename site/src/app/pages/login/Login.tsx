@@ -64,7 +64,7 @@ export const Login = () => {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regexEmail.test(email)) {
             showValidationErrorModal(
-                "O e-mail deve conter pelo menos um caractere antes e depois do @ e um ponto depois do @");
+                "O e-mail deve conter pelo menos um caractere antes e depois do @ e um 'ponto' depois do @");
             return false;
         }
         return true;
@@ -99,6 +99,7 @@ export const Login = () => {
             // Salvar token e Id no sessionStorage
             sessionStorage.setItem("id", result.Id);
             sessionStorage.setItem("token", result.token);
+            sessionStorage.setItem("userRole", result.userRole);
             return (
                 validateEmail() &&
                 validateSenha() &&
@@ -131,7 +132,11 @@ export const Login = () => {
                 title: "Login feito com sucesso!"
             });
             await new Promise(resolve => setTimeout(resolve, 2000));
-            navegando("/perfil-usuario");
+            if (sessionStorage.getItem("userRole") == "PACIENTE"){
+                navegando("/perfil-usuario");
+            } else {
+                navegando("/perfil-funcionario/agenda")
+            }
         }
     };
 

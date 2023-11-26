@@ -66,11 +66,18 @@
     height: 80%;
     margin-top: 20px;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_icon{
+    width: 100px;
 }
 
 .campoUsuario {
     width: 100%;
-    height: 20%;
+    height: 10%;
     margin: 10px 0;
 }
 
@@ -88,6 +95,14 @@
     display: none;
 }
 
+.div_picture {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
 .picture {
     width: 100%;
     height: 100%;
@@ -101,7 +116,7 @@
     font-family: sans-serif;
     outline: none;
     overflow: hidden;
-    margin: 10px 0 -16% 0px;
+    margin: 10px 0 0 0px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     font-weight: 600;
 }
