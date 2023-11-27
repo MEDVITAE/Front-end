@@ -5,6 +5,7 @@ interface IInputProps {
     type?: string;
     placeholder: string;
     className: string;
+    maxLength?: number;
 
     onChange: (newValue: string) => void;
     onPressEnter?: () => void;
@@ -17,6 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref
                 ref={ref}
                 value={props.value}
                 type={props.type}
+                maxLength={props.maxLength}
                 onChange={e => props.onChange(e.target.value)}
                 //Com a mudança no argumento, verifica se o mesmo é "undefined"
                 // com "&&", se não for ele executa a função
