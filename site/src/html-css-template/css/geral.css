@@ -156,6 +156,11 @@ li {
         font-size: 20px;
     }
 
+    .bold-64 {
+        font-weight: var(--bold);
+        font-size: 64px;
+    }
+
     .bold-display-48 {
         font-weight: var(--bold);
         font-size: 48px;
