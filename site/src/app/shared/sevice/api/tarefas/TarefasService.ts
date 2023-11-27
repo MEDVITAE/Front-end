@@ -72,6 +72,7 @@ export interface ITokenId {
     Id: string;
     token: string;
     userRole: string;
+    nome: string;
 }
 
 export interface IUserId {
@@ -217,7 +218,7 @@ const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiExcepti
 
 };
 
-const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
+const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<boolean> => {
    
     const config = {
         headers: {
@@ -227,20 +228,13 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
 
     try {
         await Api().put(`/usuario/${id}`, detalhesToUpdate, config);
-    } catch (error :any){
-        alert(error)
-    }
-    try {
         await Api().put(`/Caracteristicas/${id}`, caracteristicasToUpdate, config);
-    } catch (error :any){
-        alert(2)
-    }
-    try {
         await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
     } catch (error :any){
-        alert(3)
+        throw new error.message;
     }
 
+    return true;
 };
 
 
