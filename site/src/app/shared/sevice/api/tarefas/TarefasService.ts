@@ -45,7 +45,8 @@ export interface IUserEnderecoUpdate {
     cep: string;
     numero: string;
 }
-export interface ISegundoCadastroEndereco {
+
+export interface ISegundoCadastroEndereco{
     cidade: string;
     bairro: string;
     cep: string;
@@ -54,9 +55,10 @@ export interface ISegundoCadastroEndereco {
     numero: number;
     fkUsuario: number;
 }
-export interface ISegundoCadastroCaracteristicas {
-    peso: string;
-    altura: string;
+
+export interface ISegundoCadastroCaracteristicas{
+    peso :string;
+    altura : string;
     tatto: boolean;
     sexo: string;
     nascimento: string;
@@ -81,9 +83,8 @@ export interface IUserId {
 }
 
 export interface IListagemHemocentro {
-    id: number;
+    idHospital: number;
     nome: string;
-    cep: string;
 }
 
 export interface IListagemDeHorarioDisponivel {
@@ -97,6 +98,23 @@ export interface IAgendamento {
     pontos: number;
     horaMarcada: IListagemDeHorarioDisponivel;
     hospital: IListagemHemocentro;
+}
+
+export interface IAgenda {
+    idAgendamento: number;
+    fkHospital: number;
+    horario: Date;
+}
+
+export interface ICriarAgendamento {
+    fkUsuario: number;
+    fkHospital: number;
+    Horario: string;
+}
+
+export interface IHistoricoAgendamento {
+    id: number;
+    agenda: IAgendamento;
 }
 
 type THoraDisponivelComTotalCount = {
@@ -186,13 +204,18 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
     }
 };
 
-
-const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
+const getAllHospital = async (filter = '', token: string): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
 
         const { data } = await Api().get(urlRelativa);
+        const urlRelativa = `/hospital?nome_like=${filter}`;
 
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        const { data } = await Api().get(urlRelativa, { headers });
         if (data) {
             return {
                 data
@@ -205,7 +228,6 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
         return new Error((error as { message: string }).message || 'Erro ao listar registros.');
     }
 };
-
 
 const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> => {
     try {
@@ -280,7 +302,23 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
     }
 };
 
-//Criar outro método para inserção de dados
+const createAgendamento = async (dataToCreate: ICriarAgendamento, token: string): Promise<ICriarAgendamento | ApiException> => {
+    try {
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          };
+
+        const { data } = await Api().post<any>('/Agenda', dataToCreate, { headers });
+        return data;
+    }
+    catch (error: any) {
+        return new ApiException(error.message || 'Erro ao criar registro.');
+    }
+
+};
+
 const createUsuario = async (dataToCreate: Omit<IPrimeiroCadastro, 'id'>): Promise<IPrimeiroCadastro | ApiException> => {
     try {
         const { data } = await Api().post<any>('/usuario/register', dataToCreate);
@@ -350,6 +388,7 @@ export const TarefasService = {
     getAll,
     getAllHistoricoAgendamento,
     getAllHospital,
+    getAllHistoricoAgendamento,
     getById,
     postLogin,
     getDetalhesUsuario,
