@@ -1,4 +1,4 @@
-import { SetStateAction, useCallback, useRef, useState } from 'react';
+import { SetStateAction, useCallback, useState } from 'react';
 import '../../../../html-css-template/css/telaAptidao.css'
 import Swal from 'sweetalert2'
 import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
@@ -108,20 +108,19 @@ export const Quiz = () => {
         console.log('dst:', apto);
         console.log('peso:', apto);
 
-        var teste = true;
+        var estaApto = true;
 
         if (tatuagem === 'sim' || dst === 'sim' || parseFloat(peso) < 50 || parseFloat(peso) >= 150) {
             console.log('Condição para setApto(false) atendida');
-            teste = false;
+            estaApto = false;
             console.log('Esta apto:', apto);
         }
 
         const quizData: IQuiz = {
             altura: parseFloat(altura),
             peso: parseFloat(peso),
-            apto: teste,
+            apto: estaApto,
         };
-
 
         const resultado = await QuizService.updateById(sessionStorage.getItem("id"), quizData);
 
