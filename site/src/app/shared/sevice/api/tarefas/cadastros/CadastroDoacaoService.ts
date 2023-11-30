@@ -19,7 +19,7 @@ export interface ICadastroDoacaoCreate {
     fkAgenda: string | null;
 }
 
-const getByCpf = async (cpf : string): Promise<ICadastroDoacao | ApiException> => {
+const getByCpf = async (cpf: string): Promise<ICadastroDoacao | ApiException> => {
     try {
 
         const config = {
@@ -29,7 +29,7 @@ const getByCpf = async (cpf : string): Promise<ICadastroDoacao | ApiException> =
         };
 
         const { data } = await Api().get(`/usuario/detalhesDoacao/${cpf}`, config);
-        
+
         return data;
 
     } catch (error: any) {

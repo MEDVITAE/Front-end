@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 
@@ -28,9 +29,9 @@ export interface IDetalheUser {
 
 export interface IDetalheUserUpdate {
     email: string;
-	cpf: string;
-	role: string | null;
-	nome: string;
+    cpf: string;
+    role: string | null;
+    nome: string;
 }
 
 export interface IUserCaracteristicasUpdate {
@@ -42,9 +43,9 @@ export interface IUserCaracteristicasUpdate {
 
 export interface IUserEnderecoUpdate {
     cep: string;
-	numero: string;
+    numero: string;
 }
-export interface ISegundoCadastroEndereco{
+export interface ISegundoCadastroEndereco {
     cidade: string;
     bairro: string;
     cep: string;
@@ -53,9 +54,9 @@ export interface ISegundoCadastroEndereco{
     numero: number;
     fkUsuario: number;
 }
-export interface ISegundoCadastroCaracteristicas{
-    peso :string;
-    altura : string;
+export interface ISegundoCadastroCaracteristicas {
+    peso: string;
+    altura: string;
     tatto: boolean;
     sexo: string;
     nascimento: string;
@@ -106,13 +107,38 @@ type THemocentroComTotalCount = {
     data: IListagemHemocentro[];
 }
 
+// export interface IHistoricoAgendamento {
+//     id: number;
+//     agenda: IAgendamento;
+// }
+
+// type THistoricoAgendamento = {
+//     data: IHistoricoAgendamento[];
+// }
+
 export interface IHistoricoAgendamento {
     id: number;
-    agenda: IAgendamento;
+    agenda: {
+        id: number;
+        pontos: number;
+        horaMarcada: {
+            id: number;
+            hora: number;
+        };
+        hospital: {
+            id: number;
+            nome: string;
+            cep: string;
+        };
+    };
 }
 
-type THistoricoAgendamento = {
-    data: IHistoricoAgendamento[];
+export interface IEnviaEmail {
+    ownerRef: string;
+    emailFrom: string;
+    emailTo: string;
+    subject: string;
+    text: string;
 }
 
 const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
@@ -123,21 +149,19 @@ const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar Api.');
     }
-
 };
 
-const getAllHistoricoAgendamento = async (): Promise<THistoricoAgendamento | Error> => {
+const getAllHistoricoAgendamento = async (id: string | null): Promise<IHistoricoAgendamento | Error> => {
     try {
 
-        const { data } = await Api().get('/');
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+            }
+        };
+        const { data } = await Api().get(`/Agenda/Agendamentos/${id}`, config);
+        return data;
 
-        if (data) {
-            return {
-                data
-            };
-        }
-
-        return new Error('Erro ao listar registros.');
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || 'Erro ao listar registros.');
@@ -166,7 +190,7 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
 const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
-        
+
         const { data } = await Api().get(urlRelativa);
 
         if (data) {
@@ -174,14 +198,13 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
                 data
             };
         }
-        
+
         return new Error('Erro ao listar registros.');
     } catch (error) {
         console.error(error);
         return new Error((error as { message: string }).message || 'Erro ao listar registros.');
     }
 };
-
 
 
 const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> => {
@@ -192,7 +215,6 @@ const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> =>
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar registro.');
     }
-
 };
 
 const postLogin = async (dataToUpdate: ILogin): Promise<ITokenId | ApiException> => {
@@ -214,11 +236,27 @@ const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiExcepti
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar detalhes do usuario');
     }
-
 };
 
-const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
-   
+const alertarDoadores = async (dataToEmail: IEnviaEmail): Promise<IEnviaEmail | ApiException> => {
+    try {
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+            }
+        };
+        console.log("Deu bom ?" + dataToEmail)
+        const { data } = await Api().post('/fila/enviarEmails', dataToEmail, config);
+
+        return data;
+    } catch (error: any) {
+        return new ApiException(error.message || 'Erro ao alertar doadores.');
+    }
+};
+
+
+const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate, caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
+
     const config = {
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem("token")}`
@@ -227,33 +265,18 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
 
     try {
         await Api().put(`/usuario/${id}`, detalhesToUpdate, config);
-    } catch (error :any){
+    } catch (error: any) {
         alert(error)
     }
     try {
         await Api().put(`/Caracteristicas/${id}`, caracteristicasToUpdate, config);
-    } catch (error :any){
+    } catch (error: any) {
         alert(2)
     }
     try {
         await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
-    } catch (error :any){
+    } catch (error: any) {
         alert(3)
-    }
-
-};
-
-
-const getByIdHistoricoAgendamentoAtual = async (id: number): Promise<IHistoricoAgendamento | Error> => {
-    try {
-
-        const { data } = await Api().get('/');
-
-        return data;
-    }
-    catch (error) {
-        console.error(error);
-        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
     }
 };
 
@@ -321,21 +344,21 @@ const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiExceptio
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao apagar registro.');
     }
-
 };
 
 export const TarefasService = {
     getAll,
+    getAllHistoricoAgendamento,
     getAllHospital,
     getById,
     postLogin,
     getDetalhesUsuario,
     postDetalhesUsuario,
-    getByIdHistoricoAgendamentoAtual,
     createUsuario,
     createUsuarioEndereco,
     createUsuarioCaracteristicas,
     updateById,
     deleteById,
     deleteByIdAgedamento,
+    alertarDoadores,
 };
