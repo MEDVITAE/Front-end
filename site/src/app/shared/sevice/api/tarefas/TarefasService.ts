@@ -132,23 +132,12 @@ export interface IHistoricoDeAgendamento {
     hospital: IHospitalParaHistorico[];
   }
 
-type THoraDisponivelComTotalCount = {
-    data: IListagemHemocentro[];
-}
-
 export interface ICriarAgendamento {
     fkUsuario: number;
     fkHospital: number;
     Horario: string;
 }
 
-type TAgenda = {
-    data: IAgenda[];
-}
-
-type THistorico = {
-    data: IHistoricoDeAgendamento;
-}
 
 export interface IEnviaEmail {
     ownerRef: string;
@@ -158,6 +147,11 @@ export interface IEnviaEmail {
     text: string;
 }
 
+
+type THistorico = {
+    data: IHistoricoDeAgendamento;
+}
+
 type THemocentroComTotalCount = {
     data: IListagemHemocentro[];
 }
@@ -165,17 +159,6 @@ type THemocentroComTotalCount = {
 type TAgenda = {
     data: IAgenda[];
 }
-
-// export interface IHistoricoAgendamento {
-//     id: number;
-//     agenda: IAgendamento;
-// }
-
-// type THistoricoAgendamento = {
-//     data: IHistoricoAgendamento[];
-// }
-
-
 
 const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     try {
