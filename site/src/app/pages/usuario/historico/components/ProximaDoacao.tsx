@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { IHistoricoAgendamento, TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
+import { IHistoricoDeAgendamento, TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ApiException } from "../../../../shared/sevice/api/ApiException";
 import { de } from "date-fns/locale";
 
 export const ProximaDoacao = () => {
-    const [agenda, setAgenda] = useState<IHistoricoAgendamento>();
+    const [agenda, setAgenda] = useState<IHistoricoDeAgendamento>();
 
     const [data, setData] = useState<number>();
     const [hora, setHora] = useState<number>();
@@ -55,30 +55,30 @@ export const ProximaDoacao = () => {
         },
     ];
 
-    useEffect(() => {
-        {/*TarefasService.getByIdHistoricoAgendamentoAtual(vetorExemplo[0].usuario.idUsuario);*/ }
-
-        setAgenda({
-            id: vetorExemplo[0].usuario.idUsuario,
-            agenda: {
-                id: 0,
-                pontos: 0,
-                horaMarcada: {
-                    id: vetorExemplo[0].usuario.agenda.horaMarcada.idHora,
-                    hora: vetorExemplo[0].usuario.agenda.horaMarcada.hora,
-                },
-                hospital: {
-                    idHospital: vetorExemplo[0].usuario.agenda.hospital.idHospital,
-                    nome: vetorExemplo[0].usuario.agenda.hospital.nome,
-                },
-            }
-        });
-
-        setData(0);
-        setHora(agenda?.agenda.horaMarcada.hora);
-        setHemocentro(agenda?.agenda.hospital.nome);
-
-    }, []);
+  //  useEffect(() => {
+  //      {/*TarefasService.getByIdHistoricoAgendamentoAtual(vetorExemplo[0].usuario.idUsuario);*/ }
+//
+//  //      setAgenda({
+//  //          id: vetorExemplo[0].usuario.idUsuario,
+//  //          agenda: {
+//  //              id: 0,
+//  //              pontos: 0,
+//  //              horaMarcada: {
+  //                  id: vetorExemplo[0].usuario.agenda.horaMarcada.idHora,
+  //                  hora: vetorExemplo[0].usuario.agenda.horaMarcada.hora,
+  //              },
+  //              hospital: {
+  //                  idHospital: vetorExemplo[0].usuario.agenda.hospital.idHospital,
+  //                  nome: vetorExemplo[0].usuario.agenda.hospital.nome,
+  //              },
+  //          }
+  //      });
+//
+  //      setData(0);
+  //      setHora(agenda?.agenda.horaMarcada.hora);
+  //      setHemocentro(agenda?.agenda.hospital.nome);
+//
+  //  }, []);
 
     const showConfirmUpdate = (message: string) => {
         const Toast = Swal.mixin({
