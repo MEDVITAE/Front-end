@@ -112,14 +112,20 @@ export const Agendamento = () => {
                 fkHospital: Number(idHemo),
                 fkUsuario: Number(idUsuario),
                 Horario: horario ? horario : ''
-            }, tokenSession ? tokenSession : '');
-            
-            showConfirmForm("Agendamento realizado com sucesso, indo para aba Histórico");
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            navegando("/perfil-usuario/historico");
-            sessionStorage.removeItem('data');
-            sessionStorage.removeItem('hemocentro');
-            sessionStorage.removeItem('hora');
+            }, tokenSession ? tokenSession : '')
+            .then(async (result) => {
+
+                if(result instanceof Error){
+                    showWrongForm("Houve um problema, aguarde e tente novamente.");
+                } else {
+                    showConfirmForm("Agendamento realizado com sucesso, indo para aba Histórico");
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    navegando("/perfil-usuario/historico");
+                    sessionStorage.removeItem('data');
+                    sessionStorage.removeItem('hemocentro');
+                    sessionStorage.removeItem('hora');
+                }
+            });
         }
     }, []);
 

@@ -46,7 +46,7 @@ export interface IUserEnderecoUpdate {
     numero: string;
 }
 
-export interface ISegundoCadastroEndereco{
+export interface ISegundoCadastroEndereco {
     cidade: string;
     bairro: string;
     cep: string;
@@ -56,9 +56,9 @@ export interface ISegundoCadastroEndereco{
     fkUsuario: number;
 }
 
-export interface ISegundoCadastroCaracteristicas{
-    peso :string;
-    altura : string;
+export interface ISegundoCadastroCaracteristicas {
+    peso: string;
+    altura: string;
     tatto: boolean;
     sexo: string;
     nascimento: string;
@@ -112,26 +112,42 @@ export interface ICriarAgendamento {
     Horario: string;
 }
 
-export interface IHistoricoAgendamento {
+export interface IAgendaParaHistorico {
+    idAgenda: number;
+    fkHospital: number;
+    fkUsuario: number;
+    horario: Date;
+  }
+  
+export interface IHospitalParaHistorico {
     id: number;
-    agenda: IAgendamento;
+    nome: string;
+    rua: string;
+  }
+  
+export interface IHistoricoDeAgendamento {
+    quantidade: number;
+    quantidadeDoacao: number;
+    agenda: IAgendaParaHistorico[];
+    hospital: IHospitalParaHistorico[];
+  }
+
+type THoraDisponivelComTotalCount = {
+    data: IListagemHemocentro[];
 }
 
-export interface IHistoricoAgendamento {
-    //id: number;
-    //agenda: {
-    //    id: number;
-    //    pontos: number;
-    //    horaMarcada: {
-    //        id: number;
-    //        hora: number;
-    //    };
-    //    hospital: {
-    //        id: number;
-    //        nome: string;
-    //        cep: string;
-    //    };
-    //};
+export interface ICriarAgendamento {
+    fkUsuario: number;
+    fkHospital: number;
+    Horario: string;
+}
+
+type TAgenda = {
+    data: IAgenda[];
+}
+
+type THistorico = {
+    data: IHistoricoDeAgendamento;
 }
 
 export interface IEnviaEmail {
@@ -171,6 +187,30 @@ const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     }
 };
 
+
+const getAllHistorico = async (id: string, token: string): Promise<THistorico | ApiException> => {
+    try {
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+
+        const { data } = await Api().get(`/Agenda/Agendamentos/${id}`, { headers });
+
+        if (data) {
+            return {
+                data
+            };
+        }
+
+        return new Error('Erro ao listar registros.');
+    } catch (error) {
+        console.error(error);
+        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
+    }
+};
+
 const getAllHistoricoAgendamento = async (token: string): Promise<TAgenda | ApiException> => {
     try {
 
@@ -178,7 +218,7 @@ const getAllHistoricoAgendamento = async (token: string): Promise<TAgenda | ApiE
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
         };
-        
+
         const { data } = await Api().get('/Agenda', { headers });
 
         if (data) {
@@ -196,15 +236,13 @@ const getAllHistoricoAgendamento = async (token: string): Promise<TAgenda | ApiE
 
 const getAllHospital = async (filter = '', token: string): Promise<THemocentroComTotalCount | Error> => {
     try {
-        const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
+        const urlRelativa = `/hospital?nome_like=${filter}`;
 
         const headers = {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
         };
-
         const { data } = await Api().get(urlRelativa, { headers });
-
         if (data) {
             return {
                 data
@@ -296,7 +334,7 @@ const createAgendamento = async (dataToCreate: ICriarAgendamento, token: string)
         const headers = {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
-          };
+        };
 
         const { data } = await Api().post<any>('/Agenda', dataToCreate, { headers });
         return data;
@@ -362,9 +400,14 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
 
 };
 
-const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiException> => {
+const deleteByIdAgedamento = async (id: string, token: string): Promise<undefined | Error> => {
     try {
-        await Api().delete(`/tarefas/${id}`);
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+
+        await Api().delete(`/Agenda/${id}`, { headers });
         return undefined;
     }
     catch (error: any) {
@@ -375,6 +418,7 @@ const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiExceptio
 export const TarefasService = {
     getAll,
     getAllHospital,
+    getAllHistorico,
     getAllHistoricoAgendamento,
     getById,
     postLogin,

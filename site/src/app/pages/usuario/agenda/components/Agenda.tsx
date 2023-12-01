@@ -55,7 +55,7 @@ export const Agenda = () => {
       const diaDaSemana = date.getDay();
       if (diaDaSemana !== 0 && diaDaSemana !== 6) {
         setDataSelecionada(date);
-        sessionStorage.setItem('data', date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+        sessionStorage.setItem('data', date.getFullYear() + "-" + (Number(date.getMonth()) + 1) + "-" + date.getDate());
         showChosenDate("Agora, selecione um Hemocentro caso ainda não o tenha escolhido.")
       }
       else {
