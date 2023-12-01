@@ -8,89 +8,66 @@ export const HistoricoDoacao: React.FC = () => {
     const [historico, setHistorico] = useState<IHistoricoAgendamento[]>([]);
     const [idDaAgenda, setIdDaAgenda] = useState<string>(""); 
 
-    useEffect(() => {
-        const fetchData = async () => {
-
-            try {
-                // Chame a função que busca os dados usando o idDaAgenda
-                const response = await TarefasService.getAllHistoricoAgendamento(idDaAgenda);
     
-                // Verifique se a resposta não é um erro
-                if (!(response instanceof Error)) {
-                    setHistorico([response]);
-                } else {
-                    console.error(response.message);
-                }
-            } catch (error) {
-                console.error('Erro ao buscar dados');
-            }
-        };
-        // Chame a função fetchData quando o componente for montado ou quando idDaAgenda mudar
-        fetchData();
-    }, [idDaAgenda]);
+     const vetorExemplo = [
+         {
+             usuario: {
+                 id: 1,
+                 agenda: {
+                     id: 2,
+                     pontos: 5,
+                     horaMarcada: {
+                         id: 3,
+                         hora: 9.30,
+                     },
+                     hospital: {
+                         id: 4,
+                         nome: 'São Camilo',
+                         cep: '042444002'
+                     }
+                 }
+             }
+         },
+         {
+             usuario: {
+                 id: 2,
+                 agenda: {
+                     id: 1,
+                     pontos: 5,
+                     horaMarcada: {
+                         id: 4,
+                         hora: 10.00,
+                     },
+                     hospital: {
+                         id: 1,
+                         nome: 'Santa Cruz Azul',
+                         cep: '042444000'
+                     }
+                 }
+             }
+         },
+     ];
 
-   
+     useEffect(() => {
 
-    // const vetorExemplo = [
-    //     {
-    //         usuario: {
-    //             id: 1,
-    //             agenda: {
-    //                 id: 2,
-    //                 pontos: 5,
-    //                 horaMarcada: {
-    //                     id: 3,
-    //                     hora: 9.30,
-    //                 },
-    //                 hospital: {
-    //                     id: 4,
-    //                     nome: 'São Camilo',
-    //                     cep: '042444002'
-    //                 }
-    //             }
-    //         }
-    //     },
-    //     {
-    //         usuario: {
-    //             id: 2,
-    //             agenda: {
-    //                 id: 1,
-    //                 pontos: 5,
-    //                 horaMarcada: {
-    //                     id: 4,
-    //                     hora: 10.00,
-    //                 },
-    //                 hospital: {
-    //                     id: 1,
-    //                     nome: 'Santa Cruz Azul',
-    //                     cep: '042444000'
-    //                 }
-    //             }
-    //         }
-    //     },
-    // ];
+         const rows = vetorExemplo.map((result) => ({
+             id: result.usuario.id,
+             agenda: {
+                 id: result.usuario.agenda.id,
+                 pontos: result.usuario.agenda.pontos,
+                 horaMarcada: {
+                     id: result.usuario.agenda.horaMarcada.id,
+                     hora: result.usuario.agenda.horaMarcada.hora,
+                 },
+                 hospital: {
+                     id: result.usuario.agenda.hospital.id,
+                     nome: result.usuario.agenda.hospital.nome,
+                     cep: result.usuario.agenda.hospital.cep
+                 },
+             }
+         }));
 
-    // useEffect(() => {
-
-    //     const rows = vetorExemplo.map((result) => ({
-    //         id: result.usuario.id,
-    //         agenda: {
-    //             id: result.usuario.agenda.id,
-    //             pontos: result.usuario.agenda.pontos,
-    //             horaMarcada: {
-    //                 id: result.usuario.agenda.horaMarcada.id,
-    //                 hora: result.usuario.agenda.horaMarcada.hora,
-    //             },
-    //             hospital: {
-    //                 id: result.usuario.agenda.hospital.id,
-    //                 nome: result.usuario.agenda.hospital.nome,
-    //                 cep: result.usuario.agenda.hospital.cep
-    //             },
-    //         }
-    //     }));
-
-    //     setHistorico(rows);
-    // }, []);
+     }, []);
 
     return (
         <>
@@ -109,7 +86,7 @@ export const HistoricoDoacao: React.FC = () => {
                         </div>
                         <div className="item">
                             <h2 className='roboto'>Hemocentro: {historico.agenda.hospital.nome}</h2>
-                            <h2 className='roboto'>Local: {historico.agenda.hospital.cep}</h2>
+                            <h2 className='roboto'>Local: {historico.agenda.hospital.nome}</h2>
                         </div>
                     </div>
                     <div className="caixaLitros">

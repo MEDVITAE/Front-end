@@ -68,9 +68,8 @@ export const ProximaDoacao = () => {
                     hora: vetorExemplo[0].usuario.agenda.horaMarcada.hora,
                 },
                 hospital: {
-                    id: vetorExemplo[0].usuario.agenda.hospital.idHospital,
-                    nome: vetorExemplo[0].usuario.agenda.hospital.nome,
-                    cep: vetorExemplo[0].usuario.agenda.hospital.cep
+                    idHospital: vetorExemplo[0].usuario.agenda.hospital.idHospital,
+                    nome: vetorExemplo[0].usuario.agenda.hospital.nome
                 },
             }
         });
@@ -78,8 +77,6 @@ export const ProximaDoacao = () => {
         setData(0);
         setHora(agenda?.agenda.horaMarcada.hora);
         setHemocentro(agenda?.agenda.hospital.nome);
-        setLocal(agenda?.agenda.hospital.cep);
-        setCep(agenda?.agenda.hospital.cep);
 
     }, []);
 

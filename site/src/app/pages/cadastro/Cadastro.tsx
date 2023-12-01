@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { vetorImg } from "../../shared/components/imagens";
-import { vetorIcon } from "../../shared/components/imagens";
-
 import "../../../html-css-template/css/Cadastro.css";
 import "../../../html-css-template/css/geral.css";
-import { useRef, useState } from "react";
-import { Input } from "../../shared/components";
+
 import Swal from "sweetalert2";
+
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { Input } from "../../shared/components";
+import { vetorImg } from "../../shared/components/imagens";
+import { vetorIcon } from "../../shared/components/imagens";
 
 export const Cadastro = () => {
   const [email, setEmail] = useState("");

@@ -1,5 +1,15 @@
 import "../../../../html-css-template/css/CadastroDoacao.css";
 
+import Swal from "sweetalert2";
+
+import { useState, useRef, useEffect, useCallback } from "react";
+
+import {
+  CadastroDoacaoService,
+  ICadastroDoacao,
+  ICadastroDoacaoCreate,
+} from "../../../shared/sevice/api/tarefas/cadastros/CadastroDoacaoService";
+
 import {
   Input,
   MenuPerfilFuncionario,
@@ -8,14 +18,7 @@ import {
 import { vetorIcon } from "../../../shared/components/imagens";
 import { vetorImg } from "../../../shared/components/imagens";
 
-import { useState, useRef, useEffect, useCallback } from "react";
 
-import Swal from "sweetalert2";
-import {
-  CadastroDoacaoService,
-  ICadastroDoacao,
-  ICadastroDoacaoCreate,
-} from "../../../shared/sevice/api/tarefas/cadastros/CadastroDoacaoService";
 
 export const CadastroDoacao = () => {
   const [cpf, setCpf] = useState("");

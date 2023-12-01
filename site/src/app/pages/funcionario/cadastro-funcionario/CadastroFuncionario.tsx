@@ -1,15 +1,16 @@
-import "../../../../html-css-template/css/novoFuncionario.css";
+import axios from "axios";
 
-import { vetorImg } from "../../../shared/components/imagens";
-import { vetorIcon } from "../../../shared/components/imagens";
+import "../../../../html-css-template/css/novoFuncionario.css";
 
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../../shared/components";
+
 import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
 
+import { Input, MenuPerfilFuncionario } from "../../../shared/components";
+import { vetorImg } from "../../../shared/components/imagens";
+
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 
 export const CadastroFuncionario = () => {
   const [email, setEmail] = useState("");
@@ -45,6 +46,24 @@ export const CadastroFuncionario = () => {
     });
   };
 
+  const showValidationSuccessModal = (message: string) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "success",
+      title: message,
+    });
+  };
+
   const validateForm = () => {
     if (
       email === "" ||
@@ -55,14 +74,10 @@ export const CadastroFuncionario = () => {
     ) {
       showValidationErrorModal("Os Campos não podem estar em branco");
       return false;
-    } 
-    
-    else if (!email.includes("@")) {
+    } else if (!email.includes("@")) {
       showValidationErrorModal("Email deve conter @");
       return false;
-    } 
-    
-    else if (
+    } else if (
       !email.includes("outlook.com") &&
       !email.includes("hotmail.com") &&
       !email.includes("gmail.com") &&
@@ -71,45 +86,30 @@ export const CadastroFuncionario = () => {
     ) {
       showValidationErrorModal("Insira um domínio válido");
       return false;
-    } 
-    
-    else if (parseInt(cpf) < 0) {
+    } else if (parseInt(cpf) < 0) {
       showValidationErrorModal("Valores negativos inseridos");
       return false;
-    } 
-    
-    else if (cpf.length !== 11) {
+    } else if (cpf.length !== 11) {
       showValidationErrorModal("CPF inválido");
       return false;
-    } 
-    
-    else if (senha.length < 8) {
+    } else if (senha.length < 8) {
       showValidationErrorModal("Digite uma senha forte");
       return false;
-    } 
-    
-    else if (!/\s/.test(nome) && nome.length < 15) {
+    } else if (!/\s/.test(nome) && nome.length < 15) {
       showValidationErrorModal("Digite o nome completo");
       return false;
-    } 
-    
-    else if (nome.length > 80) {
+    } else if (nome.length > 80) {
       showValidationErrorModal("Nome incorreto");
       return false;
-    } 
-    
-    else if (confSenha === senha) {
+    } else if (confSenha === senha) {
       return true;
-    } 
-    
-    else {
+    } else {
       showValidationErrorModal("Senhas diferentes");
       return false;
     }
-
   };
 
-  const handleCadastroFuncionario = useCallback( async () => {
+  const handleCadastroFuncionario = useCallback(async () => {
     try {
       if (validateForm()) {
         await CadastroFuncionarioService.create({
@@ -119,27 +119,49 @@ export const CadastroFuncionario = () => {
           role: cargo,
           cpf: cpf,
         });
-        
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          },
-        });
-        Toast.fire({
-          icon: "success",
-          title: "Funcionario cadastrado",
-        });
+
+        showValidationSuccessModal("Funcionario cadastrado com sucesso!");
       }
     } catch (error) {
       console.error("Erro ao cadastrar funcionário:", error);
     }
   }, [nome, email, senha, cargo, cpf, validateForm]);
+
+  // Exportação Arquivo TXT
+
+  const [arquivo, setArquivo] = useState<File | null>(null);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
+      setArquivo(selectedFile);
+    }
+  };
+
+  const enviarArquivoParaAPI = () => {
+    if (arquivo == null) {
+      showValidationErrorModal("Selecione um arquivo txt");
+    }
+
+    if (arquivo) {
+      const formData = new FormData();
+      formData.append("file", arquivo);
+      formData.append("nome", "arquivo.txt");
+
+      axios.post("http://localhost:8082/usuario/ler", formData, {
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }})
+        .catch((error) => {
+          console.error(error);
+        });
+        showValidationSuccessModal("Arquivo exportado com sucesso!");
+    
+    } else {
+      console.warn("Nenhum arquivo selecionado.");
+    }
+  };
 
   const handleClickNav = () => {
     navegando("/pagina-inicial");
@@ -148,23 +170,7 @@ export const CadastroFuncionario = () => {
   return (
     <>
       <div className="geral">
-        <div className="menu">
-          <h1 className="rowdies bold-30">Olá,Pedro!</h1>
-          <div className="menuItens">
-            <a href="" className="now roboto sbold-20">
-              Cadastro Funcionario
-            </a>
-            <a href="" className="item roboto sbold-20">
-              Requisitar Doação
-            </a>
-            <a href="" className="item roboto sbold-20">
-              Cadastrar Doação
-            </a>
-          </div>
-          <button onClick={handleClickNav} className="btn bg-vermelhoClaro">
-            Sair
-          </button>
-        </div>
+       <MenuPerfilFuncionario nome="Paternezi"/>
         <div className="conteudo">
           <div className="rowdies topo">
             <div className="titulo">
@@ -231,9 +237,34 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setConfSenha(newValue)}
                   />
                 </div>
+                <div className="arquivoTxtInput">
+                  <label htmlFor="arquivoInput" className="input-label">
+                    Selecionar Arquivo TXT
+                  </label>
+                  <input
+                    id="arquivoInput"
+                    className="input-size"
+                    type="file"
+                    accept=".txt"
+                    capture="environment"
+                    style={{ display: "none" }}
+                    onChange={handleFileUpload}
+                  />
+                </div>
               </div>
             </div>
-            <button onClick={handleCadastroFuncionario} className="btnCadastrar btn">
+            <div className="arquivoTxt">
+              <button
+                onClick={enviarArquivoParaAPI}
+                className="btnExportar btn"
+              >
+                Exportar TXT
+              </button>
+            </div>
+            <button
+              onClick={handleCadastroFuncionario}
+              className="btnCadastrar btn"
+            >
               Cadastrar
             </button>
           </div>

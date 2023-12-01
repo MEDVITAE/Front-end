@@ -78,6 +78,25 @@
     height: 100vh;
     width: 100%;
 }
+  
+  .input-label {
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .arquivo-input-custom {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 8px;
+  }
+
 .containerCadastro{
     width: 90%;
     height: 70vh;
@@ -150,5 +169,3 @@
     align-items: center;
     justify-content: space-evenly;
 }
-
-
