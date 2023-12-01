@@ -10,7 +10,7 @@ export const HistoricoDoacao: React.FC = () => {
     const tokenSession = sessionStorage.getItem('token');
     const idSession = sessionStorage.getItem('id');
 
-    useEffect(() => {
+     useEffect(() => {
 
         TarefasService.getAllHistorico(idSession ? idSession : '', tokenSession ? tokenSession : '')
             .then((result) => {

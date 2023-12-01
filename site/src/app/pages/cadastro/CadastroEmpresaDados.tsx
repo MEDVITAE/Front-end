@@ -1,14 +1,19 @@
 import "../../../html-css-template/css/Cadastro.css";
 import "../../../html-css-template/css/geral.css";
 
-import { useNavigate } from "react-router-dom";
-import { vetorImg } from "../../shared/components/imagens";
-import { vetorIcon } from "../../shared/components/imagens";
+import Swal from "sweetalert2";
 
 import { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { 
+  CadastroEmpresaService, 
+  ICadastroEmpresa 
+} from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaService";
+
 import { Input } from "../../shared/components";
-import Swal from "sweetalert2";
-import { CadastroEmpresaService, ICadastroEmpresa } from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaService";
+import { vetorImg } from "../../shared/components/imagens";
+import { vetorIcon } from "../../shared/components/imagens";
 
 export const CadastroEmpresaDados = () => {
 

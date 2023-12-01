@@ -14,8 +14,6 @@ export const Perfil = () => {
         Anexo();
         const minhaFuncao =  async () =>{
             const file = await Anexo();
-            
-            
         }
     
         minhaFuncao();

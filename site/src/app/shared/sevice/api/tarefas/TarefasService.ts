@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 
@@ -135,8 +136,10 @@ type THoraDisponivelComTotalCount = {
     data: IListagemHemocentro[];
 }
 
-type THemocentroComTotalCount = {
-    data: IListagemHemocentro[];
+export interface ICriarAgendamento {
+    fkUsuario: number;
+    fkHospital: number;
+    Horario: string;
 }
 
 type TAgenda = {
@@ -147,6 +150,33 @@ type THistorico = {
     data: IHistoricoDeAgendamento;
 }
 
+export interface IEnviaEmail {
+    ownerRef: string;
+    emailFrom: string;
+    emailTo: string;
+    subject: string;
+    text: string;
+}
+
+type THemocentroComTotalCount = {
+    data: IListagemHemocentro[];
+}
+
+type TAgenda = {
+    data: IAgenda[];
+}
+
+// export interface IHistoricoAgendamento {
+//     id: number;
+//     agenda: IAgendamento;
+// }
+
+// type THistoricoAgendamento = {
+//     data: IHistoricoAgendamento[];
+// }
+
+
+
 const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     try {
         const { data } = await Api().get('/swagger-ui.html');
@@ -155,8 +185,8 @@ const getAll = async (): Promise<IPrimeiroCadastro[] | ApiException> => {
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar Api.');
     }
-
 };
+
 
 const getAllHistorico = async (id: string, token: string): Promise<THistorico | ApiException> => {
     try {
@@ -204,24 +234,6 @@ const getAllHistoricoAgendamento = async (token: string): Promise<TAgenda | ApiE
     }
 };
 
-const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Error> => {
-    try {
-
-        const { data } = await Api().get('/');
-
-        if (data) {
-            return {
-                data
-            };
-        }
-
-        return new Error('Erro ao listar registros.');
-    } catch (error) {
-        console.error(error);
-        return new Error((error as { message: string }).message || 'Erro ao listar registros.');
-    }
-};
-
 const getAllHospital = async (filter = '', token: string): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hospital?nome_like=${filter}`;
@@ -252,7 +264,6 @@ const getById = async (id: number): Promise<IPrimeiroCadastro | ApiException> =>
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar registro.');
     }
-
 };
 
 const postLogin = async (dataToUpdate: ILogin): Promise<ITokenId | ApiException> => {
@@ -274,7 +285,22 @@ const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiExcepti
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao consultar detalhes do usuario');
     }
+};
 
+const alertarDoadores = async (dataToEmail: IEnviaEmail): Promise<IEnviaEmail | ApiException> => {
+    try {
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+            }
+        };
+        console.log("Deu bom ?" + dataToEmail)
+        const { data } = await Api().post('/fila/enviarEmails', dataToEmail, config);
+
+        return data;
+    } catch (error: any) {
+        return new ApiException(error.message || 'Erro ao alertar doadores.');
+    }
 };
 
 const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate, caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<void> => {
@@ -300,7 +326,6 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
     } catch (error: any) {
         alert(3)
     }
-
 };
 
 const createAgendamento = async (dataToCreate: ICriarAgendamento, token: string): Promise<ICriarAgendamento | ApiException> => {
@@ -388,7 +413,6 @@ const deleteByIdAgedamento = async (id: string, token: string): Promise<undefine
     catch (error: any) {
         return new ApiException(error.message || 'Erro ao apagar registro.');
     }
-
 };
 
 export const TarefasService = {
@@ -407,4 +431,5 @@ export const TarefasService = {
     updateById,
     deleteById,
     deleteByIdAgedamento,
+    alertarDoadores,
 };

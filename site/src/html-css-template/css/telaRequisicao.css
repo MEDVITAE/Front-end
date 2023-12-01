@@ -8,7 +8,6 @@
     border-right-style: solid;
     display: flex;
     flex-direction: column;
-    /* border: solid 1px red; */
 }
 
 .topo {
@@ -66,7 +65,6 @@
     align-items: center;
     justify-content: center;
     justify-content: space-evenly;
-    /* border: solid 1px blue; */
 }
 
 .selectTipos {
@@ -78,7 +76,7 @@
     justify-content: center;
     flex-direction: column;
     background-color: var(--vermelho-claro);
-    /* border: solid 1px yellow; */
+    border: solid 2px black;
 }
 
 .selectDoadores {
@@ -90,7 +88,7 @@
     justify-content: center;
     flex-direction: column;
     background-color: var(--vermelho-claro);
-    /* border: solid 1px green; */
+    border: solid 2px black;
 }
 
 .tiposSanguineos {
@@ -100,8 +98,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    margin-right: 8px;
-    /* border: solid 1px green; */
+    margin-right: 11px;
 }
 
 .doadoresDisponiveis {
@@ -111,22 +108,19 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    margin-right: 8px;
-    /* border: solid 1px red; */
+    margin-right: 1px;
 }
     
 .selectTipos h2 {
     margin-left: 8px;
     font-size: 22px;
     text-align: center;
-    /* border: solid 1px red; */
 }
 
 .selectDoadores h2 {
     margin-left: 8px;
     font-size: 22px;
     text-align: center;
-    /* border: solid 1px red; */
 }
 
 .h3Req {
@@ -155,7 +149,7 @@
     color: black;
     border-radius: 5px;
     background-color: white;
-    border: solid 1px black;
+    border: solid 2px black;
     cursor: pointer;
 }
 
@@ -163,7 +157,7 @@
     width: 40.5%;
     height: 13.5%;
     font-size: 20px;
-    /* text-align: center; */
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,86 +167,24 @@
     border-radius: 5px;
     background-color: white;
     border: solid 1px black;
+    cursor: pointer;
 }
 
 .doadoresDisponiveis .doador1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'roboto';
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    background-color: white;
+    border: solid 2px black;
     flex-direction: column;
     font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .doador2 {
-    flex-direction: column;
-    font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .doador3 {
-    flex-direction: column;
-    font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .doador4 {
-    flex-direction: column;
-    font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .doador5 {
-    flex-direction: column;
-    font-size: 18px;
-    width: 50%;
-    height: 18%;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .alerta1 {
-    text-align: center;
-    width: 27%;
-    height: 17%;
-    cursor: pointer;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .alerta2 {
-    text-align: center;
-    width: 27%;
-    height: 17%;
-    cursor: pointer;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .alerta3 {
-    text-align: center;
-    width: 27%;
-    height: 17%;
-    cursor: pointer;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .alerta4 {
-    text-align: center;
-    width: 27%;
-    height: 17%;
-    cursor: pointer;
-    /* border: solid 1px blue; */
-}
-
-.doadoresDisponiveis .alerta5 {
-    text-align: center;
-    width: 27%;
-    height: 17%;
-    cursor: pointer;
-    /* border: solid 1px blue; */
+    width: 46%; 
+    height: 20%;
+    margin-bottom: 10px;
 }
 
 .embrulhoBtn{
@@ -260,8 +192,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 242px;
-    /* border: solid 1px red; */
 }
 
 .btnCadastrar {
@@ -272,4 +202,5 @@
     border: none;
     font-weight: bold;
     font-family: 'Roboto';
+    transform: translateY(0px) translateX(186px);
 }
