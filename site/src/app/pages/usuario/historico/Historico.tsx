@@ -5,14 +5,14 @@ import { ProximaDoacao } from './components/ProximaDoacao';
 import '../../../../html-css-template/css/HistoricoDoacao.css';
 
 export const Historico = () => {
-    
+
     return (
         <>
             <OndaLateralEsquerda />
             <div className="historico">
                 <MenuPerfilUsuario nome="Diego" />
                 <div className="historicoConteudo">
-                   <ProximaDoacao />
+                    <ProximaDoacao />
                     <HistoricoDoacao />
                 </div>
             </div>

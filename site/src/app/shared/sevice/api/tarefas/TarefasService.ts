@@ -119,6 +119,7 @@ export interface IAgendaParaHistorico {
   }
   
 export interface IHospitalParaHistorico {
+    id: number;
     nome: string;
     rua: string;
   }
@@ -374,9 +375,14 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
 
 };
 
-const deleteByIdAgedamento = async (id: number): Promise<undefined | ApiException> => {
+const deleteByIdAgedamento = async (id: string, token: string): Promise<undefined | Error> => {
     try {
-        await Api().delete(`/tarefas/${id}`);
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+
+        await Api().delete(`/Agenda/${id}`, { headers });
         return undefined;
     }
     catch (error: any) {

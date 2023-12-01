@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import { IAgendaParaHistorico, IHistoricoDeAgendamento, IHospitalParaHistorico, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { ApiException } from "../../../../shared/sevice/api/ApiException";
 
@@ -27,54 +26,81 @@ export const HistoricoDoacao: React.FC = () => {
                     }));
 
                     const hospitalMapeado: IHospitalParaHistorico[] = result.data.hospital.map((hospital) => ({
+                        id: hospital.id,
                         nome: hospital.nome,
                         rua: hospital.rua,
                     }));
 
-                    setHistorico({
+                    const agendamentoMaisRecente = agendaMapeada.reduce((maisRecente, atual) => {
+                        return maisRecente.horario > atual.horario ? maisRecente : atual;
+                    }, agendaMapeada[0]);
+
+                    const hospital = hospitalMapeado.find((hosp) => hosp.id === agendamentoMaisRecente.fkHospital);
+
+                    const novoHistorico = {
                         quantidade: result.data.quantidade,
                         quantidadeDoacao: result.data.quantidadeDoacao,
                         agenda: agendaMapeada,
                         hospital: hospitalMapeado,
-                    });
+                    };
+
+                    setHistorico(novoHistorico);
+
+                    if (novoHistorico.agenda && novoHistorico.agenda.length !== novoHistorico.quantidadeDoacao) {
+                        sessionStorage.setItem('idAgendamento', agendamentoMaisRecente.idAgenda.toString());
+                        sessionStorage.setItem('horario', `${agendamentoMaisRecente.horario.getHours() < 10 ? '0' : ''}${agendamentoMaisRecente.horario.getHours()}:${agendamentoMaisRecente.horario.getMinutes() < 10 ? '0' : ''}${agendamentoMaisRecente.horario.getMinutes()}`);
+                        sessionStorage.setItem('data', agendamentoMaisRecente.horario.getDate() + "/" + (Number(agendamentoMaisRecente.horario.getMonth()) + 1) + "/" + agendamentoMaisRecente.horario.getFullYear());
+                        sessionStorage.setItem('hemo', hospital ? hospital.nome : '');
+                        sessionStorage.setItem('rua', hospital ? hospital.rua : '');
+                    } else {
+                        sessionStorage.removeItem('idAgendamento');
+                        sessionStorage.removeItem('horario');
+                        sessionStorage.removeItem('data');
+                        sessionStorage.removeItem('hemo');
+                        sessionStorage.removeItem('rua');
+                    }
                 }
             });
     }, []);
 
     useEffect(() => {
         setHistoricoV1(historico);
-        console.log(historicoV1 ? 'foi' : 'n foi');
     }, [historico]);
-
 
     return (
         <>
             <div className="doacaoAnterior">
                 <h2 className='rowdies'>HISTÓRICO</h2>
-                {historicoV1 && historicoV1.agenda && historicoV1.agenda.map((agenda) => (
-                    <div className="doacao" key={agenda.idAgenda}>
-                        <div className="doacaoAtual bg-vermelhoClaro">
-                            <div className="item">
-                                <h2 className='roboto'>Doação n°: {agenda.idAgenda}</h2>
-                                <h2 className='roboto'>Pts: 5</h2>
+                {historicoV1 && historicoV1.agenda && historicoV1.agenda.map((agenda, index) => {
+                    const hospital = historicoV1.hospital?.find((hosp) => hosp.id === agenda.fkHospital);
+
+                    if (index < historicoV1.quantidadeDoacao) {
+                        return (
+                            <div className="doacao" key={agenda.idAgenda}>
+                                <div className="doacaoAtual bg-vermelhoClaro">
+                                    <div className="item">
+                                        <h2 className='roboto'>Doação n°: {index + 1}</h2>
+                                        <h2 className='roboto'>Pts: 5</h2>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='roboto'>Data: {agenda.horario && `${agenda.horario.getDate()}/${agenda.horario.getMonth() + 1}/${agenda.horario.getFullYear()}`}</h2>
+                                        <h2 className='roboto'>Hora: {agenda.horario && `${agenda.horario.getHours()}:${agenda.horario.getMinutes() < 10 ? '0' : ''}${agenda.horario.getMinutes()}`}</h2>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='roboto'>Hemocentro: {hospital?.nome}</h2>
+                                        <h2 className='roboto'>Local: {hospital?.rua}</h2>
+                                    </div>
+                                </div>
+                                <div className="caixaLitros">
+                                    <div className="litros">
+                                        <h3 className='roboto'>Parabéns</h3>
+                                        <h2 className='roboto'>Vida Salva</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="item">
-                                <h2 className='roboto'>Data: {agenda.horario.getDate() + "/" + agenda.horario.getMonth() + "/" + agenda.horario.getFullYear()}</h2>
-                                <h2 className='roboto'>Hora: {agenda.horario.getHours()}</h2>
-                            </div>
-                            <div className="item">
-                                <h2 className='roboto'>Hemocentro: {}</h2>
-                                <h2 className='roboto'>Local: {}</h2>
-                            </div>
-                        </div>
-                        <div className="caixaLitros">
-                            <div className="litros">
-                                <h3 className='roboto'>Parabéns</h3>
-                                <h2 className='roboto'>Vida Salva</h2>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                        );
+                    }
+                })}
             </div>
         </>
     );
