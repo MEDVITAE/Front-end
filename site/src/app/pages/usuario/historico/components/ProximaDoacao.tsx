@@ -78,7 +78,6 @@ export const ProximaDoacao = () => {
     };
 
     const deletarAgendamento = useCallback((id: string) => {
-        alert(idAgendamento ? idAgendamento : '');
         TarefasService.deleteByIdAgedamento(id, tokenSession ? tokenSession : '')
             .then((result) => {
                 if (result instanceof Error) {
