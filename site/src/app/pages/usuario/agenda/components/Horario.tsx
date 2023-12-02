@@ -111,7 +111,7 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
         TarefasService.getAllHistoricoAgendamento(tokenSession ? tokenSession : '')
             .then((result) => {
                 if (result instanceof ApiException) {
-                    alert(result.message);
+                    showChosenWrongTime("Erro ao carregar os horários disponíveis")
                 }
                 else {
                     setHorarioIndisponivel(result.data.filter((item) => item.fkHospital === parseInt(idHemoSession || '', 10)));
