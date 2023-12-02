@@ -1,78 +1,20 @@
 @import url(geral.css);
 
-.flexContainer {
-    display: flex;
-    /* border: solid 1px yellow; */
-}
-
-.imgOnda {
-    width: 104.8%;
-    height: 100vh;
-    display: flex;
-    justify-content: end;
-    position: absolute;
-    /* border: solid 1px black; */
-    z-index: -999;
-}
-
-.imgOnda .imgOndaDentro {
-    height: 105vh;
-    /* border: solid 1px black; */
-}
-
-.flexContainer .imgTuboEnsaio {
-    width: 50%;
-    height: 90vh;
-    display: flex;
-    position: relative;
-    justify-content: end;
-    /* border: solid 1px  yellow; */
-}
-
-.flexContainer .imgTubo {
-    height: 65vh;
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    margin-top: 24%;
-    /* border: solid 1px red; */
-}
-
-.flexContainer .imgLogo {
-    font-family: 'Roboto';
-    font-weight: bold;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-around;
-    position: absolute;
-    right: 0;
-    margin-right: 2.5%;
-    padding: 10px;
-    margin-bottom: 50%;
-    /* border: solid 1px red; */
-}
-
 .flexContainer .conteudoHospital {
     width: 80%;
+    height: 100vh;
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
     flex-direction: column;
-    /* border: solid 1px red; */
 }
 
-.flexContainer  .conteudoHospital .containerHospital {
-    position: absolute;
-    top: 0;
-    margin-right: 30%;
-    margin-top:70px;
+.flexContainer .conteudoHospital .containerHospital {
+    margin-top: 4%;
     font-size: 10px;
-    /* border: solid 1px blue; */
+    margin-left: 4%;
 }
 
 .conteudoHospital .textosQuadro {
-    width: 110%;
+    width: 100%;
     height: 25vh;
     display: flex;
     flex-direction: column;
@@ -101,7 +43,8 @@
     align-items: center;
     margin-left: auto;
 }
-.mgAtm{
+
+.mgAtm {
     margin: auto 0;
 }
 
@@ -122,30 +65,18 @@
 }
 
 .flexContainer .primeiroQuadro {
-    width: 80%;
-    height: 39vh;
-    margin-top: 70px;
-    margin-bottom: -90px;
-    margin-left: 30px;
-    /* border: solid 1px red; */
+    margin-top: 4%;
+    margin-left: 4%;
+    width: 65%;
+    height: 32vh;
 }
 
 .primeiroQuadro h3 {
-    height: 23%;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
     /* border: solid 1px blue; */
-}
-
-.conteudoHospital .quizDois {
-    width: 110%;
-    height: 39vh;
-    border-radius: 5px;
-    margin-top: 40px;
-    margin-left: 30px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border: solid 1px black;
 }
 
 .flexColumn {
@@ -185,4 +116,9 @@
 
 .btn {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
 }
