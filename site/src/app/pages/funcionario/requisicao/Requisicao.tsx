@@ -7,7 +7,7 @@ import '../../../../html-css-template/css/telaRequisicao.css'
 import { TarefasService, IEnviaEmail } from "../../../shared/sevice/api/tarefas/TarefasService";
 
 import { vetorIcon } from "../../../shared/components/imagens";
-import { MenuPerfilFuncionario } from "../../../shared/components";
+import { MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
 
 export const Requisicao = () => {
 
@@ -242,54 +242,51 @@ export const Requisicao = () => {
 
     return (
         <>
-            <MenuPerfilFuncionario nome="Paternezi" />
+            <OndaLateralEsquerda />
             <div className="conteudo">
-                <div className="rowdies topo">
-                    <div className="titulo">
-                        <h1>REQUISITE DOAÇÕES</h1>
-                    </div>
+                <MenuPerfilFuncionario nome="Paternezi" />
+                <div className="geralRequisicao">
+                    <div className="rowdies topoRequisicao">
+                        <div className="tituloRequisicao">
+                            <h1>REQUISITE DOAÇÕES</h1>
+                        </div>
 
-                    <div className="logo">
-                        <img src="../assets/LogoVitai.png" alt="" />
-                    </div>
-                </div>
-                <div className="ondas">
-                    <div className="waves">
-                        <img src="../assets/ONDA - MAPA.svg" alt="" />
-                    </div>
-                </div>
-                <div className="containerTipos">
-                    <div className="selectTipos roboto">
-                        <h2>Selecione o tipo sanguíneo</h2>
-                        <div className="tiposSanguineos">
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('O-')}>Tipo: O-</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('O+')}>Tipo: O+</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('AB-')}>Tipo: AB-</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('AB+')}>Tipo: AB+</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('B-')}>Tipo: B-</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('B+')}>Tipo: B+</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('A-')}>Tipo: A-</h3>
-                            <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('A+')}>Tipo: A+</h3>
+                        <div className="logo">
+                            <img src="../assets/LogoVitai.png" alt="" />
                         </div>
                     </div>
-                    <div className="selectDoadores roboto">
-                        <h2>Doadores Dísponiveis</h2>
-                        <div className="doadoresDisponiveis">
-
-                            {tipoSangue.map((doador, index) => (
-                                <div key={index} className="doador1">
-                                    <p>Nome: {doador.nome}</p>
-                                    <p>Tipo Sanguíneo: {doador.tipo}</p>
+                    <div className="containerTipos">
+                        <div className="selectTipos roboto">
+                            <h2>Selecione o tipo sanguíneo</h2>
+                            <div className="tiposSanguineos">
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('O-')}>Tipo: O-</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('O+')}>Tipo: O+</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('AB-')}>Tipo: AB-</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('AB+')}>Tipo: AB+</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('B-')}>Tipo: B-</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('B+')}>Tipo: B+</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('A-')}>Tipo: A-</h3>
+                                <h3 className="h3Req" onClick={() => acharPorTipoSanguineo('A+')}>Tipo: A+</h3>
+                            </div>
+                        </div>
+                        <div className="caixaRequisicao">
+                            <div className="selectDoadores roboto">
+                                <h2>Doadores Dísponiveis</h2>
+                                <div className="doadoresDisponiveis">
+                                    {tipoSangue.map((doador, index) => (
+                                        <div key={index} className="doador1">
+                                            <p>Nome: {doador.nome}</p>
+                                            <p>Tipo Sanguíneo: {doador.tipo}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
+                            <button className="btnCadastrar btn" onClick={alertarTodos}>
+                            Alertar todos
+                            <img src={vetorIcon[0]} alt="" />
+                        </button>
                         </div>
                     </div>
-                </div>
-                <div className="embrulhoBtn">
-                    <button className="btnCadastrar btn" onClick={alertarTodos}>
-                        Alertar todos
-                        <img src={vetorIcon[0]} alt="" />
-                    </button>
                 </div>
             </div>
         </>

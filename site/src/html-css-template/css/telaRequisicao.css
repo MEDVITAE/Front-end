@@ -2,22 +2,29 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/arrow-right-o.css');
 
 .conteudo {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.geralRequisicao{
     width: 80%;
     height: 100vh;
     font-weight: var(--semibold);
-    border-right-style: solid;
     display: flex;
     flex-direction: column;
 }
 
-.topo {
+.topoRequisicao {
     width: 95%;
     height: 15vh;
     display: flex;
     justify-content: space-between;
 }
 
-.titulo {
+.tituloRequisicao {
     width: 30%;
     height: 100%;
     font-size: 12px;
@@ -28,39 +35,10 @@
     margin-left: 20px;
 }
 
-.logo {
-    height: 100%;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo img {
-    height: 75%;
-}
-
-.ondas {
-    height: 100vh;
-    width: 80%;
-    position: absolute;
-    z-index: -9999;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.waves {
-    height: 100vh;
-}
-
-.waves img {
-    height: 100vh;
-    width: 100%;
-}
-
 .containerTipos {
+    margin-top: 4%;
     width: 90%;
-    height: 70vh;
+    height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,9 +57,16 @@
     border: solid 2px black;
 }
 
-.selectDoadores {
+.caixaRequisicao{
     width: 50%;
-    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.selectDoadores {
+    width: 100%;
+    height: 67vh;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -187,14 +172,8 @@
     margin-bottom: 10px;
 }
 
-.embrulhoBtn{
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .btnCadastrar {
+    margin-top: 4%;
     background-color: var(--vermelho-claro);
     width: 190px;
     height: 6vh;
@@ -202,5 +181,4 @@
     border: none;
     font-weight: bold;
     font-family: 'Roboto';
-    transform: translateY(0px) translateX(186px);
 }

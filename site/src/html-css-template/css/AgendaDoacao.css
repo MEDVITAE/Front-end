@@ -16,19 +16,19 @@
     flex-direction: column;
     align-items: top;
     margin-left: 5%;
-    margin-top: 2%;
 }
 
 .AgendaDoacaoBox {
+    margin-top: 9%;
     display: flex;
     flex-direction: column;
     align-items: top;
 }
 
 .AgendamentosBox {
+    margin-top: 2%;
     height: 70vh;
     width: 65vw;
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +42,7 @@
 }
 
 .box .agendamentos{
+    margin-top: 2%;
     width: 100%;
     height: 100%;
     overflow-y: scroll;

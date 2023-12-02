@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
 
-import { Input, MenuPerfilFuncionario } from "../../../shared/components";
+import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
 import { vetorImg } from "../../../shared/components/imagens";
 
 import Swal from "sweetalert2";
@@ -150,14 +150,15 @@ export const CadastroFuncionario = () => {
       formData.append("nome", "arquivo.txt");
 
       axios.post("http://localhost:8082/usuario/ler", formData, {
-          headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
-        }})
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+      })
         .catch((error) => {
           console.error(error);
         });
-        showValidationSuccessModal("Arquivo exportado com sucesso!");
-    
+      showValidationSuccessModal("Arquivo exportado com sucesso!");
+
     } else {
       console.warn("Nenhum arquivo selecionado.");
     }
@@ -169,28 +170,21 @@ export const CadastroFuncionario = () => {
 
   return (
     <>
+      <OndaLateralEsquerda />
       <div className="geral">
-       <MenuPerfilFuncionario nome="Paternezi"/>
-        <div className="conteudo">
-          <div className="rowdies topo">
-            <div className="titulo">
+        <MenuPerfilFuncionario nome="Paternezi" />
+        <div className="conteudoFuncionario">
+          <div className="rowdies topoFuncionario">
+            <div className="tituloFuncionario">
               <h1>NOVO FUNCIONARIO</h1>
-            </div>
-
-            <div className="logo">
-              <img src={vetorImg[3]} alt="" />
-            </div>
-          </div>
-          <div className="ondas">
-            <div className="waves">
-              <img src={vetorImg[6]} alt="" />
             </div>
           </div>
           <div className="containerCadastro">
             <div className="cadastroFuncionario roboto">
               <div className="cadastroInputs">
+                <div className="esquerda">
                 <Input
-                  className={"input-size"}
+                  className={"input-requisicao roboto regular-16"}
                   type="text"
                   placeholder={"Nome Completo"}
                   value={nome}
@@ -198,7 +192,7 @@ export const CadastroFuncionario = () => {
                   onChange={(newValue) => setNome(newValue)}
                 />
                 <Input
-                  className={"input-size"}
+                  className={"input-requisicao roboto regular-16"}
                   type="number"
                   placeholder={"CPF"}
                   value={cpf}
@@ -206,44 +200,46 @@ export const CadastroFuncionario = () => {
                   onChange={(newValue) => setCpf(newValue)}
                 />
                 <Input
-                  className={"input-size"}
+                  className={"input-requisicao roboto regular-16"}
                   type="text"
                   placeholder={"Cargo"}
                   value={cargo}
                   ref={inputPasswordRef}
                   onChange={(newValue) => setCargo(newValue)}
                 />
+              </div>
+              <div className="esquerda">
                 <Input
-                  className={"input-size"}
+                  className={"input-requisicao roboto regular-16"}
                   type="text"
                   placeholder={"Email"}
                   value={email}
                   ref={inputPasswordRef}
                   onChange={(newValue) => setEmail(newValue)}
                 />
-                <div className="confirmaSenha">
                   <Input
-                    className={"input-size"}
+                    className={"input-requisicao roboto regular-16"}
                     placeholder={"Senha"}
                     value={senha}
                     onChange={(newValue) => setSenha(newValue)}
                   />
                   <Input
-                    className={"input-size"}
+                    className={"input-requisicao roboto regular-16"}
                     type="text"
                     placeholder={"Confirma senha"}
                     value={confSenha}
                     ref={inputPasswordRef}
                     onChange={(newValue) => setConfSenha(newValue)}
                   />
-                </div>
+              </div>
+              </div>
                 <div className="arquivoTxtInput">
                   <label htmlFor="arquivoInput" className="input-label">
                     Selecionar Arquivo TXT
                   </label>
                   <input
                     id="arquivoInput"
-                    className="input-size"
+                    className="input-requisicao roboto regular-16"
                     type="file"
                     accept=".txt"
                     capture="environment"
@@ -251,7 +247,6 @@ export const CadastroFuncionario = () => {
                     onChange={handleFileUpload}
                   />
                 </div>
-              </div>
             </div>
             <div className="arquivoTxt">
               <button
@@ -263,7 +258,7 @@ export const CadastroFuncionario = () => {
             </div>
             <button
               onClick={handleCadastroFuncionario}
-              className="btnCadastrar btn"
+              className="btnCadastrarFuncionario btn"
             >
               Cadastrar
             </button>

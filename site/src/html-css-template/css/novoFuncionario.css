@@ -1,7 +1,7 @@
 @import url(geral.css);
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/arrow-right-o.css');
 
-.conteudo {
+.conteudoFuncionario {
     width: 80%;
     height: 100vh;
     font-weight: var(--semibold);
@@ -14,16 +14,17 @@
 .geral {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
-.topo {
+.topoFuncionario {
     width: 95%;
     height: 15vh;
     display: flex;
     justify-content: space-between;
 }
 
-.titulo {
+.tituloFuncionario {
     width: 30%;
     height: 100%;
     font-size: 12px;
@@ -33,83 +34,36 @@
     margin-left: 20px;
 }
 
-.selecionaCep {
-    width: 25%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-}
-
-.selecionaCep input {
-    border-radius: 20PX;
-    border: 1px black solid;
-    height: 30%;
-    width: 80%;
-    font-size: 25px;
-    text-align: center;
-    font-family: 'roboto';
-}
-
-.logo {
-    height: 100%;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.logo img{
-    height: 75%;
-}
-.ondas{
-    height: 100vh;
-    width: 80%;
-    position: absolute;
-    z-index: -9999;
-    display: flex;
-    justify-content: flex-end;
-}
-.waves{
-    height: 100vh;
-   
-}
-.waves img{
-    height: 100vh;
-    width: 100%;
-}
-  
-  .input-label {
-    display: inline-block;
+.input-label {
     padding: 10px;
     background-color: #fff;
     color: #000;
     border: 1px solid #000;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .arquivo-input-custom {
+}
+
+.arquivo-input-custom {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
     background-color: #fff;
     margin-top: 8px;
-  }
+}
 
-.containerCadastro{
+.containerCadastro {
+    margin-top: 3%;
     width: 90%;
     height: 70vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.cadastroFuncionario{
-    width: 90%;
-    height: 70%;
+.cadastroFuncionario {
+    width: 80%;
+    height: 50vh;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -117,47 +71,42 @@
     flex-direction: column;
     background-color: var(--vermelho-claro);
 }
-.cadastroInputs{
-    height: 80%;
-    width: 80%;
+
+.cadastroInputs {
+    width: 100%;
+    height: 40vh;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: row;
     align-items: center;
 }
-.confirmaSenha{
-    width: 100%;
+
+.esquerda{
+    width: 50%;
+    height: 30vh;
+    
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
+    
 }
- #input{
-    width: 40.5%;
-    height: 100%;
-    margin-left: 4.5%;
-    font-size: 20px;
-    text-align: start;
-    font-family: 'roboto';
-    font-weight: bold;
-    color: black;
-    border-radius: 5px;
-    border: solid  1px black;
+
+.input-requisicao{
+    width: 70%;
+    height: 6vh;
+    padding-left: 20px;
+    border: 2px;
+    border-style: solid;
+    border-radius: 10px;
 }
-.cadastroFuncionario input{
-    width: 40.5%;
-    height: 13.5%;
-    font-size: 20px;
-    text-align: start;
-    font-family: 'roboto';
-    font-weight: bold;
-    color: black;
-    border-radius: 5px;
-    border: solid  1px black;
+
+.input-requisicao::placeholder{
+    padding-left: 10px;
+    color: var(--preto);
 }
-.cadastroFuncionario input::placeholder{
-    color: black;
-}
-.btnCadastrar{
-    background-color: var(--vermelho-claro); 
+
+.btnCadastrarFuncionario {
+    background-color: var(--vermelho-claro);
     width: 190px;
     height: 6vh;
     border-radius: 7px;

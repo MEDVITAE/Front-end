@@ -1,6 +1,6 @@
 import '../../../../html-css-template/css/AgendaDoacao.css'
-import { MenuPerfilFuncionario, MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
-import { useEffect, useMemo, useState } from 'react';
+import { MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
+import { useEffect, useState } from 'react';
 import { IAgendamentosHospital, TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ApiException } from '../../../shared/sevice/api/ApiException';
@@ -87,11 +87,10 @@ return (
             <MenuPerfilFuncionario nome="Diego" />
             <div className="divAgendaDoacao">
                 <div className="AgendaDoacaoBox">
-                    <h2 className="rowdies mr-bt">AGENDAMENTOS</h2>
+                    <h2 className="rowdies">AGENDAMENTOS</h2>
                 </div>
                 <div className='AgendamentosBox'>
                     <div className='box'>
-                        <h2 className="rowdies mr-bt">AGENDAMENTOS</h2>
                         <div className='agendamentos'>
                             {rows.map((vetor) => {
                                 return <h3 onClick={() => agendaEscolhida(vetor.idAgenda)} className="btn_agenda roboto regular-20" key={vetor.idAgenda}>
