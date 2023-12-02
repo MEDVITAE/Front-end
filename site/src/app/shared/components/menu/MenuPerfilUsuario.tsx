@@ -1,5 +1,8 @@
 import { useCallback, useState } from 'react';
 import '../../../../html-css-template/css/menu.css';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 
 
@@ -7,7 +10,32 @@ interface IMenuPerfil {
     nome: string;
 }
 
-export const MenuPerfilUsuario: React.FC<IMenuPerfil> = ({ nome }) => {
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2100,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
+export const MenuPerfilUsuario: React.FC<IMenuPerfil> = () => {
+    const navegando = useNavigate();
+
+    const sairClick = async () => {
+        Toast.fire({
+            icon: "success",
+            title: "Saindo... Para retornar a esta tela, realize novamente o login."
+        });
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        sessionStorage.clear();
+        navegando('/pagina-inicial');
+
+    };
 
     var localhost3000 = "http://localhost:3000";
 
@@ -33,8 +61,7 @@ export const MenuPerfilUsuario: React.FC<IMenuPerfil> = ({ nome }) => {
     return (
         <>
             <div className="menu">
-                {/* <button onClick={handleBack}>voltar</button> */}
-                <h1 className="rowdies bold-30">Olá, {nome}</h1>
+                <h1 className="rowdies bold-30">Olá {sessionStorage.getItem("userName")}</h1>
                 <div className="menuItens">
 
                     <Link to="/perfil-usuario"
@@ -67,7 +94,7 @@ export const MenuPerfilUsuario: React.FC<IMenuPerfil> = ({ nome }) => {
                         className="item roboto bold-30">Ranking
                     </Link>
                 </div>
-                <button className="btn bg-vermelhoClaro bold-30">Sair</button>
+                <button onClick={sairClick} className="btn bg-vermelhoClaro bold-30">Sair</button>
             </div>
         </>
     );

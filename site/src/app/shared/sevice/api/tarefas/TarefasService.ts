@@ -1,6 +1,7 @@
 import { id } from "date-fns/locale";
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
+import { AxiosResponse } from 'axios';
 
 export interface IPrimeiroCadastro {
     id: number;
@@ -9,6 +10,14 @@ export interface IPrimeiroCadastro {
     senha: string | null;
     role: string;
     cpf: string;
+}
+
+export interface IEnviaEmail {
+    ownerRef: string;
+    emailFrom: string;
+    emailTo: string;
+    subject: string;
+    text: string;
 }
 
 export interface IDetalheUser {
@@ -25,6 +34,14 @@ export interface IDetalheUser {
     numero: string;
     altura: string;
     apto: string;
+}
+
+export interface IAgendamentosHospital {
+    idAgenda: number;
+    cpf: string;
+    nome: string;
+    data: string;
+    hora: string;
 }
 
 export interface IDetalheUserUpdate {
@@ -45,7 +62,6 @@ export interface IUserEnderecoUpdate {
     cep: string;
     numero: string;
 }
-
 export interface ISegundoCadastroEndereco {
     cidade: string;
     bairro: string;
@@ -55,7 +71,6 @@ export interface ISegundoCadastroEndereco {
     numero: number;
     fkUsuario: number;
 }
-
 export interface ISegundoCadastroCaracteristicas {
     peso: string;
     altura: string;
@@ -75,6 +90,8 @@ export interface ITokenId {
     Id: string;
     token: string;
     userRole: string;
+    nome: string;
+    fkHospital: string | null;
 }
 
 export interface IUserId {
@@ -270,19 +287,73 @@ const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiExcepti
     }
 };
 
-const alertarDoadores = async (dataToEmail: IEnviaEmail): Promise<IEnviaEmail | ApiException> => {
-    try {
-        const config = {
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem("token")}`
-            }
-        };
-        console.log("Deu bom ?" + dataToEmail)
-        const { data } = await Api().post('/fila/enviarEmails', dataToEmail, config);
+const postArquivo = async (file: File, id: string): Promise<ITokenId | ApiException> => {
 
-        return data;
+    try {
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('id', id); // Adiciona o arquivo com o nome 'image' no FormData
+        // Adicione o ID como um parâmetro de URL
+
+        const response = await Api().post("http://localhost:8082/arquivos", formData, {
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+          }})
+
+          return response.data;
+
     } catch (error: any) {
-        return new ApiException(error.message || 'Erro ao alertar doadores.');
+        return new ApiException(error.message || 'Erro ao realizar o upload do arquivo.');
+    }
+};
+
+
+const getArquivo = async (id: string): Promise<File> => {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+      },
+      responseType: 'arraybuffer' as const // Define o tipo de resposta como arraybuffer
+    };
+  
+    try {
+      const response: AxiosResponse<ArrayBuffer> = await Api().get(`/arquivos/${id}`, config);
+      const fileData = new Blob([response.data], { type: 'application/octet-stream' }); // Cria um Blob a partir dos bytes
+  
+      // Constrói um objeto File a partir do Blob
+      const file = new File([fileData], `nome_do_arquivo.extensao`, { lastModified: new Date().getTime() });
+  
+      return file;
+    } catch (error: any) {
+      throw new ApiException(error.message || 'Erro ao carregar documento do usuario');
+    }
+  };
+
+const getAgendamentos = async (id: string): Promise<IAgendamentosHospital[] | ApiException> => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+    };
+
+    try {
+        const response =  await Api().get(`/Agenda/listaAgendamentos/${id}`, config);
+        console.log(response.data)
+        return response.data;
+    }
+    catch (error: any) {
+        throw new ApiException(error.message || 'Erro ao carregar agendamentos do hospital');
+    }
+
+};
+
+const getAgendamentosCSV = async (id: string): Promise<any | ApiException> => {
+    try {
+        const { data } =  await Api().get(`/Agenda/dowload/agendamentos`);
+        return data;
+    }
+    catch (error: any) {
+        throw new ApiException(error.message || 'Erro ao baixar arquivo');
     }
 };
 
@@ -308,6 +379,22 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
         await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
     } catch (error: any) {
         alert(3)
+    }
+};
+
+const alertarDoadores = async (dataToEmail: IEnviaEmail): Promise<IEnviaEmail | ApiException> => {
+    try {
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+            }
+        };
+        
+        const { data } = await Api().post('/fila/enviarEmails', dataToEmail, config);
+
+        return data;
+    } catch (error: any) {
+        return new ApiException(error.message || 'Erro ao alertar doadores.');
     }
 };
 
@@ -406,7 +493,12 @@ export const TarefasService = {
     getById,
     postLogin,
     getDetalhesUsuario,
+    postArquivo,
+    alertarDoadores,
+    getArquivo,
     postDetalhesUsuario,
+    getAgendamentosCSV,
+    getAgendamentos,
     createAgendamento,
     createUsuario,
     createUsuarioEndereco,
@@ -414,5 +506,4 @@ export const TarefasService = {
     updateById,
     deleteById,
     deleteByIdAgedamento,
-    alertarDoadores,
 };

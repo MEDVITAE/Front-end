@@ -126,8 +126,6 @@
 }
 
 .picture:active {
-    border-color: turquoise;
-    color: turquoise;
     background: #eee;
 }
 

@@ -100,6 +100,11 @@ export const Login = () => {
             sessionStorage.setItem("id", result.Id);
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("userRole", result.userRole);
+            sessionStorage.setItem("userName", result.nome.split(" ")[0]);
+            if (result.fkHospital !== null) {
+                sessionStorage.setItem("fkHospital", result.fkHospital);
+            }
+            
             return (
                 validateEmail() &&
                 validateSenha() &&
