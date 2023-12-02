@@ -42,7 +42,6 @@ export const Ranking = () => {
     let color;
     const nomeSession = sessionStorage.getItem("userName");
 
-    //Troca de cor nas barras
     if(rank[i].nome === nomeSession ? nomeSession : ''){
       color = "#0D6986";
     } else {
