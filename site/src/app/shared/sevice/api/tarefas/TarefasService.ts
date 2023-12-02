@@ -4,12 +4,33 @@ import { ApiException } from "../ApiException";
 import { AxiosResponse } from 'axios';
 
 export interface IPrimeiroCadastro {
-    id: number;
+    idUsuario: number;
     nome: string;
     email: string | null;
     senha: string | null;
     role: string;
     cpf: string;
+}
+
+
+export interface ISegundoCadastroEndereco {
+    cidade: string;
+    bairro: string;
+    cep: string;
+    logradouro: string;
+    rua: string;
+    numero: number;
+    fkUsuario: number;
+  }
+
+export interface ISegundoCadastroCaracteristicas{
+    peso :string;
+    altura : string;
+    tatto: boolean;
+    sexo: string;
+    nascimento: string;
+    apto: boolean;
+    fkUsuario: number;
 }
 
 export interface IEnviaEmail {
@@ -406,9 +427,11 @@ const createAgendamento = async (dataToCreate: ICriarAgendamento, token: string)
 
 };
 
-const createUsuario = async (dataToCreate: Omit<IPrimeiroCadastro, 'id'>): Promise<IPrimeiroCadastro | ApiException> => {
+//Criar outro método para inserção de dados
+const createUsuario = async (dataToCreate: Omit<IPrimeiroCadastro, 'idUsuario'>): Promise<IPrimeiroCadastro | ApiException> => {
     try {
         const { data } = await Api().post<any>('/usuario/register', dataToCreate);
+        console.log('Resposta do createUsuario:', data);
         return data;
     }
     catch (error: any) {
@@ -417,20 +440,26 @@ const createUsuario = async (dataToCreate: Omit<IPrimeiroCadastro, 'id'>): Promi
 
 };
 
-const createUsuarioEndereco = async (dataToCreate: ISegundoCadastroEndereco): Promise<ISegundoCadastroEndereco | ApiException> => {
-    try {
-        const { data } = await Api().post<any>('/Endereco', dataToCreate);
-        return data;
-    }
-    catch (error: any) {
-        return new ApiException(error.message || 'Erro ao criar registro.');
-    }
 
-};
-
-const createUsuarioCaracteristicas = async (dataToCreate: ISegundoCadastroCaracteristicas): Promise<ISegundoCadastroCaracteristicas | ApiException> => {
+const createUsuarioEndereco = async (dataToCreate: ISegundoCadastroEndereco, token: string): Promise<ISegundoCadastroEndereco | ApiException> => {
     try {
-        const { data } = await Api().post<any>('/Caracteristicas', dataToCreate);
+      const headers = {
+        'Authorization': `Bearer ${token}`
+      };
+      const { data } = await Api().post<any>('/Endereco', dataToCreate, { headers });
+      return data;
+    } catch (error: any) {
+      return new ApiException(error.message || 'Erro ao criar registro.');
+    }
+  };
+
+  const createUsuarioCaracteristicas = async (dataToCreate: ISegundoCadastroCaracteristicas, token: string): Promise<ISegundoCadastroCaracteristicas | ApiException> => {
+    try {
+
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        }
+        const { data } = await Api().post<any>('/Caracteristicas', dataToCreate, { headers });
         return data;
     }
     catch (error: any) {
@@ -460,6 +489,7 @@ const deleteById = async (id: number): Promise<undefined | ApiException> => {
     }
 
 };
+
 
 const deleteByIdAgedamento = async (id: string, token: string): Promise<undefined | Error> => {
     try {

@@ -23,10 +23,10 @@ export const Perfil = () => {
     const [peso, setPeso] = useState('');
     const [altura, setAltura] = useState('');
     const [email, setEmail] = useState('');
-    const [numeroDoacao, setNumeroDoacao] = useState('');
+    const [numeroDoacao, setNumeroDoacao] = useState('0');
 
-    const [imgCheck, setImgCheck] = useState(Number);
-    const [imgTipoSangue, setImgTipoSangue] = useState(Number);
+    const [imgCheck, setImgCheck] = useState(16);
+    const [imgTipoSangue, setImgTipoSangue] = useState(8);
 
     const Id: IUserId = {
         Id: sessionStorage.getItem('id') ?? ''
@@ -74,7 +74,7 @@ export const Perfil = () => {
                     setAltura(detalhesUser.altura);
                     setEmail(detalhesUser.email);
                     setNumeroDoacao(detalhesUser.numero);
-
+                    
                     switch (detalhesUser.tipo) {
                         case 'A+':
                             setImgTipoSangue(0);
@@ -104,6 +104,7 @@ export const Perfil = () => {
                             setImgTipoSangue(8)
                             break;
                     }
+                    
                     if (detalhesUser.apto) {
                         setImgCheck(15);
                     } else {
@@ -395,7 +396,8 @@ export const Perfil = () => {
                             <div className="boxItem">
                                 <h3 className="roboto sbold-24">Disponível</h3>
                                 <div className="box">
-                                    <img className='box_icon' src={vetorImg[imgCheck]} alt="" />
+                                    
+                                    <img className='box_icon' src={vetorImg[imgCheck] ?? 16} alt="" />
                                 </div>
                             </div>
                             <div className="boxItem">
