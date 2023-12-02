@@ -1,13 +1,18 @@
 import "../../../html-css-template/css/homocentro.css";
-import { vetorImg } from "../../shared/components/imagens";
-import { vetorIcon } from "../../shared/components/imagens";
+
+import Swal from "sweetalert2";
 
 import { useRef, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { 
+  CadastroEmpresaEnderecoService, 
+  ICadastroEmpresaEndereco 
+} from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaEnderecoService";
+
 import { Input } from "../../shared/components";
-import Swal from "sweetalert2";
-import { CadastroEmpresaEnderecoService, ICadastroEmpresaEndereco } from "../../shared/sevice/api/tarefas/cadastros/CadastroEmpresaEnderecoService";
+import { vetorImg } from "../../shared/components/imagens";
+import { vetorIcon } from "../../shared/components/imagens";
 
   export const CadastroEmpresa = () => {
 

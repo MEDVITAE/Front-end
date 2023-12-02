@@ -18,7 +18,7 @@ export const AgendaHistorico = () => {
             showConfirmButton: false,
             timer: 5000,
             timerProgressBar: true,
-            didOpen: (toast) => {
+            didOpen: (toast: { onmouseenter: any; onmouseleave: any; }) => {
                 toast.onmouseenter = Swal.stopTimer;
                 toast.onmouseleave = Swal.resumeTimer;
             }

@@ -1,12 +1,16 @@
 import '../../../html-css-template/css/dados.css'
+
+import Swal from "sweetalert2";
+
 import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { IPrimeiroCadastro, TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
+
+import { Input } from '../../shared/components';
 import { vetorImg } from '../../shared/components/imagens';
 import { vetorIcon } from '../../shared/components/imagens';
-import { Await, useNavigate } from 'react-router-dom';
-import { IPrimeiroCadastro, TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
-import { Input } from '../../shared/components';
 import { ApiException } from '../../shared/sevice/api/ApiException';
-import Swal from "sweetalert2";
 
 export const CadastroDados = () => {
     const navegando = useNavigate();
@@ -199,12 +203,6 @@ export const CadastroDados = () => {
             }
         }
     }, [nome,cpf,cep,numero,dtNascimento,sexo]);
-
-    const navegarClick = async () => {
-        cadastrando();
-        await new Promise(result => setTimeout(result, 2000));
-        navegando("/login");
-    }
 
     return (
         <>

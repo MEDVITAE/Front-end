@@ -115,7 +115,15 @@
     align-items: center;
 
     background-color: var(--azul-claro);
+}
+
+.indisponivel{
     border: solid 3px var(--vermelho-escuro);
+    border-radius: 5px;
+}
+
+.disponivel{
+    border: solid 3px var(--azul-escuro);
     border-radius: 5px;
 }
 

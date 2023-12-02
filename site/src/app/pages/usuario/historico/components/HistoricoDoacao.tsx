@@ -1,97 +1,105 @@
 import { useEffect, useState } from "react";
-import { IHistoricoAgendamento } from "../../../../shared/sevice/api/tarefas/TarefasService";
+import { IAgendaParaHistorico, IHistoricoDeAgendamento, IHospitalParaHistorico, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
+import { ApiException } from "../../../../shared/sevice/api/ApiException";
 
 export const HistoricoDoacao: React.FC = () => {
-    const [historico, setHistorico] = useState<IHistoricoAgendamento[]>([]);
 
-    const vetorExemplo = [
-        {
-            usuario: {
-                id: 1,
-                agenda: {
-                    id: 2,
-                    pontos: 5,
-                    horaMarcada: {
-                        id: 3,
-                        hora: 9.30,
-                    },
-                    hospital: {
-                        id: 4,
-                        nome: 'São Camilo',
-                        cep: '042444002'
+    const [historico, setHistorico] = useState<IHistoricoDeAgendamento | null>(null);
+    const [historicoV1, setHistoricoV1] = useState<IHistoricoDeAgendamento | null>(null);
+
+    const tokenSession = sessionStorage.getItem('token');
+    const idSession = sessionStorage.getItem('id');
+
+     useEffect(() => {
+
+        TarefasService.getAllHistorico(idSession ? idSession : '', tokenSession ? tokenSession : '')
+            .then((result) => {
+
+                if (result instanceof ApiException) {
+                    alert(result.message);
+                } else {
+                    const agendaMapeada: IAgendaParaHistorico[] = result.data.agenda.map((agenda) => ({
+                        idAgenda: agenda.idAgenda,
+                        fkHospital: agenda.fkHospital,
+                        fkUsuario: agenda.fkUsuario,
+                        horario: new Date(agenda.horario),
+                    }));
+
+                    const hospitalMapeado: IHospitalParaHistorico[] = result.data.hospital.map((hospital) => ({
+                        id: hospital.id,
+                        nome: hospital.nome,
+                        rua: hospital.rua,
+                    }));
+
+                    const agendamentoMaisRecente = agendaMapeada.reduce((maisRecente, atual) => {
+                        return maisRecente.horario > atual.horario ? maisRecente : atual;
+                    }, agendaMapeada[0]);
+
+                    const hospital = hospitalMapeado.find((hosp) => hosp.id === agendamentoMaisRecente.fkHospital);
+
+                    const novoHistorico = {
+                        quantidade: result.data.quantidade,
+                        quantidadeDoacao: result.data.quantidadeDoacao,
+                        agenda: agendaMapeada,
+                        hospital: hospitalMapeado,
+                    };
+
+                    setHistorico(novoHistorico);
+
+                    if (novoHistorico.agenda && novoHistorico.agenda.length !== novoHistorico.quantidadeDoacao) {
+                        sessionStorage.setItem('idAgendamento', agendamentoMaisRecente.idAgenda.toString());
+                        sessionStorage.setItem('horario', `${agendamentoMaisRecente.horario.getHours() < 10 ? '0' : ''}${agendamentoMaisRecente.horario.getHours()}:${agendamentoMaisRecente.horario.getMinutes() < 10 ? '0' : ''}${agendamentoMaisRecente.horario.getMinutes()}`);
+                        sessionStorage.setItem('data', agendamentoMaisRecente.horario.getDate() + "/" + (Number(agendamentoMaisRecente.horario.getMonth()) + 1) + "/" + agendamentoMaisRecente.horario.getFullYear());
+                        sessionStorage.setItem('hemo', hospital ? hospital.nome : '');
+                        sessionStorage.setItem('rua', hospital ? hospital.rua : '');
+                    } else {
+                        sessionStorage.removeItem('idAgendamento');
+                        sessionStorage.removeItem('horario');
+                        sessionStorage.removeItem('data');
+                        sessionStorage.removeItem('hemo');
+                        sessionStorage.removeItem('rua');
                     }
                 }
-            }
-        },
-        {
-            usuario: {
-                id: 2,
-                agenda: {
-                    id: 1,
-                    pontos: 5,
-                    horaMarcada: {
-                        id: 4,
-                        hora: 10.00,
-                    },
-                    hospital: {
-                        id: 1,
-                        nome: 'Santa Cruz Azul',
-                        cep: '042444000'
-                    }
-                }
-            }
-        },
-    ];
+            });
+    }, []);
 
     useEffect(() => {
-
-        const rows = vetorExemplo.map((result) => ({
-            id: result.usuario.id,
-            agenda: {
-                id: result.usuario.agenda.id,
-                pontos: result.usuario.agenda.pontos,
-                horaMarcada: {
-                    id: result.usuario.agenda.horaMarcada.id,
-                    hora: result.usuario.agenda.horaMarcada.hora,
-                },
-                hospital: {
-                    id: result.usuario.agenda.hospital.id,
-                    nome: result.usuario.agenda.hospital.nome,
-                    cep: result.usuario.agenda.hospital.cep
-                },
-            }
-        }));
-
-        setHistorico(rows);
-    }, []);
+        setHistoricoV1(historico);
+    }, [historico]);
 
     return (
         <>
             <div className="doacaoAnterior">
                 <h2 className='rowdies'>HISTÓRICO</h2>
-                {historico.map((historico) => {
-                return <div className="doacao" key={historico.agenda.id}>
-                     <div className="doacaoAtual bg-vermelhoClaro">
-                        <div className="item">
-                            <h2 className='roboto'>Doação n°: {historico.agenda.id}</h2>
-                            <h2 className='roboto'>Pts: {historico.agenda.pontos}</h2>
-                        </div>
-                        <div className="item">
-                            <h2 className='roboto'>Data: {historico.agenda.horaMarcada.id}</h2>
-                            <h2 className='roboto'>Hora: {historico.agenda.horaMarcada.hora}</h2>
-                        </div>
-                        <div className="item">
-                            <h2 className='roboto'>Hemocentro: {historico.agenda.hospital.nome}</h2>
-                            <h2 className='roboto'>Local: {historico.agenda.hospital.cep}</h2>
-                        </div>
-                    </div>
-                    <div className="caixaLitros">
-                        <div className="litros">
-                            <h3 className='roboto'>Litros Doados</h3>
-                            <h2 className='roboto'>3.5</h2>
-                        </div>
-                    </div>
-                </div>
+                {historicoV1 && historicoV1.agenda && historicoV1.agenda.map((agenda, index) => {
+                    const hospital = historicoV1.hospital?.find((hosp) => hosp.id === agenda.fkHospital);
+
+                    if (index < historicoV1.quantidadeDoacao) {
+                        return (
+                            <div className="doacao" key={agenda.idAgenda}>
+                                <div className="doacaoAtual bg-vermelhoClaro">
+                                    <div className="item">
+                                        <h2 className='roboto'>Doação n°: {index + 1}</h2>
+                                        <h2 className='roboto'>Pts: 5</h2>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='roboto'>Data: {agenda.horario && `${agenda.horario.getDate()}/${agenda.horario.getMonth() + 1}/${agenda.horario.getFullYear()}`}</h2>
+                                        <h2 className='roboto'>Hora: {agenda.horario && `${agenda.horario.getHours()}:${agenda.horario.getMinutes() < 10 ? '0' : ''}${agenda.horario.getMinutes()}`}</h2>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='roboto'>Hemocentro: {hospital?.nome}</h2>
+                                        <h2 className='roboto'>Local: {hospital?.rua}</h2>
+                                    </div>
+                                </div>
+                                <div className="caixaLitros">
+                                    <div className="litros">
+                                        <h3 className='roboto'>Parabéns</h3>
+                                        <h2 className='roboto'>Vida Salva</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
                 })}
             </div>
         </>
