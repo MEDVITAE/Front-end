@@ -174,49 +174,47 @@ export const CadastroFuncionario = () => {
       <div className="geral">
         <MenuPerfilFuncionario nome="Paternezi" />
         <div className="conteudoFuncionario">
-          <div className="rowdies topoFuncionario">
-            <div className="tituloFuncionario">
-              <h1>NOVO FUNCIONARIO</h1>
-            </div>
+          <div className="rowdies tituloFuncionario">
+            <h1>NOVO FUNCIONARIO</h1>
           </div>
           <div className="containerCadastro">
             <div className="cadastroFuncionario roboto">
               <div className="cadastroInputs">
                 <div className="esquerda">
-                <Input
-                  className={"input-requisicao roboto regular-16"}
-                  type="text"
-                  placeholder={"Nome Completo"}
-                  value={nome}
-                  ref={inputPasswordRef}
-                  onChange={(newValue) => setNome(newValue)}
-                />
-                <Input
-                  className={"input-requisicao roboto regular-16"}
-                  type="number"
-                  placeholder={"CPF"}
-                  value={cpf}
-                  ref={inputPasswordRef}
-                  onChange={(newValue) => setCpf(newValue)}
-                />
-                <Input
-                  className={"input-requisicao roboto regular-16"}
-                  type="text"
-                  placeholder={"Cargo"}
-                  value={cargo}
-                  ref={inputPasswordRef}
-                  onChange={(newValue) => setCargo(newValue)}
-                />
-              </div>
-              <div className="esquerda">
-                <Input
-                  className={"input-requisicao roboto regular-16"}
-                  type="text"
-                  placeholder={"Email"}
-                  value={email}
-                  ref={inputPasswordRef}
-                  onChange={(newValue) => setEmail(newValue)}
-                />
+                  <Input
+                    className={"input-requisicao roboto regular-16"}
+                    type="text"
+                    placeholder={"Nome Completo"}
+                    value={nome}
+                    ref={inputPasswordRef}
+                    onChange={(newValue) => setNome(newValue)}
+                  />
+                  <Input
+                    className={"input-requisicao roboto regular-16"}
+                    type="number"
+                    placeholder={"CPF"}
+                    value={cpf}
+                    ref={inputPasswordRef}
+                    onChange={(newValue) => setCpf(newValue)}
+                  />
+                  <Input
+                    className={"input-requisicao roboto regular-16"}
+                    type="text"
+                    placeholder={"Cargo"}
+                    value={cargo}
+                    ref={inputPasswordRef}
+                    onChange={(newValue) => setCargo(newValue)}
+                  />
+                </div>
+                <div className="esquerda">
+                  <Input
+                    className={"input-requisicao roboto regular-16"}
+                    type="text"
+                    placeholder={"Email"}
+                    value={email}
+                    ref={inputPasswordRef}
+                    onChange={(newValue) => setEmail(newValue)}
+                  />
                   <Input
                     className={"input-requisicao roboto regular-16"}
                     placeholder={"Senha"}
@@ -231,36 +229,35 @@ export const CadastroFuncionario = () => {
                     ref={inputPasswordRef}
                     onChange={(newValue) => setConfSenha(newValue)}
                   />
-              </div>
-              </div>
-                <div className="arquivoTxtInput">
-                  <label htmlFor="arquivoInput" className="input-label">
-                    Selecionar Arquivo TXT
-                  </label>
-                  <input
-                    id="arquivoInput"
-                    className="input-requisicao roboto regular-16"
-                    type="file"
-                    accept=".txt"
-                    capture="environment"
-                    style={{ display: "none" }}
-                    onChange={handleFileUpload}
-                  />
                 </div>
-            </div>
-            <div className="arquivoTxt">
-              <button
-                onClick={enviarArquivoParaAPI}
-                className="btnExportar btn"
-              >
-                Exportar TXT
-              </button>
+              </div>
             </div>
             <button
               onClick={handleCadastroFuncionario}
               className="btnCadastrarFuncionario btn"
             >
               Cadastrar
+            </button>
+          </div>
+
+          <div className="rowdies tituloFuncionario">
+            <h1>LISTA DE FUNCIONARIO</h1>
+          </div>
+          <div className="caixaTxtRequisicao">
+            <label htmlFor="arquivoInput" className="roboto sbold-16 input-label">
+              Adicione um "Layout TXT" para cadastrar uma lista de funcionários
+            </label>
+            <input
+              id="arquivoInput"
+              className="input-requisicao roboto regular-16"
+              type="file"
+              accept=".txt"
+              capture="environment"
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
+            />
+            <button className="btnExportar btn" onClick={enviarArquivoParaAPI}>
+              Exportar TXT
             </button>
           </div>
         </div>
