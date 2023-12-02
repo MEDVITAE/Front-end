@@ -1,5 +1,6 @@
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
+import { AxiosResponse } from 'axios';
 
 export interface IPrimeiroCadastro {
     id: number;
@@ -26,11 +27,19 @@ export interface IDetalheUser {
     apto: string;
 }
 
+export interface IAgendamentosHospital {
+    idAgenda: number;
+    cpf: string;
+    nome: string;
+    data: string;
+    hora: string;
+}
+
 export interface IDetalheUserUpdate {
     email: string;
-	cpf: string;
-	role: string | null;
-	nome: string;
+    cpf: string;
+    role: string | null;
+    nome: string;
 }
 
 export interface IUserCaracteristicasUpdate {
@@ -42,9 +51,9 @@ export interface IUserCaracteristicasUpdate {
 
 export interface IUserEnderecoUpdate {
     cep: string;
-	numero: string;
+    numero: string;
 }
-export interface ISegundoCadastroEndereco{
+export interface ISegundoCadastroEndereco {
     cidade: string;
     bairro: string;
     cep: string;
@@ -53,9 +62,9 @@ export interface ISegundoCadastroEndereco{
     numero: number;
     fkUsuario: number;
 }
-export interface ISegundoCadastroCaracteristicas{
-    peso :string;
-    altura : string;
+export interface ISegundoCadastroCaracteristicas {
+    peso: string;
+    altura: string;
     tatto: boolean;
     sexo: string;
     nascimento: string;
@@ -73,6 +82,7 @@ export interface ITokenId {
     token: string;
     userRole: string;
     nome: string;
+    fkHospital: string | null;
 }
 
 export interface IUserId {
@@ -167,7 +177,7 @@ const getAllHoraDisponivel = async (): Promise<THoraDisponivelComTotalCount | Er
 const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | Error> => {
     try {
         const urlRelativa = `/hemocentro?nomeCompleto_like=${filter}`;
-        
+
         const { data } = await Api().get(urlRelativa);
 
         if (data) {
@@ -175,7 +185,7 @@ const getAllHospital = async (filter = ''): Promise<THemocentroComTotalCount | E
                 data
             };
         }
-        
+
         return new Error('Erro ao listar registros.');
     } catch (error) {
         console.error(error);
@@ -218,8 +228,78 @@ const getDetalhesUsuario = async (id: string): Promise<IDetalheUser | ApiExcepti
 
 };
 
-const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate,  caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<boolean> => {
-   
+const postArquivo = async (file: File, id: string): Promise<ITokenId | ApiException> => {
+
+    try {
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('id', id); // Adiciona o arquivo com o nome 'image' no FormData
+        // Adicione o ID como um parâmetro de URL
+
+        const response = await Api().post("http://localhost:8082/arquivos", formData, {
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+          }})
+
+          return response.data;
+
+    } catch (error: any) {
+        return new ApiException(error.message || 'Erro ao realizar o upload do arquivo.');
+    }
+};
+
+
+const getArquivo = async (id: string): Promise<File> => {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+      },
+      responseType: 'arraybuffer' as const // Define o tipo de resposta como arraybuffer
+    };
+  
+    try {
+      const response: AxiosResponse<ArrayBuffer> = await Api().get(`/arquivos/${id}`, config);
+      const fileData = new Blob([response.data], { type: 'application/octet-stream' }); // Cria um Blob a partir dos bytes
+  
+      // Constrói um objeto File a partir do Blob
+      const file = new File([fileData], `nome_do_arquivo.extensao`, { lastModified: new Date().getTime() });
+  
+      return file;
+    } catch (error: any) {
+      throw new ApiException(error.message || 'Erro ao carregar documento do usuario');
+    }
+  };
+
+const getAgendamentos = async (id: string): Promise<IAgendamentosHospital[] | ApiException> => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+    };
+
+    try {
+        const response =  await Api().get(`/Agenda/listaAgendamentos/${id}`, config);
+        console.log(response.data)
+        return response.data;
+    }
+    catch (error: any) {
+        throw new ApiException(error.message || 'Erro ao carregar agendamentos do hospital');
+    }
+
+};
+
+const getAgendamentosCSV = async (id: string): Promise<any | ApiException> => {
+    try {
+        const { data } =  await Api().get(`/Agenda/dowload/agendamentos`);
+        return data;
+    }
+    catch (error: any) {
+        throw new ApiException(error.message || 'Erro ao baixar arquivo');
+    }
+};
+
+const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpdate, caracteristicasToUpdate: IUserCaracteristicasUpdate, enderecoToUpdate: IUserEnderecoUpdate): Promise<boolean> => {
+
     const config = {
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem("token")}`
@@ -230,7 +310,7 @@ const postDetalhesUsuario = async (id: string, detalhesToUpdate: IDetalheUserUpd
         await Api().put(`/usuario/${id}`, detalhesToUpdate, config);
         await Api().put(`/Caracteristicas/${id}`, caracteristicasToUpdate, config);
         await Api().put(`/Endereco/detalhes/${id}`, enderecoToUpdate, config);
-    } catch (error :any){
+    } catch (error: any) {
         throw new error.message;
     }
 
@@ -324,7 +404,11 @@ export const TarefasService = {
     getById,
     postLogin,
     getDetalhesUsuario,
+    postArquivo,
+    getArquivo,
     postDetalhesUsuario,
+    getAgendamentosCSV,
+    getAgendamentos,
     getByIdHistoricoAgendamentoAtual,
     createUsuario,
     createUsuarioEndereco,

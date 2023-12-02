@@ -24,7 +24,7 @@ export const MenuPerfilUsuario: React.FC<IMenuPerfil> = () => {
     const sairClick = async () => {
         Toast.fire({
             icon: "success",
-            title: "Saindo... Para retornar a esta tela, realize novamente o  login."
+            title: "Saindo... Para retornar a esta tela, realize novamente o login."
         });
         await new Promise(resolve => setTimeout(resolve, 2000));
 

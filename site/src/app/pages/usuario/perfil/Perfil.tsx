@@ -5,22 +5,15 @@ import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/componen
 import { Anexo } from '../../../shared/contexts';
 import { vetorImg, vetorTipoSangue } from '../../../shared/components/imagens';
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { TarefasService,  IDetalheUser, IUserId, IDetalheUserUpdate, IUserCaracteristicasUpdate, IUserEnderecoUpdate} from '../../../shared/sevice/api/tarefas/TarefasService';
+import { TarefasService, IDetalheUser, IUserId, IDetalheUserUpdate, IUserCaracteristicasUpdate, IUserEnderecoUpdate } from '../../../shared/sevice/api/tarefas/TarefasService';
 import { ApiException } from '../../../shared/sevice/api/ApiException';
 
 export const Perfil = () => {
     useEffect(() => {
         Anexo();
-        const minhaFuncao =  async () =>{
-            const file = await Anexo();
-            
-            
-        }
-    
-        minhaFuncao();
-    }, [Anexo]);
-    
+
+    }, []);
+
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [cpf, setCpf] = useState('');
     const [cep, setCep] = useState('');
@@ -31,7 +24,7 @@ export const Perfil = () => {
     const [altura, setAltura] = useState('');
     const [email, setEmail] = useState('');
     const [numeroDoacao, setNumeroDoacao] = useState('');
-    
+
     const [imgCheck, setImgCheck] = useState(Number);
     const [imgTipoSangue, setImgTipoSangue] = useState(Number);
 
@@ -44,7 +37,7 @@ export const Perfil = () => {
         cpf: cpf,
         role: sessionStorage.getItem('userRole'),
         nome: nomeCompleto,
-    } 
+    }
 
     const caracteristicasUser: IUserCaracteristicasUpdate = {
         peso: peso,
@@ -52,21 +45,21 @@ export const Perfil = () => {
         sexo: sexo,
         nascimento: nascimento.replace(/\//g, '-').split('-').reverse().join('-')
     }
-    
+
     const enderecoUser: IUserEnderecoUpdate = {
         cep: cep,
         numero: numeroCasa
     }
-    
+
     const iniciarDetalhes = async (): Promise<IDetalheUser | ApiException> => {
         return await TarefasService.getDetalhesUsuario(Id.Id);
     }
-    
+
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
                 const detalhesUser: IDetalheUser | ApiException = await iniciarDetalhes();
-                if ('message' in detalhesUser){
+                if ('message' in detalhesUser) {
                     console.log("Erro ao obter detalhes do usuário:", detalhesUser.message);
                 } else {
                     setNomeCompleto(detalhesUser.nome)
@@ -74,7 +67,7 @@ export const Perfil = () => {
                     setCep(detalhesUser.cep);
                     setNumeroCasa(detalhesUser.numeroCasa);
                     setSexo(detalhesUser.sexo);
-                    
+
                     setNascimento(detalhesUser.nascimento.replace(/-/g, '/'));
 
                     setPeso(detalhesUser.peso);
@@ -82,7 +75,7 @@ export const Perfil = () => {
                     setEmail(detalhesUser.email);
                     setNumeroDoacao(detalhesUser.numero);
 
-                    switch (detalhesUser.tipo){
+                    switch (detalhesUser.tipo) {
                         case 'A+':
                             setImgTipoSangue(0);
                             break;
@@ -111,7 +104,7 @@ export const Perfil = () => {
                             setImgTipoSangue(8)
                             break;
                     }
-                    if (detalhesUser.apto){
+                    if (detalhesUser.apto) {
                         setImgCheck(15);
                     } else {
                         setImgCheck(16);
@@ -122,7 +115,7 @@ export const Perfil = () => {
                 console.error('Erro ao buscar detalhes do usuário:', error);
             }
         };
-    
+
         fetchUserDetails();
     }, []);
 
@@ -165,8 +158,8 @@ export const Perfil = () => {
         }
 
         try {
-            await TarefasService.postDetalhesUsuario(Id.Id ,detalhesUser, caracteristicasUser, enderecoUser);
-  
+            await TarefasService.postDetalhesUsuario(Id.Id, detalhesUser, caracteristicasUser, enderecoUser)
+
             return (
                 validateNomeCompleto() &&
                 validateCep() &&
@@ -180,7 +173,7 @@ export const Perfil = () => {
                 true
             )
         } catch (error: any) {
-            showValidationErrorModal("Apresenta campos incorretos.");
+            showValidationErrorModal("Ocorreu um erro inesperado. Tente realizar o login novamente para editar seus dados.");
         }
     };
 
@@ -315,153 +308,153 @@ export const Perfil = () => {
     }
 
 
-function validateNumeroCasa(): boolean {
-    // Validação simples: verifica se o campo não está vazio
-    const regex = /^[0-9]+$/;
+    function validateNumeroCasa(): boolean {
+        // Validação simples: verifica se o campo não está vazio
+        const regex = /^[0-9]+$/;
 
-    // Verifica se o número contém apenas dígitos
-    if (!(regex.test(numeroCasa))) {
-        showValidationErrorModal(
-            "O número da sua residência precisa ter no mínimo 1 número");
-        return false;
+        // Verifica se o número contém apenas dígitos
+        if (!(regex.test(numeroCasa))) {
+            showValidationErrorModal(
+                "O número da sua residência precisa ter no mínimo 1 número");
+            return false;
+        }
+
+        return true;
     }
 
-    return true;
-}
+    function validateSexo(): boolean {
+        // Validação simples: verifica se o campo é 'M' ou 'F'
+        if (!(sexo.toLowerCase() === 'masculino' || sexo.toLowerCase() === 'feminino')) {
+            showValidationErrorModal(
+                "Seu sexo biológico precisar ser ou 'M' ou 'F'");
+            return false;
+        }
 
-function validateSexo(): boolean {
-    // Validação simples: verifica se o campo é 'M' ou 'F'
-    if (!(sexo.toLowerCase() === 'masculino' || sexo.toLowerCase() === 'feminino')) {
-        showValidationErrorModal(
-            "Seu sexo biológico precisar ser ou 'M' ou 'F'");
-        return false;
+        return true;
     }
 
-    return true;
-}
+    function validateNascimento(): boolean {
+        // Validação simples: verifica se a data de nascimento está no formato adequado
+        const regex = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
+        if (!(regex.test(nascimento))) {
+            showValidationErrorModal(
+                "Sua data de nascimento precisa estar no formarto dd/mm/aaaa");
+            return false;
+        }
 
-function validateNascimento(): boolean {
-    // Validação simples: verifica se a data de nascimento está no formato adequado
-    const regex = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    if (!(regex.test(nascimento))) {
-        showValidationErrorModal(
-            "Sua data de nascimento precisa estar no formarto dd/mm/aaaa");
-        return false;
+        return true;
     }
 
-    return true;
-}
+    function validatePeso(): boolean {
+        // Validação simples: verifica se o campo é um número positivo
+        const numericPeso = parseFloat(peso);
 
-function validatePeso(): boolean {
-    // Validação simples: verifica se o campo é um número positivo
-    const numericPeso = parseFloat(peso);
+        if (!(!isNaN(numericPeso) && numericPeso > 0)) {
+            showValidationErrorModal(
+                "Seu peso precisa ser um número positivo");
+            return false;
+        }
 
-    if (!(!isNaN(numericPeso) && numericPeso > 0)) {
-        showValidationErrorModal(
-            "Seu peso precisa ser um número positivo");
-        return false;
+        return true;
     }
 
-    return true;
-}
+    function validateAltura(): boolean {
+        // Validação simples: verifica se o campo é um número positivo
+        const numericAltura = parseFloat(altura);
 
-function validateAltura(): boolean {
-    // Validação simples: verifica se o campo é um número positivo
-    const numericAltura = parseFloat(altura);
-    
-    if (!(!isNaN(numericAltura) && numericAltura > 0)) {
-        showValidationErrorModal(
-            "Sua altura precisa ser um número positivo");
-        return false;
+        if (!(!isNaN(numericAltura) && numericAltura > 0)) {
+            showValidationErrorModal(
+                "Sua altura precisa ser um número positivo");
+            return false;
+        }
+
+        return true;
     }
 
-    return true;
-}
+    function validateEmail(): boolean {
+        // Validação simples: verifica se o campo é um email válido
+        if (!(/\S+@\S+\.\S+/.test(email))) {
+            showValidationErrorModal(
+                "Seu e-mail deve conter pelo menos um caracter antes e depois do @ e um 'ponto' depois do @");
+            return false;
+        }
 
-function validateEmail(): boolean {
-    // Validação simples: verifica se o campo é um email válido
-    if (!(/\S+@\S+\.\S+/.test(email))) {
-        showValidationErrorModal(
-            "Seu e-mail deve conter pelo menos um caracter antes e depois do @ e um 'ponto' depois do @");
-        return false;
+        return true;
     }
 
-    return true;
-}
 
-
-return (
-    <>
-        <OndaLateralEsquerda />
-        <main className='mainPerfil'>
-            <MenuPerfilUsuario nome="Diego" />
-            <div className="divPerfil">
-                <div className="statusBox">
-                    <h2 className="rowdies mr-bt">STATUS</h2>
-                    <div className="statusBoxItem">
-                        <div className="boxItem">
-                            <h3 className="roboto sbold-24">Disponível</h3>
-                            <div className="box">
-                                <img className='box_icon' src={vetorImg[imgCheck]} alt="" />
+    return (
+        <>
+            <OndaLateralEsquerda />
+            <main className='mainPerfil'>
+                <MenuPerfilUsuario nome="Diego" />
+                <div className="divPerfil">
+                    <div className="statusBox">
+                        <h2 className="rowdies mr-bt">STATUS</h2>
+                        <div className="statusBoxItem">
+                            <div className="boxItem">
+                                <h3 className="roboto sbold-24">Disponível</h3>
+                                <div className="box">
+                                    <img className='box_icon' src={vetorImg[imgCheck]} alt="" />
+                                </div>
+                            </div>
+                            <div className="boxItem">
+                                <h3 className="roboto sbold-24">Doações Feitas</h3>
+                                <div className="box rowdies bold-64">
+                                    {numeroDoacao}
+                                </div>
+                            </div>
+                            <div className="boxItem">
+                                <h3 className="roboto sbold-24">Tipo Sanguíneo</h3>
+                                <div className="box rowdies bold-64">
+                                    <img className='box_icon' src={vetorTipoSangue[imgTipoSangue]} alt="" />
+                                </div>
                             </div>
                         </div>
-                        <div className="boxItem">
-                            <h3 className="roboto sbold-24">Doações Feitas</h3>
-                            <div className="box rowdies bold-64">
-                                {numeroDoacao}
+                    </div>
+
+                    <div className="statusBox">
+                        <h2 className="rowdies mr-bt">DADOS DO USUÁRIO</h2>
+                        <div className="statusBoxRow">
+                            <div className="statusBoxItemColmun">
+                                <div className='roboto sbold-16'>Nome Completo:</div>
+                                <input className="campoUsuario roboto bold-30" value={nomeCompleto} type="text" placeholder='Nome Completo' onChange={handleFieldChange('nomeCompleto')} onBlur={handleBlur('nomeCompleto')} />
+                                <div className='roboto sbold-16'>CPF:</div>
+                                <input className="campoUsuario roboto bold-30" value={cpf} type="text" placeholder='CPF' onChange={handleFieldChange('cpf')} onBlur={handleBlur('cpf')} />
+                                <div className='roboto sbold-16'>CEP:</div>
+                                <input className="campoUsuario roboto bold-30" value={cep} type="text" placeholder='CEP' onChange={handleFieldChange('cep')} onBlur={handleBlur('cep')} />
+                                <div className='roboto sbold-16'>Número da casa:</div>
+                                <input className="campoUsuario roboto bold-30" value={numeroCasa} type="text" placeholder='Número' onChange={handleFieldChange('numeroCasa')} onBlur={handleBlur('numeroCasa')} />
+                            </div>
+                            <div className="statusBoxItemColmun">
+                                <div className='roboto sbold-16'>Sexo Biológico:</div>
+                                <input className="campoUsuario roboto bold-30" value={sexo} type="text" placeholder='Feminino ou Masculino' onChange={handleFieldChange('sexo')} onBlur={handleBlur('sexo')} />
+                                <div className='roboto sbold-16'>Data de Nascimento:</div>
+                                <input className="campoUsuario roboto bold-30" value={nascimento} type="text" placeholder='Data de Nascimento (dd/mm/aaaa)' onChange={handleFieldChange('nascimento')} onBlur={handleBlur('nascimento')} />
+                                <div className='roboto sbold-16'>Peso:</div>
+                                <input className="campoUsuario roboto bold-30" value={peso} type="double" placeholder='Peso' onChange={handleFieldChange('peso')} onBlur={handleBlur('peso')} />
+                                <div className='roboto sbold-16'>Altura:</div>
+                                <input className="campoUsuario roboto bold-30" value={altura} type="double" placeholder='Altura' onChange={handleFieldChange('altura')} onBlur={handleBlur('altura')} />
+                            </div>
+                            <div className="statusBoxItemColmun">
+                                <div className='roboto sbold-16'>Email:</div>
+                                <input className="campoUsuario roboto bold-30" value={email} type="email" placeholder='Email' onChange={handleFieldChange('email')} onBlur={handleBlur('email')} />
+                                <div className='roboto sbold-16'>Documento com foto:</div>
+                                <div className='div_picture'>
+                                    <label className="picture" htmlFor="picture__inputPerfil" tabIndex={0}>
+                                        <span className="picture__image"></span>
+                                    </label>
+                                </div>
+
+                                <input type="file" name="picture__inputPerfil" id="picture__inputPerfil" />
                             </div>
                         </div>
-                        <div className="boxItem">
-                            <h3 className="roboto sbold-24">Tipo Sanguíneo</h3>
-                            <div className="box rowdies bold-64">
-                                <img className='box_icon' src={vetorTipoSangue[imgTipoSangue]} alt="" />
-                            </div>
+                        <div onClick={editarClick} className="btnBoxItem">
+                            <button className="btn bg-vermelhoClaro bold-30">Editar</button>
                         </div>
                     </div>
                 </div>
-
-                <div className="statusBox">
-                    <h2 className="rowdies mr-bt">DADOS DO USUÁRIO</h2>
-                    <div className="statusBoxRow">
-                        <div className="statusBoxItemColmun">
-                            <div className='roboto sbold-16'>Nome Completo:</div>
-                            <input className="campoUsuario roboto bold-30" value={nomeCompleto} type="text" placeholder='Nome Completo' onChange={handleFieldChange('nomeCompleto')} onBlur={handleBlur('nomeCompleto')} />
-                            <div className='roboto sbold-16'>CPF:</div>
-                            <input className="campoUsuario roboto bold-30" value={cpf} type="text" placeholder='CPF' onChange={handleFieldChange('cpf')} onBlur={handleBlur('cpf')} />
-                            <div className='roboto sbold-16'>CEP:</div>
-                            <input className="campoUsuario roboto bold-30" value={cep} type="text" placeholder='CEP' onChange={handleFieldChange('cep')} onBlur={handleBlur('cep')} />
-                            <div className='roboto sbold-16'>Número da casa:</div>
-                            <input className="campoUsuario roboto bold-30" value={numeroCasa} type="text" placeholder='Número' onChange={handleFieldChange('numeroCasa')} onBlur={handleBlur('numeroCasa')} />
-                        </div>
-                        <div className="statusBoxItemColmun">
-                            <div className='roboto sbold-16'>Sexo Biológico:</div>
-                            <input className="campoUsuario roboto bold-30" value={sexo} type="text" placeholder='Feminino ou Masculino' onChange={handleFieldChange('sexo')} onBlur={handleBlur('sexo')} />
-                            <div className='roboto sbold-16'>Data de Nascimento:</div>
-                            <input className="campoUsuario roboto bold-30" value={nascimento} type="text" placeholder='Data de Nascimento (dd/mm/aaaa)' onChange={handleFieldChange('nascimento')} onBlur={handleBlur('nascimento')} />
-                            <div className='roboto sbold-16'>Peso:</div>
-                            <input className="campoUsuario roboto bold-30" value={peso} type="double" placeholder='Peso' onChange={handleFieldChange('peso')} onBlur={handleBlur('peso')} />
-                            <div className='roboto sbold-16'>Altura:</div>
-                            <input className="campoUsuario roboto bold-30" value={altura} type="double" placeholder='Altura' onChange={handleFieldChange('altura')} onBlur={handleBlur('altura')} />
-                        </div>
-                        <div className="statusBoxItemColmun">
-                        <div className='roboto sbold-16'>Email:</div>
-                            <input className="campoUsuario roboto bold-30" value={email} type="email" placeholder='Email' onChange={handleFieldChange('email')} onBlur={handleBlur('email')} />
-                            <div className='roboto sbold-16'>Documento com foto:</div>
-                            <div className='div_picture'>
-                                <label className="picture" htmlFor="picture__inputPerfil" tabIndex={0}>
-                                    <span className="picture__image"></span>
-                                </label>
-                            </div>
-
-                            <input type="file" name="picture__inputPerfil" id="picture__inputPerfil" />
-                        </div>
-                    </div>
-                    <div onClick={editarClick} className="btnBoxItem">
-                        <button className="btn bg-vermelhoClaro bold-30">Editar</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </>
-);
+            </main>
+        </>
+    );
 }
