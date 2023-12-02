@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { App } from './app/App';
-import { GoogleMap } from '@react-google-maps/api';
 //import { GoogleMapProvider } from '@react-google-maps/api';
 
 
