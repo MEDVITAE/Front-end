@@ -78,7 +78,6 @@ export const CadastroDoacao = () => {
       CadastroDoacaoService.getByCpf(cpf)
         .then((result) => {
           if (result instanceof Error) {
-            showValidationErrorModal("Erro ao consultar cpf")
           } else {
             console.log("result", result);
             setgetUsuario(result);
@@ -97,7 +96,7 @@ export const CadastroDoacao = () => {
     } else if (parseInt(cpf) < 0 || parseFloat(litros) < 0) {
       showValidationErrorModal("Valores negativos inseridos");
       return false;
-    } else if (cpf.length != 10) {
+    } else if (cpf.length != 11) {
       showValidationErrorModal("CPF inválido");
       return false;
     } else if (!tipoSanguineo.toUpperCase) {
