@@ -42,21 +42,15 @@ export const MenuPerfilUsuario: React.FC<IMenuPerfil> = () => {
     // Estado para armazenar as URLs acessadas
     const [urlsAcessadas, setUrlsAcessadas] = useState<string[]>([]);
 
-
     const handleClick = useCallback(
         (url: string) => {
-            console.log('Clicou no link:', url);
             setUrlsAcessadas((prevUrls) => {
-                console.log('Antes da atualização:', prevUrls);
                 const newUrls = [...prevUrls, url];
-                console.log('Depois da atualização:', newUrls);
                 return newUrls;
             });
         },
         [setUrlsAcessadas]
     );
-
-    console.log(urlsAcessadas);
 
     return (
         <>

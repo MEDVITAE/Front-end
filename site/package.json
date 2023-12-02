@@ -2,7 +2,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-google-maps/api": "^2.19.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,7 +9,9 @@
     "@types/node": "^16.18.54",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
+    "@vis.gl/react-google-maps": "^0.1.2",
     "axios": "^1.5.1",
+    "chart.js": "^4.4.0",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-calendar": "^4.6.1",
@@ -47,7 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@types/google.maps": "^3.54.5",
     "@types/react-router-dom": "^5.3.3",
     "json-server": "^0.17.4"
   }
