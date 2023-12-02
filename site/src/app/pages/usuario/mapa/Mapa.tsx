@@ -12,12 +12,12 @@ export const Mapa = () => {
   const navigate = useNavigate();
  
   const handleClick = (id: number | undefined) => {
-    if( sessionStorage.getItem("id")){
-      sessionStorage.removeItem("id");
+    if( sessionStorage.getItem("idHospital")){
+      sessionStorage.removeItem("idHospital");
     }
     
     if(id){
-      sessionStorage.setItem("id",id.toString());
+      sessionStorage.setItem("idHospital",id.toString());
     }
     // Redirecionar o usuário para outra rota
     navigate(`/perfil-usuario/mapa/detalhes`);
@@ -97,10 +97,6 @@ export const Mapa = () => {
           <div className="rowdies topo">
             <div className="titulo">
               <h1>Ver mapa</h1>
-            </div>
-
-            <div className="logo">
-              <img src="../assets/LogoVitai.png" alt="" />
             </div>
           </div>
           <div className="mapa">

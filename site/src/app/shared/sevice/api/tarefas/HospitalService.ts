@@ -12,7 +12,7 @@ export interface IHospital {
 
 const getAll = async (): Promise<IHospital  | Error> => {
     
-const id = sessionStorage?.getItem("id")
+const id = sessionStorage?.getItem("idHospital")
     try {
         const { data } = await Api().get(`/hospital/detalhes/${id}`);
         console.log("data", data)

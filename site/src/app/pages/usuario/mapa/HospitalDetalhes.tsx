@@ -1,18 +1,8 @@
 import '../../../../html-css-template/css/telaDetalheHospital.css'
+import { useState, useEffect } from 'react';
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
-
-import React, { useState, useEffect } from 'react';
-
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { HospitalService, IHospital } from "../../../shared/sevice/api/tarefas/HospitalService";
-import { error } from 'console';
-import { ApiException } from '../../../shared/sevice/api/ApiException';
-import { BrowserRouter, Route, useNavigate } from 'react-router-dom';
-import { Routes as Switch } from "react-router-dom";
-import { Mapa } from './Mapa';
-import { vetorImg } from '../../../shared/components/imagens';
-
 
 export const HospitalDetalhes = () => {
     const [Hosp, setHosp] = useState<IHospital | null>(null);

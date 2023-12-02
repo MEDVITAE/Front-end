@@ -10,7 +10,6 @@
     width: 80%;
     height: 100vh;
     font-weight: var(--semibold);
-    border-right-style: solid;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
