@@ -23,6 +23,7 @@ export const Ranking = () => {
       .catch((error) => {
         alert(error.message || 'Erro ao buscar dados.');
       });
+
     RankService.getById()
       .then((result) => {
         if (result instanceof Error) {
@@ -37,13 +38,21 @@ export const Ranking = () => {
   }, []); // Nenhum dependência aqui, será executado uma vez na montagem do componente
 
   const Data: any[] = [];
-  const color = ["#66a0fa", "#66a0fa", "#66a0fa", "#66a0fa", "#66a0fa"]
   for (let i = 0; i < rank.length; i++) {
+    let color;
+    const nomeSession = sessionStorage.getItem("userName");
+
+    if(rank[i].nome === nomeSession ? nomeSession : ''){
+      color = "#0D6986";
+    } else {
+      color = "#FF6666";
+    }
+
     Data.push({
       id: i + 1,
       nome: rank[i].nome,
       quantidade: rank[i].totalDoado,
-      backgroundColor: color[i]
+      backgroundColor: color
     });
   }
   const chartRef = useRef<HTMLCanvasElement | null>(null);
@@ -64,20 +73,18 @@ export const Ranking = () => {
           type: "bar",
           data: {
             labels: Data.map(item => item.nome),
-
             datasets: [
               {
-                label: "Pontos de sangue doados",
+                label: "Pontos de outros Doadores",
                 data: Data.map(item => item.quantidade),
                 backgroundColor: Data.map(item => item.backgroundColor),
-
               }
             ],
           },
           options: {
             scales: {
               x: {
-                beginAtZero: true,
+                beginAtZero: false,
               },
               y: {
                 beginAtZero: true,
