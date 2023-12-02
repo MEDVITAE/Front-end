@@ -2,12 +2,33 @@
 import { error } from 'console';
 import { ApiException } from '../../shared/sevice/api/ApiException';
 import { TarefasService } from '../sevice/api/tarefas/TarefasService';
+import Swal from "sweetalert2";
 
 export function Anexo(): Promise<File | null> {
   return new Promise((resolve) => {
     const inputFile = document.querySelector<HTMLInputElement>("#picture__inputPerfil");
     const pictureImage = document.querySelector<HTMLImageElement>(".picture__image");
     const pictureImageTxt = "Anexe seu documento aqui!";
+
+    const showValidationErrorModal = (message: string) => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+  
+      Toast.fire({
+        icon: "error",
+        title: message,
+      });
+  
+    };
 
     if (pictureImage) {
       pictureImage.innerHTML = pictureImageTxt;
@@ -18,10 +39,10 @@ export function Anexo(): Promise<File | null> {
     TarefasService.getArquivo(idUser)
       .then((result) => {
         if (result instanceof ApiException) {
-          alert(result.message);
+          showValidationErrorModal("Erro ao carregar documento do usuário")
         } else {
           // Verifica se o resultado é um arquivo
-          if (result instanceof File) {
+          if (result instanceof File && result.size != 0) {
             const reader = new FileReader();
 
             reader.addEventListener("load", function (e) {
@@ -38,8 +59,6 @@ export function Anexo(): Promise<File | null> {
             });
 
             reader.readAsDataURL(result); // Lê o arquivo como um data URL
-          } else {
-            console.log("O resultado não é um arquivo.");
           }
         }
       });

@@ -186,7 +186,21 @@ export const CadastroDados = () => {
         const nascimento = ano + "-" + mes + "-" + dia;  
 
         if(usuario instanceof ApiException){
-            return alert (usuario.message)
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Erro ao cadastrar informações. Por favor, recarregue a página e tente novamente.",
+          });
         }else {
             TarefasService.createUsuarioCaracteristicas({
                 peso :'',

@@ -55,7 +55,7 @@ export const AgendaHistorico = () => {
             .then((result) => {
 
                 if (result instanceof ApiException) {
-                    alert(result.message);
+                    showValidationErrorModal("Erro ao carregar as informações de agendamento")
                 } else {
                     setRows(result);
                 }

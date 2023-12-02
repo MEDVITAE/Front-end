@@ -31,11 +31,11 @@ export const Cadastro = () => {
     setEmailError("");
     setSenhaError("");
     setConfSenhaError("");
-    
+
     if (
       email === "" ||
       senha === "" ||
-      confSenha === "" 
+      confSenha === ""
     ) {
       const Toast = Swal.mixin({
         toast: true,
@@ -52,10 +52,7 @@ export const Cadastro = () => {
         icon: "error",
         title: "Preencha todos os campos obrigatórios",
       });
-    }
-    // if(email === "") return alert("email n pode ser null");
-    // if(senha === "") return alert("senha n pode ser null");
-    else if (!/^\S{3,}@(\S+\.\S+)$/.test(email)
+    } else if (!/^\S{3,}@(\S+\.\S+)$/.test(email)
     ) {
       const Toast = Swal.mixin({
         toast: true,
@@ -90,7 +87,7 @@ export const Cadastro = () => {
         title: "A senha deve ter pelo menos 8 caracteres",
       });
     }
-    
+
     else if (confSenha !== senha || confSenha === '') {
       const Toast = Swal.mixin({
         toast: true,
@@ -161,7 +158,7 @@ export const Cadastro = () => {
               onChange={(newValue) => setEmail(newValue)}
               onPressEnter={() => inputPasswordRef.current?.focus()}
             />
-              {emailError && <div className="error-message">{emailError}</div>}
+            {emailError && <div className="error-message">{emailError}</div>}
             <Input
               className={"input-size ${senhaError ? 'error' : ''}"}
               placeholder={"Senha"}
@@ -180,9 +177,9 @@ export const Cadastro = () => {
               value={confSenha}
               ref={inputPasswordRef}
               onChange={(newValue) => setConfSenha(newValue)}
-            /> 
+            />
             {confSenhaError && <div className="error-message">{confSenhaError}</div>}
-            
+
           </div>
           <div className="button">
             <button onClick={handleClickNav} className="btn cadastrar bold-20">

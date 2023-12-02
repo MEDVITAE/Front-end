@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IAgendaParaHistorico, IHistoricoDeAgendamento, IHospitalParaHistorico, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { ApiException } from "../../../../shared/sevice/api/ApiException";
+import Swal from "sweetalert2";
 
 export const HistoricoDoacao: React.FC = () => {
 
@@ -10,13 +11,33 @@ export const HistoricoDoacao: React.FC = () => {
     const tokenSession = sessionStorage.getItem('token');
     const idSession = sessionStorage.getItem('id');
 
+    const showValidationErrorModal = (message: string) => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+    
+        Toast.fire({
+          icon: "error",
+          title: message,
+        });
+    
+      };
+
      useEffect(() => {
 
         TarefasService.getAllHistorico(idSession ? idSession : '', tokenSession ? tokenSession : '')
             .then((result) => {
 
                 if (result instanceof ApiException) {
-                    alert(result.message);
+                    showValidationErrorModal("Erro ao carregar histórico")
                 } else {
                     const agendaMapeada: IAgendaParaHistorico[] = result.data.agenda.map((agenda) => ({
                         idAgenda: agenda.idAgenda,

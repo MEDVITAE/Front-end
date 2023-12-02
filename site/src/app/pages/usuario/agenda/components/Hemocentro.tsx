@@ -37,14 +37,6 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
         });
     };
 
-    const vetorExemplo = [
-        { id: 1, nome: 'Santa Cruz Azul', cep: '042444000' },
-        { id: 2, nome: 'São Luiz', cep: '042444001' },
-        { id: 3, nome: 'São Camilo', cep: '042444002' },
-        { id: 4, nome: 'São Camilo', cep: '042444002' },
-        { id: 5, nome: 'São Camilo', cep: '042444002' }
-    ]
-
     const busca = useMemo(() => {
         return pesquisa.get('busca') || '';
     }, [pesquisa]);
@@ -61,7 +53,7 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
         .then((result) => {
 
             if (result instanceof Error) {
-                alert(result.message);
+                showChosenHemocentro("Erro ao carregar Hemocentros");
             } else {
                 console.log(result);
 

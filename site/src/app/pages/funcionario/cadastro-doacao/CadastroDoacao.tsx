@@ -78,14 +78,14 @@ export const CadastroDoacao = () => {
       CadastroDoacaoService.getByCpf(cpf)
         .then((result) => {
           if (result instanceof Error) {
-            alert(result.message);
+            showValidationErrorModal("Erro ao consultar cpf")
           } else {
             console.log("result", result);
             setgetUsuario(result);
           }
         })
         .catch((error) => {
-          alert(error.message || "Erro ao buscar dados.");
+          showValidationErrorModal("Erro ao consultar cpf")
         });
     }
   }, [cpf]);
@@ -128,7 +128,7 @@ export const CadastroDoacao = () => {
         const DoacaoData: ICadastroDoacaoCreate = {
           quantidade: parseFloat(litros),
           tipo: tipoSanguineo,
-          fkAgenda: null,
+          fkAgenda: sessionStorage.getItem('idAgenda')
         };
         const resultado = CadastroDoacaoService.create(DoacaoData);
         showValidationSuccessModal("Doação confirmada!");
