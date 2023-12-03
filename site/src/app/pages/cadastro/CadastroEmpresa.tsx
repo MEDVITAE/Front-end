@@ -104,9 +104,9 @@ import { vetorIcon } from "../../shared/components/imagens";
 
   return (
     <>
-      <div className="img">
+      <div className="img2">
         <img className="onda1" src={vetorImg[4]} alt="" />
-        <img className="imgDoe" src={vetorImg[1]} alt="" />
+        <img className="imgDoeEmpre" src={vetorImg[1]} alt="" />
       </div>
 
       <header className="header1">

@@ -47,12 +47,7 @@ export const CadastroEmpresaDados = () => {
 
   const validateForm = () => {
     
-    if (email === "" || senha === "" || confSenha === "" || nome === "" || cnpj === "") {
-      showValidationErrorModal("Os Campos não pode estar em branco");
-      return false;
-    } 
-    
-    else if (!email.includes("@")) {
+    if (!email.includes("@")) {
       showValidationErrorModal("Email deve conter @");
       return false;
     } 
@@ -104,8 +99,17 @@ export const CadastroEmpresaDados = () => {
           senha: senha,
       };
 
-      const resultado = CadastroEmpresaService.create(cadatroHospitalData);
-
+      CadastroEmpresaService.create(cadatroHospitalData)
+      .then((resultado) => {
+        if(resultado instanceof Error){
+          showValidationErrorModal('Erro ao criar o hospital, tente novamente mais tarde.');
+        }
+        else{
+          const id = resultado.id
+          sessionStorage.setItem('idHospital', id ? id : '');
+          navegando("/cadastro-empresa/complementar");
+        }
+      });
     }
     } catch (error) {
       console.error("Erro ao cadastrar empresa:", error);
@@ -119,9 +123,9 @@ export const CadastroEmpresaDados = () => {
 
   return (
     <>
-      <div className="img">
+      <div className="img2">
         <img className="onda1" src={vetorImg[4]} alt="" />
-        <img className="imgDoe" src={vetorImg[1]} alt="" />
+        <img className="imgDoeEmpre" src={vetorImg[1]} alt="" />
       </div>
 
       <header className="header1">
