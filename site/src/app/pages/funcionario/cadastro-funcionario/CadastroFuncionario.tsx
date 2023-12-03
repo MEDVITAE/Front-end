@@ -1,15 +1,13 @@
 import axios from "axios";
-
 import "../../../../html-css-template/css/novoFuncionario.css";
-
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
-
-import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
-import { vetorImg } from "../../../shared/components/imagens";
-
+import {
+  Input,
+  MenuPerfilFuncionario,
+  OndaLateralEsquerda,
+} from "../../../shared/components";
 import Swal from "sweetalert2";
 
 export const CadastroFuncionario = () => {
@@ -19,6 +17,12 @@ export const CadastroFuncionario = () => {
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [confSenha, setConfSenha] = useState("");
+  const [nomeArquivo, setNomeArquivo] = useState("");
+  const [exibirTexto, setExibirTexto] = useState(true);
+
+  sessionStorage.setItem("email", email.trim());
+  sessionStorage.setItem("senha", senha.trim());
+  sessionStorage.setItem("confSenha", confSenha);
 
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -116,14 +120,12 @@ export const CadastroFuncionario = () => {
           cpf: cpf,
         });
 
-        showValidationSuccessModal("Funcionario cadastrado com sucesso!");
+        showValidationSuccessModal("Funcionário cadastrado com sucesso!");
       }
     } catch (error) {
       console.error("Erro ao cadastrar funcionário:", error);
     }
   }, [nome, email, senha, cargo, cpf, validateForm]);
-
-  // Exportação Arquivo TXT
 
   const [arquivo, setArquivo] = useState<File | null>(null);
 
@@ -132,32 +134,35 @@ export const CadastroFuncionario = () => {
     if (files && files.length > 0) {
       const selectedFile = files[0];
       setArquivo(selectedFile);
+      setNomeArquivo(selectedFile.name);
+      setExibirTexto(false);
     }
   };
 
   const enviarArquivoParaAPI = () => {
     if (arquivo == null) {
       showValidationErrorModal("Selecione um arquivo txt");
+      return;
     }
 
-    if (arquivo) {
-      const formData = new FormData();
-      formData.append("file", arquivo);
-      formData.append("nome", "arquivo.txt");
+    const formData = new FormData();
+    formData.append("file", arquivo);
+    formData.append("nome", "arquivo.txt");
 
-      axios.post("http://localhost:8082/usuario/ler", formData, {
+    axios
+      .post("http://localhost:8082/usuario/ler", formData, {
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem("token")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
       })
-        .catch((error) => {
-          console.error(error);
-        });
-      showValidationSuccessModal("Arquivo exportado com sucesso!");
-
-    } else {
-      console.warn("Nenhum arquivo selecionado.");
-    }
+      .then(() => {
+        showValidationSuccessModal("Arquivo exportado com sucesso!");
+        setNomeArquivo("");
+        setExibirTexto(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -170,8 +175,13 @@ export const CadastroFuncionario = () => {
             <h1>NOVO FUNCIONARIO</h1>
           </div>
           <div className="containerCadastro">
-            <label htmlFor="arquivoInput" className="roboto sbold-16 labelFuncionario">
-              Adicione um "Layout TXT" para cadastrar uma lista de funcionários
+            <label
+              htmlFor="arquivoInput"
+              className="roboto sbold-16 labelFuncionario"
+            >
+              {exibirTexto
+                ? "Adicione um 'Layout TXT' para cadastrar uma lista de funcionários"
+                : `Arquivo selecionado: ${nomeArquivo}`}
             </label>
             <input
               id="arquivoInput"
@@ -182,6 +192,9 @@ export const CadastroFuncionario = () => {
               style={{ display: "none" }}
               onChange={handleFileUpload}
             />
+            {nomeArquivo && exibirTexto && (
+              <div className="nomeArquivo">Nome do Arquivo: {nomeArquivo}</div>
+            )}
             <div className="cadastroFuncionario roboto">
               <div className="cadastroInputs">
                 <div className="esquerda">
@@ -240,7 +253,10 @@ export const CadastroFuncionario = () => {
               <button className="btn" onClick={handleCadastroFuncionario}>
                 Cadastrar Funcionário
               </button>
-              <button className="btn2 bg-azulEscuro" onClick={enviarArquivoParaAPI}>
+              <button
+                className="btn2 bg-azulEscuro"
+                onClick={enviarArquivoParaAPI}
+              >
                 Exportar Layout TXT
               </button>
             </div>
