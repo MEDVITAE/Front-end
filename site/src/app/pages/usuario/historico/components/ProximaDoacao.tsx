@@ -18,7 +18,7 @@ export const ProximaDoacao = () => {
     const horarioSession = sessionStorage.getItem('horario');
     const dataSession = sessionStorage.getItem('data');
     const hemoSession = sessionStorage.getItem('hemo');
-    const ruaSession = sessionStorage.getItem('rua');
+    const ruaSession = sessionStorage.getItem('logradouro') + " " + sessionStorage.getItem('rua');
 
     const showConfirmUpdate = (message: string) => {
         const Toast = Swal.mixin({
@@ -125,16 +125,16 @@ export const ProximaDoacao = () => {
                 <div className="doacao">
                     <div className="doacaoAtual bg-vermelhoClaro">
                         <div className="item">
-                            <h2 className='roboto'>Pts: 000</h2>
+                            <h2 className='roboto roboto sbold-20'>Pts: 000</h2>
                         </div>
                         <div className="item">
-                            <h2 className='roboto'>Data: {data}</h2>
-                            <h2 className='roboto'>Hora: {horario}</h2>
+                            <h2 className='roboto roboto sbold-20'>Data: {data}</h2>
+                            <h2 className='roboto roboto sbold-20'>Hora: {horario}</h2>
                         </div>
 
                         <div className="item">
-                            <h2 className='roboto'>Hemocentro: {hemo}</h2>
-                            <h2 className='roboto'>Local: {rua}</h2>
+                            <h2 className='roboto roboto sbold-20'>Hemo: {hemo}</h2>
+                            <h2 className='roboto roboto sbold-20'>Local: {rua}</h2>
                         </div>
                     </div>
                     <div className="botaoDoacao">

@@ -18,11 +18,8 @@ export const Cadastro = () => {
   const [senhaError, setSenhaError] = useState("");
   const [confSenhaError, setConfSenhaError] = useState("");
 
-
-
   sessionStorage.setItem("email", email.trim());
   sessionStorage.setItem("senha", senha.trim());
-  sessionStorage.setItem("confSenha", confSenha);
 
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);

@@ -100,7 +100,7 @@ export const Login = () => {
             sessionStorage.setItem("id", result.Id);
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("userRole", result.userRole);
-            sessionStorage.setItem("userName", result.nome.split(" ")[0]);
+            sessionStorage.setItem("userName", result.nome);
             if (result.fkHospital !== null) {
                 sessionStorage.setItem("fkHospital", result.fkHospital);
             }

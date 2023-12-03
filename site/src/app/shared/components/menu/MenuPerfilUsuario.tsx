@@ -52,10 +52,12 @@ export const MenuPerfilUsuario: React.FC<IMenuPerfil> = () => {
         [setUrlsAcessadas]
     );
 
+    const nome = sessionStorage.getItem("userName");
+
     return (
         <>
             <div className="menu">
-                <h1 className="rowdies bold-30">Olá {sessionStorage.getItem("userName")}</h1>
+                <h1 className="rowdies bold-30">Olá {nome ? nome.split(" ")[0] : ''}</h1>
                 <div className="menuItens">
 
                     <Link to="/perfil-usuario"

@@ -20,11 +20,8 @@ export const CadastroFuncionario = () => {
   const [nomeArquivo, setNomeArquivo] = useState("");
   const [exibirTexto, setExibirTexto] = useState(true);
 
-  sessionStorage.setItem("email", email.trim());
-  sessionStorage.setItem("senha", senha.trim());
-  sessionStorage.setItem("confSenha", confSenha);
+  const [textoLabel, setTextoLabel] = useState('Adicione um "Layout TXT" para cadastrar uma lista de funcionários');
 
-  const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
   const showValidationErrorModal = (message: string) => {
@@ -141,7 +138,7 @@ export const CadastroFuncionario = () => {
 
   const enviarArquivoParaAPI = () => {
     if (arquivo == null) {
-      showValidationErrorModal("Selecione um arquivo txt");
+      showValidationErrorModal("É necessário um arquivo txt para realizar esta função.");
       return;
     }
 
@@ -161,7 +158,7 @@ export const CadastroFuncionario = () => {
         setExibirTexto(true);
       })
       .catch((error) => {
-        console.error(error);
+        showValidationErrorModal("Nenhum arquivo encontrado.");
       });
   };
 

@@ -50,6 +50,7 @@ export const HistoricoDoacao: React.FC = () => {
                         id: hospital.id,
                         nome: hospital.nome,
                         rua: hospital.rua,
+                        logradouro: hospital.logradouro
                     }));
 
                     const agendamentoMaisRecente = agendaMapeada.reduce((maisRecente, atual) => {
@@ -73,12 +74,14 @@ export const HistoricoDoacao: React.FC = () => {
                         sessionStorage.setItem('data', agendamentoMaisRecente.horario.getDate() + "/" + (Number(agendamentoMaisRecente.horario.getMonth()) + 1) + "/" + agendamentoMaisRecente.horario.getFullYear());
                         sessionStorage.setItem('hemo', hospital ? hospital.nome : '');
                         sessionStorage.setItem('rua', hospital ? hospital.rua : '');
+                        sessionStorage.setItem('logradouro', hospital ? hospital.logradouro : '');
                     } else {
                         sessionStorage.removeItem('idAgendamento');
                         sessionStorage.removeItem('horario');
                         sessionStorage.removeItem('data');
                         sessionStorage.removeItem('hemo');
                         sessionStorage.removeItem('rua');
+                        sessionStorage.removeItem('logradouro');
                     }
                 }
             });
@@ -100,16 +103,16 @@ export const HistoricoDoacao: React.FC = () => {
                             <div className="doacao" key={agenda.idAgenda}>
                                 <div className="doacaoAtual bg-vermelhoClaro">
                                     <div className="item">
-                                        <h2 className='roboto'>Doação n°: {index + 1}</h2>
-                                        <h2 className='roboto'>Pts: 5</h2>
+                                        <h2 className='roboto sbold-20'>Doação n°: {index + 1}</h2>
+                                        <h2 className='roboto sbold-20'>Pts: 5</h2>
                                     </div>
                                     <div className="item">
-                                        <h2 className='roboto'>Data: {agenda.horario && `${agenda.horario.getDate()}/${agenda.horario.getMonth() + 1}/${agenda.horario.getFullYear()}`}</h2>
-                                        <h2 className='roboto'>Hora: {agenda.horario && `${agenda.horario.getHours()}:${agenda.horario.getMinutes() < 10 ? '0' : ''}${agenda.horario.getMinutes()}`}</h2>
+                                        <h2 className='roboto sbold-20'>Data: {agenda.horario && `${agenda.horario.getDate()}/${agenda.horario.getMonth() + 1}/${agenda.horario.getFullYear()}`}</h2>
+                                        <h2 className='roboto sbold-20'>Hora: {agenda.horario && `${agenda.horario.getHours()}:${agenda.horario.getMinutes() < 10 ? '0' : ''}${agenda.horario.getMinutes()}`}</h2>
                                     </div>
                                     <div className="item">
-                                        <h2 className='roboto'>Hemocentro: {hospital?.nome}</h2>
-                                        <h2 className='roboto'>Local: {hospital?.rua}</h2>
+                                        <h2 className='roboto sbold-20'>Hemo: {hospital?.nome}</h2>
+                                        <h2 className='roboto sbold-20'>Local: {hospital?.logradouro + " " + hospital?.rua}</h2>
                                     </div>
                                 </div>
                                 <div className="caixaLitros">
