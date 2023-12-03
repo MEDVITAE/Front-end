@@ -7,6 +7,18 @@
     justify-content: end;
 }
 
+.img2 .onda1{
+    width: 60%;
+}
+
+
+.imgDoeEmpre {
+    margin-top: 5%;
+    margin-right: 7%;
+    width: 40%;
+    position: absolute;
+}
+
 .header4 {
     margin: 0.1%;
     width: 100%;
@@ -73,11 +85,6 @@
 
 }
 
-.container .imgDoe {
-    height: 70vh;
-    margin-top: 5.5%;
-    margin-right: 8%;
-}
 
 .btn {
     width: 20%;
