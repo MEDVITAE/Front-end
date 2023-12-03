@@ -89,7 +89,7 @@ export const PaginaInicial = () => {
             </div>
 
             <header className='header2'>
-                <img className="logo" src={vetorImg[3]} alt="Logo Vitae" />
+                <img src={vetorImg[3]} alt="Vitae" />
                 <div className="menuPagina ">
                     <a className="bold-20" href="#comoDoar">Como Doar</a>
                     <a className="bold-20" href="#comoFunciona">Como Funciona</a>

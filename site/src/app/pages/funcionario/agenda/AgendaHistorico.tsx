@@ -88,6 +88,7 @@ return (
             <div className="divAgendaDoacao">
                 <div className="AgendaDoacaoBox">
                     <h2 className="rowdies">AGENDAMENTOS</h2>
+                    <h3 className='roboto regular-20'>Clique no agendamento para cadastrar a doação</h3>
                 </div>
                 <div className='AgendamentosBox'>
                     <div className='box'>

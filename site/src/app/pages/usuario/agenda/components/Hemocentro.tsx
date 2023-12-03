@@ -94,7 +94,6 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
                         {rows.map((vetor) => {
                             return <h3 onClick={() => hemocentroEscolhido(vetor.idHospital)} className="hemo roboto regular-20" key={vetor.idHospital}>
                                 <p>Hemocentro: {vetor.nome}</p>
-                                <p>CEP:</p>
                             </h3>
                         })}
                     </div>

@@ -3,6 +3,7 @@ import "../../../../html-css-template/css/CadastroDoacao.css";
 import Swal from "sweetalert2";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import {
   CadastroDoacaoService,
@@ -29,6 +30,7 @@ export const CadastroDoacao = () => {
   const [numero, setNumero] = useState("");
   const [email, setEmail] = useState("");
   const [tipoSanguineo, setTipoSanguineo] = useState("");
+  const navegando = useNavigate();
 
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
@@ -131,6 +133,7 @@ export const CadastroDoacao = () => {
         };
         const resultado = CadastroDoacaoService.create(DoacaoData);
         showValidationSuccessModal("Doação confirmada!");
+        sessionStorage.setItem('idAgenda', '');
         setCpf("");
         setData("");
         setCep("");
@@ -139,6 +142,7 @@ export const CadastroDoacao = () => {
         setNumero("");
         setLitros("");
         setTipoSanguineo("");
+        navegando('/perfil-funcionario/agenda')
       }
     } catch (error) {
       showValidationErrorModal("Erro ao confirmar doação");
