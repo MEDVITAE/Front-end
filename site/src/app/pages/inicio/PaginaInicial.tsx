@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import '../../../html-css-template/css/index.css';
-import { vetorIcon, vetorImg } from '../../shared/components/imagens';
+import { vetorIcon, vetorImg, vetorImgAcromatica, vetorImgDeuteranopia, vetorImgProtanopia, vetorImgTritanopia } from '../../shared/components/imagens';
+import { useCallback, useEffect, useState } from 'react';
 
 export const PaginaInicial = () => {
     const navegando = useNavigate();
@@ -12,10 +13,67 @@ export const PaginaInicial = () => {
         navegando("/pagina-inicial/saiba-mais");
     }
 
+    const [valorSelecionado, setValorSelecionado] = useState('');
+    const [novaImgRetangulo, setNovaImgRetangulo] = useState('');
+    const [novaIconCalendario, setNovaIconCalendario] = useState('');
+    const [novaIconPrancheta, setNovaIconPrancheta] = useState('');
+    const [novaIconEnvelope, setNovaIconEnvelope] = useState('');
+    const [novaIconCoracao, setNovaIconCoracao] = useState('');
+
+    const handleChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+        const novoValor = event.target.value;
+        setValorSelecionado(novoValor);
+    }, []);
+
+    useEffect(() => {
+
+        const daltonismo = (valor: string) => {
+            switch (valor) {
+                case '1':
+                    setNovaImgRetangulo(vetorImgAcromatica[0]);
+                    setNovaIconPrancheta(vetorImgAcromatica[1]);
+                    setNovaIconCalendario(vetorImgAcromatica[2]);
+                    setNovaIconEnvelope(vetorImgAcromatica[3]);
+                    setNovaIconCoracao(vetorImgAcromatica[4]);
+                    break;
+                case '2':
+                    setNovaImgRetangulo(vetorImgProtanopia[0]);
+                    setNovaIconPrancheta(vetorImgProtanopia[1]);
+                    setNovaIconCalendario(vetorImgProtanopia[2]);
+                    setNovaIconEnvelope(vetorImgProtanopia[3]);
+                    setNovaIconCoracao(vetorImgProtanopia[4]);
+                    break;
+                case '3':
+                    setNovaImgRetangulo(vetorImgDeuteranopia[0]);
+                    setNovaIconPrancheta(vetorImgDeuteranopia[1]);
+                    setNovaIconCalendario(vetorImgDeuteranopia[2]);
+                    setNovaIconEnvelope(vetorImgDeuteranopia[3]);
+                    setNovaIconCoracao(vetorImgDeuteranopia[4]);
+                    break;
+                case '4':
+                    setNovaImgRetangulo(vetorImgTritanopia[0]);
+                    setNovaIconPrancheta(vetorImgTritanopia[1]);
+                    setNovaIconCalendario(vetorImgTritanopia[2]);
+                    setNovaIconEnvelope(vetorImgTritanopia[3]);
+                    setNovaIconCoracao(vetorImgTritanopia[4]);
+                    break;
+                default:
+                    setNovaImgRetangulo(vetorImg[9]);
+                    setNovaIconCalendario(vetorIcon[3]);
+                    setNovaIconPrancheta(vetorIcon[2]);
+                    setNovaIconEnvelope(vetorIcon[4]);
+                    setNovaIconCoracao(vetorIcon[5]);
+                    break;
+            }
+        };
+        daltonismo(valorSelecionado);
+
+    }, [valorSelecionado]);
+
     return (
         <>
             <div className="imgMenu">
-                <img className="imgOndaHeader" src={vetorImg[9]} alt="" />
+                <img className="imgOndaHeader" src={novaImgRetangulo} alt="" />
             </div>
 
             <header className='header2'>
@@ -34,10 +92,13 @@ export const PaginaInicial = () => {
                 <div className="altCor">
                     <li className="roboto">Escollha o seu tipo de</li>
                     <li className="roboto">Daltonismo</li>
-                    <button className="btn regular-16">
-                        Opções Daltonismo
-                        <img src={vetorIcon[0]} alt="" />
-                    </button>
+                    <select className="btn regular-16" onChange={handleChange} value={valorSelecionado}>
+                        <option value="">Opções de Daltonismo</option>
+                        <option value="1">Acromática</option>
+                        <option value="2">Protanopia</option>
+                        <option value="3">Deuteranopia</option>
+                        <option value="4">Tritanopia</option>
+                    </select>
                 </div>
             </header>
 
@@ -94,21 +155,21 @@ export const PaginaInicial = () => {
                 </button>
             </div>
 
-             <div className="funciona">
+            <div className="funciona">
                 <h1 className="rowdies">COMO FUNCIONA</h1>
                 <h2 className="roboto regular-24">Novo Doador</h2>
                 <div className="info">
                     <div className="imgInfo">
-                        <img src={vetorIcon[3]} alt="" />
+                        <img src={novaIconCalendario} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={vetorIcon[2]} alt="" />
+                        <img src={novaIconPrancheta} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={vetorIcon[4]} alt="" />
+                        <img src={novaIconEnvelope} alt="" />
                     </div>
                     <div className="imgInfo">
-                        <img src={vetorIcon[5]} alt="" />
+                        <img src={novaIconCoracao} alt="" />
                     </div>
                 </div>
                 <div className="info">
