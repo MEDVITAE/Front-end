@@ -9,7 +9,7 @@ export const SaibaMais = () => {
                 </div>
                 <div className="imgLogo">
                     <img className="imgOndaDentro" src="../assets/LogoVitai.png" alt="" />
-                    <h3 className="home">Home</h3>
+                    <a className="home" href="/pagina-inicial">Home</a>
                 </div>
                 <h1 className="rowdies">REGRAS GERAIS PARA DOAÇÃO DE SANGUE</h1>
                 <div className="conteudoDoar">
