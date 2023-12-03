@@ -64,8 +64,9 @@ export const AgendaHistorico = () => {
 }, [pesquisa, setPesquisa]);
 
 
-function agendaEscolhida(id: number): void {
+function agendaEscolhida(id: number, cpf: string): void {
     sessionStorage.setItem('idAgenda', id.toString());
+    sessionStorage.setItem('cpf', cpf);
     navegando('/perfil-funcionario/registro-doacao')
 };
 
@@ -94,7 +95,7 @@ return (
                     <div className='box'>
                         <div className='agendamentos'>
                             {rows.map((vetor) => {
-                                return <h3 onClick={() => agendaEscolhida(vetor.idAgenda)} className="btn_agenda roboto regular-20" key={vetor.idAgenda}>
+                                return <h3 onClick={() => agendaEscolhida(vetor.idAgenda, vetor.cpf)} className="btn_agenda roboto regular-20" key={vetor.idAgenda}>
                                     <p>Nome: {vetor.nome}</p>
                                     <p>CPF: {vetor.cpf}</p>
                                     <p>Data: {vetor.data}</p>

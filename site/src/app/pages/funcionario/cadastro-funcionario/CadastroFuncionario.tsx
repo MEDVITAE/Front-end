@@ -20,10 +20,6 @@ export const CadastroFuncionario = () => {
   const [senha, setSenha] = useState("");
   const [confSenha, setConfSenha] = useState("");
 
-  sessionStorage.setItem("email", email.trim());
-  sessionStorage.setItem("senha", senha.trim());
-  sessionStorage.setItem("confSenha", confSenha);
-
   const navegando = useNavigate();
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
