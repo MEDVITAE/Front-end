@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
 
 import { Input, MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
-import { vetorImg } from "../../../shared/components/imagens";
 
 import Swal from "sweetalert2";
 
@@ -20,11 +19,10 @@ export const CadastroFuncionario = () => {
   const [senha, setSenha] = useState("");
   const [confSenha, setConfSenha] = useState("");
 
-  sessionStorage.setItem("email", email.trim());
-  sessionStorage.setItem("senha", senha.trim());
-  sessionStorage.setItem("confSenha", confSenha);
+  const [textoLabel, setTextoLabel] = useState('Adicione um "Layout TXT" para cadastrar uma lista de funcionários');
 
   const navegando = useNavigate();
+
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
   const showValidationErrorModal = (message: string) => {
@@ -136,12 +134,13 @@ export const CadastroFuncionario = () => {
     if (files && files.length > 0) {
       const selectedFile = files[0];
       setArquivo(selectedFile);
+      setTextoLabel('Arquivo encontrado, agora confirme o envio!');
     }
   };
 
   const enviarArquivoParaAPI = () => {
     if (arquivo == null) {
-      showValidationErrorModal("Selecione um arquivo txt");
+      showValidationErrorModal("É necessário um arquivo txt para realizar esta função.");
     }
 
     if (arquivo) {
@@ -160,7 +159,7 @@ export const CadastroFuncionario = () => {
       showValidationSuccessModal("Arquivo exportado com sucesso!");
 
     } else {
-      console.warn("Nenhum arquivo selecionado.");
+      showValidationErrorModal("Nenhum arquivo encontrado.");
     }
   };
 
@@ -175,7 +174,7 @@ export const CadastroFuncionario = () => {
           </div>
           <div className="containerCadastro">
             <label htmlFor="arquivoInput" className="roboto sbold-16 labelFuncionario">
-              Adicione um "Layout TXT" para cadastrar uma lista de funcionários
+              {textoLabel}
             </label>
             <input
               id="arquivoInput"

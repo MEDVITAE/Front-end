@@ -161,6 +161,7 @@ export interface IHospitalParaHistorico {
     id: number;
     nome: string;
     rua: string;
+    logradouro: string;
   }
   
 export interface IHistoricoDeAgendamento {

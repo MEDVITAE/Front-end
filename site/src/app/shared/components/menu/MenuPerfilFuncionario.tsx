@@ -33,10 +33,12 @@ export const MenuPerfilFuncionario: React.FC<IMenuPerfil> = () => {
 
     };
 
+    const nome = sessionStorage.getItem("userName");
+
     return (
         <>
             <div className="menu">
-            <h1 className="rowdies bold-30">Olá {sessionStorage.getItem("userName")}</h1>
+            <h1 className="rowdies bold-30">Olá {nome ? nome.split(" ")[0] : ''}</h1>
                 <div className="menuItens">
                     <a href="/perfil-funcionario/cadastro-funcionario" className="item roboto sbold-20">Cadastro Funcionario</a>
                     <a href="/perfil-funcionario/requisicao-sangue" className="item roboto sbold-20">Requisitar Doação</a>

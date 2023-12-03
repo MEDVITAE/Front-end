@@ -31,6 +31,10 @@
     flex-direction: row;
 }
 
+.historico .historicoConteudo .doacao h2 {
+    margin-bottom: 10px;
+}
+
 .historico .historicoConteudo .doacao .doacaoAtual{
     width: 72%;
     height: 25vh;
@@ -40,10 +44,11 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .historico .historicoConteudo .doacao .doacaoAtual .item{
+    margin-top: 2%;
     display: flex;
     flex-direction: row;
 }
@@ -66,10 +71,6 @@
 }
 
 /* DIV DOAÇÃO ANTERIOR */
-
-.historico .historicoConteudo .doacaoAnterior h2 {
-    margin-bottom: 10px;
-}
 
 .historico .historicoConteudo .doacaoAnterior {
     width: 100%;
