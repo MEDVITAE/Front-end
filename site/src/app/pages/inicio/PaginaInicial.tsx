@@ -21,11 +21,11 @@ export const PaginaInicial = () => {
             <header className='header2'>
                 <img className="logo" src={vetorImg[3]} alt="Logo Vitae" />
                 <div className="menuPagina ">
-                    <a className="bold-20" href="">Como Doar</a>
-                    <a className="bold-20" href="">Como Funciona</a>
-                    <a className="bold-20" href="">Quem Somos</a>
-                    <a className="bold-20" href="">Perguntas Frequentes</a>
-                    <a className="bold-20" href="">Contato</a>
+                    <a className="bold-20" href="#comoDoar">Como Doar</a>
+                    <a className="bold-20" href="#comoFunciona">Como Funciona</a>
+                    <a className="bold-20" href="#quemSomos">Quem Somos</a>
+                    <a className="bold-20" href="#perguntsas">Perguntas Frequentes</a>
+                    <a className="bold-20" href="#contato">Contato</a>
                     <li className="bold-20">|</li>
                     <a className="bold-20" href="/login">Login</a>
                     <a className="bold-20" href="/cadastro-usuario">Cadastre-se</a>
@@ -59,7 +59,7 @@ export const PaginaInicial = () => {
                 </div>
             </div>
 
-            <div className="comoDoar">
+            <div className="comoDoar" id='comoDoar'>
                 <h1 className="rowdies">COMO DOAR</h1>
                 <div className="conteudoDoar">
                     <div>
@@ -94,7 +94,7 @@ export const PaginaInicial = () => {
                 </button>
             </div>
 
-             <div className="funciona">
+            <div className="funciona" id='comoFunciona'>
                 <h1 className="rowdies">COMO FUNCIONA</h1>
                 <h2 className="roboto regular-24">Novo Doador</h2>
                 <div className="info">
@@ -139,7 +139,7 @@ export const PaginaInicial = () => {
                 </div>
             </div>
 
-            <div className="somos bg-azulEscuro">
+            <div className="somos bg-azulEscuro" id='quemSomos'>
                 <h1 className="rowdies">QUEM SOMOS</h1>
                 <div>
                     <div className="calendario">
@@ -164,8 +164,8 @@ export const PaginaInicial = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="perguntas">
+        
+            <div className="perguntas" id='perguntsas'>
                 <h1 className="rowdies">PERQUNTAS FRENQUENTES</h1>
                 <div className="infoPerguntas">
                     <div className="question bg-azulEscuro">
@@ -180,7 +180,7 @@ export const PaginaInicial = () => {
                     <div className="question bg-azulEscuro">
                         <p className="roboto regular-24">+ Por que se realiza a triagem clinica?</p>
                     </div>
-                    <div className="answer bg-branco">
+                    <div className="answer3 bg-branco">
                         <p className="roboto regular-20">É realizada com o objetivo de identificar fatores que impeçam a doação</p>
                         <p className="roboto regular-20"> por condição de saúde do doador ou coloquem riscos ao receptor. É</p>
                         <p className="roboto regular-20">muito importante responder com sinceridade todas as perguntas.</p>
@@ -191,7 +191,7 @@ export const PaginaInicial = () => {
                     <div className="question bg-azulEscuro">
                         <p className="roboto regular-24">+ Quais são os tipos sanguíneos?</p>
                     </div>
-                    <div className="answer bg-branco">
+                    <div className="answer2 bg-branco">
                         <p className="roboto regular-20">A ocorrência de cada tipo sanguíneo na população é de aproximadamente:</p>
                         <p className="roboto regular-20">O = 45% ( O+ = 36% e O - = 9%)</p>
                         <p className="roboto regular-20">A = 42% ( A+ = 34% e A - = 8%)</p>
@@ -204,7 +204,7 @@ export const PaginaInicial = () => {
                     <div className="question bg-azulEscuro">
                         <p className="roboto regular-24">+ Principais dificuldades dos Bancos de sangue.</p>
                     </div>
-                    <div className="answer bg-branco">
+                    <div className="answer4 bg-branco">
                         <p className="roboto regular-20"> · Falta de padronização ou indefinição dos processos.</p>
                         <p className="roboto regular-20"> · Baixo nível de segurança no controle das amostras.</p>
                         <p className="roboto regular-20"> · Dificuldade no controle da qualidade dos serviços internos e externos.</p>
@@ -216,7 +216,7 @@ export const PaginaInicial = () => {
                     <div className="question bg-azulEscuro">
                         <p className="roboto regular-24">+ O pré agendamento realmente agiliza o processo de doação ?</p>
                     </div>
-                    <div className="answer bg-branco">
+                    <div className="answer5 bg-branco">
                         <p className="roboto regular-20">Sim!! O pré agendamento torna o porcesso mais rápido e dinâmico,</p>
                         <p className="roboto regular-20">trazendo uma maior segurança, organização para que tudo corra bem no</p>
                         <p className="roboto regular-20">dia e que muitas vidas sejam salvas.</p>
@@ -224,7 +224,7 @@ export const PaginaInicial = () => {
                 </div>
             </div>
 
-            <div className="facaParte">
+            <div className="facaParte" id='contato'>
                 <h1 className="rowdies">Faça parte e salve vidas</h1>
                 <button onClick={navegarClick} className="btn bg-vermelhoClaro roboto regular-16">
                     Quero ser Doador
