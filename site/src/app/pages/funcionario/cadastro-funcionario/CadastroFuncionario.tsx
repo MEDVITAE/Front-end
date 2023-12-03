@@ -164,10 +164,6 @@ export const CadastroFuncionario = () => {
     }
   };
 
-  const handleClickNav = () => {
-    navegando("/pagina-inicial");
-  };
-
   return (
     <>
       <OndaLateralEsquerda />
@@ -178,11 +174,23 @@ export const CadastroFuncionario = () => {
             <h1>NOVO FUNCIONARIO</h1>
           </div>
           <div className="containerCadastro">
+            <label htmlFor="arquivoInput" className="roboto sbold-16 labelFuncionario">
+              Adicione um "Layout TXT" para cadastrar uma lista de funcionários
+            </label>
+            <input
+              id="arquivoInput"
+              className="campoFuncionario roboto bold-30"
+              type="file"
+              accept=".txt"
+              capture="environment"
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
+            />
             <div className="cadastroFuncionario roboto">
               <div className="cadastroInputs">
                 <div className="esquerda">
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     type="text"
                     placeholder={"Nome Completo"}
                     value={nome}
@@ -190,7 +198,7 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setNome(newValue)}
                   />
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     type="number"
                     placeholder={"CPF"}
                     value={cpf}
@@ -198,7 +206,7 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setCpf(newValue)}
                   />
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     type="text"
                     placeholder={"Cargo"}
                     value={cargo}
@@ -208,7 +216,7 @@ export const CadastroFuncionario = () => {
                 </div>
                 <div className="esquerda">
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     type="text"
                     placeholder={"Email"}
                     value={email}
@@ -216,13 +224,13 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setEmail(newValue)}
                   />
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     placeholder={"Senha"}
                     value={senha}
                     onChange={(newValue) => setSenha(newValue)}
                   />
                   <Input
-                    className={"input-requisicao roboto regular-16"}
+                    className={"campoFuncionario roboto bold-30"}
                     type="text"
                     placeholder={"Confirma senha"}
                     value={confSenha}
@@ -232,33 +240,14 @@ export const CadastroFuncionario = () => {
                 </div>
               </div>
             </div>
-            <button
-              onClick={handleCadastroFuncionario}
-              className="btnCadastrarFuncionario btn"
-            >
-              Cadastrar
-            </button>
-          </div>
-
-          <div className="rowdies tituloFuncionario">
-            <h1>LISTA DE FUNCIONARIO</h1>
-          </div>
-          <div className="caixaTxtRequisicao">
-            <label htmlFor="arquivoInput" className="roboto sbold-16 input-label">
-              Adicione um "Layout TXT" para cadastrar uma lista de funcionários
-            </label>
-            <input
-              id="arquivoInput"
-              className="input-requisicao roboto regular-16"
-              type="file"
-              accept=".txt"
-              capture="environment"
-              style={{ display: "none" }}
-              onChange={handleFileUpload}
-            />
-            <button className="btnExportar btn" onClick={enviarArquivoParaAPI}>
-              Exportar TXT
-            </button>
+            <div className="caixaRequisicaoBtn">
+              <button className="btn" onClick={handleCadastroFuncionario}>
+                Cadastrar Funcionário
+              </button>
+              <button className="btn2 bg-azulEscuro" onClick={enviarArquivoParaAPI}>
+                Exportar Layout TXT
+              </button>
+            </div>
           </div>
         </div>
       </div>
