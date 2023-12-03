@@ -74,7 +74,10 @@ export const CadastroDoacao = () => {
   };
 
   const [getUsuario, setgetUsuario] = useState<ICadastroDoacao | null>(null);
-  setCpf(sessionStorage.getItem('cpf') ?? '')
+  useEffect(() => {
+    const cpfUser = sessionStorage.getItem('cpf');
+    setCpf(cpfUser ? cpfUser : '');
+  }, []);
 
   useEffect(() => {
     if (cpf.trim() !== "") {
@@ -82,22 +85,24 @@ export const CadastroDoacao = () => {
         .then((result) => {
           if (result instanceof Error) {
           } else {
-            console.log("result", result);
             setgetUsuario(result);
           }
         })
         .catch((error) => {
-          showValidationErrorModal("Erro ao consultar cpf. Volte a tela de agendamentos.")
+          showValidationErrorModal("Erro ao consultar cpf")
         });
     }
   }, [cpf]);
 
   const validateForm = async () => {
-    if (litros === "" || tipoSanguineo === "") {
+    if (cpf === "" || litros === "" || tipoSanguineo === "") {
       showValidationErrorModal("Os Campos não pode estar em branco");
       return false;
     } else if (parseInt(cpf) < 0 || parseFloat(litros) < 0) {
       showValidationErrorModal("Valores negativos inseridos");
+      return false;
+    } else if (cpf.length != 11) {
+      showValidationErrorModal("CPF inválido");
       return false;
     } else if (!tipoSanguineo.toUpperCase) {
       showValidationErrorModal(
