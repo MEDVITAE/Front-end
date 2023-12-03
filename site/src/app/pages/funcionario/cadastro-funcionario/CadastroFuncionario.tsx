@@ -21,8 +21,6 @@ export const CadastroFuncionario = () => {
 
   const [textoLabel, setTextoLabel] = useState('Adicione um "Layout TXT" para cadastrar uma lista de funcionários');
 
-  const navegando = useNavigate();
-
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
   const showValidationErrorModal = (message: string) => {

@@ -221,7 +221,7 @@ li {
 
     /*Padrão Logo*/
     .logo {
-        width: 135px;
+        width: auto;
         height: 21vh;
     }
 

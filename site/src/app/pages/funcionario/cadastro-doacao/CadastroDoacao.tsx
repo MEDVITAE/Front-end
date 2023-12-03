@@ -3,6 +3,7 @@ import "../../../../html-css-template/css/CadastroDoacao.css";
 import Swal from "sweetalert2";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import {
   CadastroDoacaoService,
@@ -29,6 +30,7 @@ export const CadastroDoacao = () => {
   const [numero, setNumero] = useState("");
   const [email, setEmail] = useState("");
   const [tipoSanguineo, setTipoSanguineo] = useState("");
+  const navegando = useNavigate();
 
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
@@ -72,6 +74,7 @@ export const CadastroDoacao = () => {
   };
 
   const [getUsuario, setgetUsuario] = useState<ICadastroDoacao | null>(null);
+  setCpf(sessionStorage.getItem('cpf') ?? '')
 
   useEffect(() => {
     if (cpf.trim() !== "") {
@@ -84,20 +87,17 @@ export const CadastroDoacao = () => {
           }
         })
         .catch((error) => {
-          showValidationErrorModal("Erro ao consultar cpf")
+          showValidationErrorModal("Erro ao consultar cpf. Volte a tela de agendamentos.")
         });
     }
   }, [cpf]);
 
   const validateForm = async () => {
-    if (cpf === "" || litros === "" || tipoSanguineo === "") {
+    if (litros === "" || tipoSanguineo === "") {
       showValidationErrorModal("Os Campos não pode estar em branco");
       return false;
     } else if (parseInt(cpf) < 0 || parseFloat(litros) < 0) {
       showValidationErrorModal("Valores negativos inseridos");
-      return false;
-    } else if (cpf.length != 11) {
-      showValidationErrorModal("CPF inválido");
       return false;
     } else if (!tipoSanguineo.toUpperCase) {
       showValidationErrorModal(
@@ -131,7 +131,7 @@ export const CadastroDoacao = () => {
         };
         const resultado = CadastroDoacaoService.create(DoacaoData);
         showValidationSuccessModal("Doação confirmada!");
-        setCpf("");
+        sessionStorage.setItem('idAgenda', '');
         setData("");
         setCep("");
         setEmail("");
@@ -139,6 +139,7 @@ export const CadastroDoacao = () => {
         setNumero("");
         setLitros("");
         setTipoSanguineo("");
+        navegando('/perfil-funcionario/agenda')
       }
     } catch (error) {
       showValidationErrorModal("Erro ao confirmar doação");
@@ -173,14 +174,6 @@ export const CadastroDoacao = () => {
             <h1 className="rowdies bold-30">CADASTRAR DOAÇÂO</h1>
           </div>
           <div className="campos">
-            <Input
-              className="camposInput rowdies"
-              type="number"
-              placeholder="CPF"
-              value={cpf}
-              ref={inputPasswordRef}
-              onChange={(newValue) => setCpf(newValue)}
-            />
             <Input
               className="camposInput rowdies"
               type="number"
