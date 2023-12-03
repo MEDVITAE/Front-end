@@ -19,7 +19,7 @@ import imagem4 from '../../../html-css-template/assets/ONDA - CADASTRO.svg';
 import imagem5 from '../../../html-css-template/assets/ONDA - LOGIN.svg';
 import imagem6 from '../../../html-css-template/assets/ONDA - AGENDA.svg';
 import imagem7 from '../../../html-css-template/assets/ONDA - PROXIMA DOAÇÃO.svg';
-import imagem8 from '../../../html-css-template/assets/pessoas.png';
+import imagem8 from '../../../html-css-template/assets/pessoas.svg';
 import imagem9 from '../../../html-css-template/assets/Rectangle.svg';
 import imagem00 from '../../../html-css-template/assets/ONDA - CADASTRO.svg';
 import imagem01 from '../../../html-css-template/assets/TuboEnsaio.png';
