@@ -7,6 +7,7 @@ import '../../../../html-css-template/css/maps.css'
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { EnderecoService, IEndereco, ICoords } from "../../../shared/sevice/api/tarefas/EnderecoService";
+import Swal from 'sweetalert2';
 
 export const Mapa = () => {
   const navigate = useNavigate();
@@ -29,18 +30,37 @@ export const Mapa = () => {
   const [position, setPosition] = useState({});
   const [lista, setLista] = useState<IEndereco[] | null>(null);
   const [coordenadas, setCoordenadas] = useState([{}]);
+
+  const showWrongForm = (message: string) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    Toast.fire({
+        icon: "error",
+        title: message
+    });
+};
   
   useEffect(() => {
     EnderecoService.getAll()
       .then((result) => {
         if (result instanceof Error) {
-          alert(result.message);
+          showWrongForm(result.message);
         } else {
           setLista(result);
         }
       })
       .catch((error) => {
-        alert(error.message || 'Erro ao buscar dados.');
+        showWrongForm(error.message || 'Erro ao buscar dados.');
       });
   }, []);
 
@@ -77,10 +97,10 @@ export const Mapa = () => {
           buscarCoordenadas();
         }
       }, (error) => {
-        console.error("Erro ao obter a localização:", error);
+        showWrongForm(`Erro ao obter a localização: ${error}`);
       });
     } else {
-      console.error("Geolocalização não é suportada no seu navegador.");
+      showWrongForm("Geolocalização não é suportada no seu navegador.");
     }
   }, [lista]);
   
@@ -96,7 +116,7 @@ export const Mapa = () => {
         <div className="mapaMundi">
           <div className="rowdies topo">
             <div className="titulo">
-              <h1>Ver mapa</h1>
+              <h1 className='bold-30'>Ver mapa</h1>
             </div>
           </div>
           <div className="mapa">

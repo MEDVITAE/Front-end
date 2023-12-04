@@ -6,34 +6,54 @@ import Chart from "chart.js/auto";
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { IPosicao, IRank, RankService } from "../../../shared/sevice/api/tarefas/RankService";
+import Swal from "sweetalert2";
 
 export const Ranking = () => {
   const [rank, setRank] = useState<IRank[]>([]);
   const [colocacao, setColocacao] = useState<IPosicao | null>(null);
 
+  const showWrongForm = (message: string) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    Toast.fire({
+        icon: "error",
+        title: message
+    });
+};
+
   useEffect(() => {
     RankService.getAll()
       .then((result) => {
         if (result instanceof Error) {
-          alert(result.message);
+          showWrongForm(result.message);
         } else {
           setRank(result);
         }
       })
       .catch((error) => {
-        alert(error.message || 'Erro ao buscar dados.');
+        showWrongForm(error.message || 'Erro ao buscar dados.');
       });
 
     RankService.getById()
       .then((result) => {
         if (result instanceof Error) {
-          alert(result.message);
+          showWrongForm(result.message);
         } else {
           setColocacao(result);
         }
       })
       .catch((error) => {
-        alert(error.message || 'Erro ao buscar dados.');
+        showWrongForm(error.message || 'Erro ao buscar dados.');
       });
   }, []); // Nenhum dependência aqui, será executado uma vez na montagem do componente
 

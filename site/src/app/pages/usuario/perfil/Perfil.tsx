@@ -420,27 +420,27 @@ export const Perfil = () => {
                         <div className="statusBoxRow">
                             <div className="statusBoxItemColmun">
                                 <div className='roboto sbold-16'>Nome Completo:</div>
-                                <input className="campoUsuario roboto bold-30" value={nomeCompleto} type="text" placeholder='Nome Completo' onChange={handleFieldChange('nomeCompleto')} onBlur={handleBlur('nomeCompleto')} />
+                                <input className="campoUsuario roboto sbold-16" value={nomeCompleto} type="text" placeholder='Nome Completo' onChange={handleFieldChange('nomeCompleto')} onBlur={handleBlur('nomeCompleto')} />
                                 <div className='roboto sbold-16'>CPF:</div>
-                                <input className="campoUsuario roboto bold-30" value={cpf} type="text" placeholder='CPF' onChange={handleFieldChange('cpf')} onBlur={handleBlur('cpf')} />
+                                <input className="campoUsuario roboto sbold-16" value={cpf} type="text" placeholder='CPF' onChange={handleFieldChange('cpf')} onBlur={handleBlur('cpf')} />
                                 <div className='roboto sbold-16'>CEP:</div>
-                                <input className="campoUsuario roboto bold-30" value={cep} type="text" placeholder='CEP' onChange={handleFieldChange('cep')} onBlur={handleBlur('cep')} />
+                                <input className="campoUsuario roboto sbold-16" value={cep} type="text" placeholder='CEP' onChange={handleFieldChange('cep')} onBlur={handleBlur('cep')} />
                                 <div className='roboto sbold-16'>Número da casa:</div>
-                                <input className="campoUsuario roboto bold-30" value={numeroCasa} type="text" placeholder='Número' onChange={handleFieldChange('numeroCasa')} onBlur={handleBlur('numeroCasa')} />
+                                <input className="campoUsuario roboto sbold-16" value={numeroCasa} type="text" placeholder='Número' onChange={handleFieldChange('numeroCasa')} onBlur={handleBlur('numeroCasa')} />
                             </div>
                             <div className="statusBoxItemColmun">
                                 <div className='roboto sbold-16'>Sexo Biológico:</div>
-                                <input className="campoUsuario roboto bold-30" value={sexo} type="text" placeholder='Feminino ou Masculino' onChange={handleFieldChange('sexo')} onBlur={handleBlur('sexo')} />
+                                <input className="campoUsuario roboto sbold-16" value={sexo} type="text" placeholder='Feminino ou Masculino' onChange={handleFieldChange('sexo')} onBlur={handleBlur('sexo')} />
                                 <div className='roboto sbold-16'>Data de Nascimento:</div>
-                                <input className="campoUsuario roboto bold-30" value={nascimento} type="text" placeholder='Data de Nascimento (dd/mm/aaaa)' onChange={handleFieldChange('nascimento')} onBlur={handleBlur('nascimento')} />
+                                <input className="campoUsuario roboto sbold-16" value={nascimento} type="text" placeholder='Data de Nascimento (dd/mm/aaaa)' onChange={handleFieldChange('nascimento')} onBlur={handleBlur('nascimento')} />
                                 <div className='roboto sbold-16'>Peso:</div>
-                                <input className="campoUsuario roboto bold-30" value={peso} type="double" placeholder='Peso' onChange={handleFieldChange('peso')} onBlur={handleBlur('peso')} />
+                                <input className="campoUsuario roboto sbold-16" value={peso} type="double" placeholder='Peso' onChange={handleFieldChange('peso')} onBlur={handleBlur('peso')} />
                                 <div className='roboto sbold-16'>Altura:</div>
-                                <input className="campoUsuario roboto bold-30" value={altura} type="double" placeholder='Altura' onChange={handleFieldChange('altura')} onBlur={handleBlur('altura')} />
+                                <input className="campoUsuario roboto sbold-16" value={altura} type="double" placeholder='Altura' onChange={handleFieldChange('altura')} onBlur={handleBlur('altura')} />
                             </div>
                             <div className="statusBoxItemColmun">
                                 <div className='roboto sbold-16'>Email:</div>
-                                <input className="campoUsuario roboto bold-30" value={email} type="email" placeholder='Email' onChange={handleFieldChange('email')} onBlur={handleBlur('email')} />
+                                <input className="campoUsuario roboto sbold-16" value={email} type="email" placeholder='Email' onChange={handleFieldChange('email')} onBlur={handleBlur('email')} />
                                 <div className='roboto sbold-16'>Documento com foto:</div>
                                 <div className='div_picture'>
                                     <label className="picture" htmlFor="picture__inputPerfil" tabIndex={0}>
@@ -452,7 +452,7 @@ export const Perfil = () => {
                             </div>
                         </div>
                         <div onClick={editarClick} className="btnBoxItem">
-                            <button className="btn bg-vermelhoClaro bold-30">Editar</button>
+                            <button className="btn bg-vermelhoClaro sbold-16">Editar</button>
                         </div>
                     </div>
                 </div>

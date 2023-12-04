@@ -104,7 +104,7 @@ return (
                             })}
                         </div>
                     </div>
-                    <button onClick={() => baixarArquivo()} className='button_csv btn bg-vermelhoClaro bold-30'>
+                    <button onClick={() => baixarArquivo()} className='button_csv btn bg-vermelhoClaro sbold-16'>
                         Baixar arquivo Excel
                     </button>
                 </div>

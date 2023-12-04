@@ -152,7 +152,7 @@ export const Quiz = () => {
                             <h3 className="now roboto sbold-20">Informações pessoais</h3>
                             <div className="divQuiz">
                                 <input
-                                    className="inputQuiz rowdies bold-30"
+                                    className="inputQuiz rowdies sbold-20"
                                     id="placeholder-number"
                                     type="number"
                                     placeholder="Altura"
@@ -161,7 +161,7 @@ export const Quiz = () => {
                                 />
 
                                 <input
-                                    className="inputQuiz rowdies bold-30"
+                                    className="inputQuiz rowdies sbold-20"
                                     id="placeholder-number"
                                     type="number"
                                     placeholder="Peso"
