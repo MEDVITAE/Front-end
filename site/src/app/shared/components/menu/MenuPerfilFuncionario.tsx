@@ -40,9 +40,9 @@ export const MenuPerfilFuncionario: React.FC<IMenuPerfil> = () => {
             <div className="menu">
             <h1 className="rowdies bold-30">Olá {nome ? nome.split(" ")[0] : ''}</h1>
                 <div className="menuItens">
-                    <a href="/perfil-funcionario/cadastro-funcionario" className="item roboto sbold-20">Cadastro Funcionario</a>
-                    <a href="/perfil-funcionario/requisicao-sangue" className="item roboto sbold-20">Requisitar Doação</a>
-                    <a href="/perfil-funcionario/agenda" className="item roboto sbold-20">Agenda de Doações</a>
+                    <a href="/perfil-funcionario/cadastro-funcionario" className="item roboto bold-30">Cadastro Funcionario</a>
+                    <a href="/perfil-funcionario/requisicao-sangue" className="item roboto bold-30">Requisitar Doação</a>
+                    <a href="/perfil-funcionario/agenda" className="item roboto bold-30">Agenda de Doações</a>
                 </div>
                 <button onClick={sairClick} className="btn bg-vermelhoClaro">Sair</button>
             </div>
