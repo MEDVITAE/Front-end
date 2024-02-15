@@ -92,7 +92,7 @@ return (
                     <h3 className='roboto regular-20'>Clique no agendamento para cadastrar a doação</h3>
                 </div>
                 <div className='AgendamentosBox'>
-                    <div className='box'>
+                    <div className='box_3'>
                         <div className='agendamentos'>
                             {rows.map((vetor) => {
                                 return <h3 onClick={() => agendaEscolhida(vetor.idAgenda, vetor.cpf)} className="btn_agenda roboto regular-20" key={vetor.idAgenda}>

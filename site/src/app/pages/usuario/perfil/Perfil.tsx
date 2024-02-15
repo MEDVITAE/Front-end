@@ -390,7 +390,7 @@ export const Perfil = () => {
             <main className='mainPerfil'>
                 <MenuPerfilUsuario nome="Diego" />
                 <div className="divPerfil">
-                    <div className="statusBox">
+                    <div className="statusBox_1">
                         <h2 className="rowdies mr-bt">STATUS</h2>
                         <div className="statusBoxItem">
                             <div className="boxItem">
@@ -415,7 +415,7 @@ export const Perfil = () => {
                         </div>
                     </div>
 
-                    <div className="statusBox">
+                    <div className="statusBox_2">
                         <h2 className="rowdies mr-bt">DADOS DO USUÁRIO</h2>
                         <div className="statusBoxRow">
                             <div className="statusBoxItemColmun">

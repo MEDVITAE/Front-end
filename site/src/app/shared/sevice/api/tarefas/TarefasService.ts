@@ -1,4 +1,3 @@
-import { id } from "date-fns/locale";
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 import { AxiosResponse } from 'axios';
