@@ -1,4 +1,3 @@
-import '../../../../html-css-template/css/telaSaibaMais.css'
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
 
 export const SaibaMais = () => {

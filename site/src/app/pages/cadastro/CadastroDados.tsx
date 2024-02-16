@@ -1,13 +1,20 @@
-import '../../../html-css-template/css/dados.css'
+import Swal from "sweetalert2";
+
+import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
+
+import { 
+  IPrimeiroCadastro, 
+  ISegundoCadastroCaracteristicas, 
+  ISegundoCadastroEndereco, 
+  ITokenId, TarefasService 
+} from '../../shared/sevice/api/tarefas/TarefasService';
+
+import { Input } from '../../shared/components';
 import { vetorImg } from '../../shared/components/imagens';
 import { vetorIcon } from '../../shared/components/imagens';
-import { useNavigate } from 'react-router-dom';
-import { IPrimeiroCadastro, ISegundoCadastroCaracteristicas, ISegundoCadastroEndereco, ITokenId, TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
-import { Input } from '../../shared/components';
+
 import { ApiException } from '../../shared/sevice/api/ApiException';
-import Swal from "sweetalert2";
-import { cp } from 'fs';
 
 interface ITeste {
 bairro: string;

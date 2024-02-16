@@ -1,7 +1,14 @@
-import { useNavigate } from 'react-router-dom';
-import '../../../html-css-template/css/index.css';
-import { vetorIcon, vetorImg, vetorImgAcromatica, vetorImgDeuteranopia, vetorImgProtanopia, vetorImgTritanopia } from '../../shared/components/imagens';
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { 
+    vetorIcon, 
+    vetorImg, 
+    vetorImgAcromatica, 
+    vetorImgDeuteranopia, 
+    vetorImgProtanopia, 
+    vetorImgTritanopia 
+} from '../../shared/components/imagens';
 
 export const PaginaInicial = () => {
     const navegando = useNavigate();

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { InputPesquisa } from '../../../../shared/components';
-import { IListagemHemocentro, ITokenId, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import '../../../../../html-css-template/css/HemocentroEHorario.css';
+import { InputPesquisa } from '../../../../shared/components';
+import { IListagemHemocentro, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
+
 import Swal from 'sweetalert2';
 
 interface IHemocentroProps {

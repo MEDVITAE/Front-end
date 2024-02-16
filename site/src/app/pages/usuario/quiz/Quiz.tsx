@@ -1,12 +1,14 @@
-import { SetStateAction, useCallback, useState } from 'react';
-import '../../../../html-css-template/css/telaAptidao.css'
 import Swal from 'sweetalert2'
+
+import { SetStateAction, useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { IQuiz, QuizService } from '../../../shared/sevice/api/tarefas/quizService';
+
 import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
-import { useNavigate } from 'react-router-dom';
-import { IQuiz, QuizService } from '../../../shared/sevice/api/tarefas/quizService';
-import { ApiException } from '../../../shared/sevice/api/ApiException';
 
+import { ApiException } from '../../../shared/sevice/api/ApiException';
 
 export const Quiz = () => {
     const [altura, setAltura] = useState('');

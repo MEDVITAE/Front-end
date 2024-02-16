@@ -1,7 +1,27 @@
-import { Route, Routes as Switch, Navigate, Link } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom"
-import '../../html-css-template/css/geral.css';
-import { useState } from "react";
+import { Route, Routes as Switch, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import '../../css/geral.css';
+import 'react-calendar/dist/Calendar.css';
+import '../../css/Agenda.css';
+import '../../css/AgendaDoacao.css';
+import '../../css/Agendamento.css';
+import '../../css/Cadastro.css';
+import '../../css/CadastroDoacao.css';
+import '../../css/dados.css';
+import '../../css/HemocentroEHorario.css';
+import '../../css/HistoricoDoacao.css';
+import '../../css/homocentro.css';
+import '../../css/index.css';
+import '../../css/login.css';
+import '../../css/maps.css';
+import '../../css/menu.css';
+import '../../css/novoFuncionario.css';
+import '../../css/perfil.css';
+import '../../css/telaAptidao.css';
+import '../../css/telaDetalheHospital.css';
+import '../../css/telaRanking.css';
+import '../../css/telaRequisicao.css';
+import '../../css/telaSaibaMais.css';
 
 import {
     AgendaHistorico,

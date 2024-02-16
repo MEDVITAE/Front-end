@@ -1,4 +1,3 @@
-import '../../../../html-css-template/css/telaDetalheHospital.css'
 import { useState, useEffect } from 'react';
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";

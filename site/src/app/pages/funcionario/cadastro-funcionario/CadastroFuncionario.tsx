@@ -1,14 +1,18 @@
 import axios from "axios";
-import "../../../../html-css-template/css/novoFuncionario.css";
+
+import Swal from "sweetalert2";
+
 import { useState, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { CadastroFuncionarioService } from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
+
+import { 
+  CadastroFuncionarioService 
+} from "../../../shared/sevice/api/tarefas/cadastros/CadastroFuncionarioService";
+
 import {
   Input,
   MenuPerfilFuncionario,
   OndaLateralEsquerda,
 } from "../../../shared/components";
-import Swal from "sweetalert2";
 
 export const CadastroFuncionario = () => {
   const [email, setEmail] = useState("");

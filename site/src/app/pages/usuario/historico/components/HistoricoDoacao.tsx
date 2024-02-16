@@ -1,7 +1,15 @@
-import { useEffect, useState } from "react";
-import { IAgendaParaHistorico, IHistoricoDeAgendamento, IHospitalParaHistorico, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
-import { ApiException } from "../../../../shared/sevice/api/ApiException";
 import Swal from "sweetalert2";
+
+import { useEffect, useState } from "react";
+
+import { 
+    IAgendaParaHistorico, 
+    IHistoricoDeAgendamento, 
+    IHospitalParaHistorico, 
+    TarefasService 
+} from '../../../../shared/sevice/api/tarefas/TarefasService';
+
+import { ApiException } from "../../../../shared/sevice/api/ApiException";
 
 export const HistoricoDoacao: React.FC = () => {
 

@@ -1,11 +1,21 @@
-import { useEffect, useState, SetStateAction } from 'react';
-import '../../../../html-css-template/css/perfil.css'
+import Swal from 'sweetalert2'
+
+import { useEffect, useState } from 'react';
+
+import { Anexo } from '../../../shared/contexts';
+
+import { 
+    TarefasService, 
+    IDetalheUser, 
+    IUserId, 
+    IDetalheUserUpdate, 
+    IUserCaracteristicasUpdate, 
+    IUserEnderecoUpdate 
+} from '../../../shared/sevice/api/tarefas/TarefasService';
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
-import { Anexo } from '../../../shared/contexts';
 import { vetorImg, vetorTipoSangue } from '../../../shared/components/imagens';
-import Swal from 'sweetalert2'
-import { TarefasService, IDetalheUser, IUserId, IDetalheUserUpdate, IUserCaracteristicasUpdate, IUserEnderecoUpdate } from '../../../shared/sevice/api/tarefas/TarefasService';
+
 import { ApiException } from '../../../shared/sevice/api/ApiException';
 
 export const Perfil = () => {

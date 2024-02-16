@@ -1,4 +1,4 @@
-import '../../../../html-css-template/css/menu.css';
+import '../../../../css/menu.css';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
 
