@@ -1,5 +1,3 @@
-import "../../../html-css-template/css/homocentro.css";
-
 import Swal from "sweetalert2";
 
 import { useRef, useCallback, useState } from "react";

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import '../../../../html-css-template/css/telaRanking.css'
 
 import Chart from "chart.js/auto";
 

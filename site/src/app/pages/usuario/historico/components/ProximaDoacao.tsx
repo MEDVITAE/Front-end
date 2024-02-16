@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { TarefasService } from "../../../../shared/sevice/api/tarefas/TarefasService";
 
 export const ProximaDoacao = () => {
 

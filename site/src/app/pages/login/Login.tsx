@@ -1,13 +1,17 @@
-import '../../../html-css-template/css/login.css'
-import '../../../html-css-template/css/geral.css'
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+
+import { SetStateAction, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+//teste
+import { 
+    ILogin, 
+    ITokenId, 
+    TarefasService 
+} from '../../shared/sevice/api/tarefas/TarefasService';
 
 import { vetorImg } from '../../shared/components/imagens';
 import { vetorIcon } from '../../shared/components/imagens';
-import { ILogin, ITokenId, TarefasService } from '../../shared/sevice/api/tarefas/TarefasService';
-import { useNavigate } from 'react-router-dom';
-import { SetStateAction, useState } from 'react';
+
 import { ApiException } from '../../shared/sevice/api/ApiException';
 
 export const Login = () => {

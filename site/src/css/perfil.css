@@ -1,0 +1,135 @@
+.mainPerfil {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    position: relative;
+}
+
+.divPerfil {
+    width: 75%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    margin-left: 5%;
+}
+
+
+.mr-bt {
+    margin-top: 12px;
+}
+
+.statusBox_1 {
+    height: 34vh;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+}
+
+.statusBox_2 {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+}
+
+.statusBoxRow {
+    height: 80vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: top;
+}
+
+.statusBoxItem {
+    height: 40vh;
+    width: 80%;
+    display: flex;
+    justify-content: start;
+}
+
+.statusBoxItemColmun {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 24%;
+    align-items: start;
+    justify-content: start;
+    margin: 00px 10px;
+}
+
+.boxItem {
+    width: 100%;
+}
+
+.box {
+    width: 85%;
+    height: 18vh;
+    margin-top: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_icon{
+    width: 100px;
+}
+
+.campoUsuario {
+    width: 100%;
+    height: 4vh;
+    margin: 9px 0;
+}
+
+
+.btnBoxItem {
+    width: 80%;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+#picture__inputPerfil {
+    display: none;
+}
+
+.div_picture {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px dashed black;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: sans-serif;
+    outline: none;
+    overflow: hidden;
+    margin: 10px 0 0 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-weight: 600;
+}
+
+.picture:hover {
+    background: #eee;
+}
+
+.picture:active {
+    background: #eee;
+}
+
+.picture__image {
+    max-width: 100%;
+}

@@ -1,4 +1,4 @@
-import '../../../../html-css-template/css/Agendamento.css'
+import Swal from 'sweetalert2';
 
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { Agenda } from './components/Agenda';
 import { Horario } from './components/Horario';
 import { Hemocentro } from './components/Hemocentro';
+
+import { TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
+
 import { vetorIcon } from '../../../shared/components/imagens';
 import { MenuPerfilUsuario, OndaLateralEsquerda } from '../../../shared/components';
-import Swal from 'sweetalert2';
-import { TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
 
 export const Agendamento = () => {
 
@@ -111,7 +112,7 @@ export const Agendamento = () => {
             TarefasService.createAgendamento({
                 fkHospital: Number(idHemo),
                 fkUsuario: Number(idUsuario),
-                Horario: horario ? horario : ''
+                Horario: horario ? horario : '' 
             }, tokenSession ? tokenSession : '')
             .then(async (result) => {
 

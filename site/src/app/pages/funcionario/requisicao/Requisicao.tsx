@@ -1,8 +1,6 @@
-import { useCallback, useState } from "react";
-
 import Swal from 'sweetalert2';
 
-import '../../../../html-css-template/css/telaRequisicao.css'
+import { useCallback, useState } from "react";
 
 import { TarefasService, IEnviaEmail } from "../../../shared/sevice/api/tarefas/TarefasService";
 

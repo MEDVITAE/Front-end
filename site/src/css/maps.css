@@ -1,0 +1,90 @@
+@import url(geral.css);
+
+.conteudo1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.mapaMundi {
+    width: 80%;
+    height: 100vh;
+    font-weight: var(--semibold);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.topo {
+    margin-top: 2%;
+    width: 95%;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo {
+    width: 20%;
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 20px;
+}
+
+/* .selecionaCep {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.selecionaCep input {
+    border-radius: 20PX;
+    border: 1px black solid;
+    height: 30%;
+    width: 80%;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'roboto';
+} */
+
+.logo {
+    height: 100%;
+    width: 40%;
+}
+.logo img{
+    height: 75%;
+}
+.ondas{
+    height: 100vh;
+    width: 80%;
+    position: absolute;
+    z-index: -9999;
+    display: flex;
+    justify-content: flex-end;
+}
+.waves{
+    height: 100vh;
+   
+}
+.waves img{
+    height: 100vh;
+    width: 100%;
+}
+.mapa{
+    width: 92%;
+    height: 70vh;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+ 
+}
+.map{
+    border-radius: 100px;
+    width: 90%;
+    height: 100%;
+}

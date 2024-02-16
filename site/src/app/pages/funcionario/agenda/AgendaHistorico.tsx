@@ -1,10 +1,18 @@
-import '../../../../html-css-template/css/AgendaDoacao.css'
-import { MenuPerfilFuncionario, OndaLateralEsquerda } from "../../../shared/components";
-import { useEffect, useState } from 'react';
-import { IAgendamentosHospital, TarefasService } from '../../../shared/sevice/api/tarefas/TarefasService';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ApiException } from '../../../shared/sevice/api/ApiException';
 import Swal from 'sweetalert2'
+
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { 
+    MenuPerfilFuncionario, 
+    OndaLateralEsquerda 
+} from "../../../shared/components";
+
+import { 
+    IAgendamentosHospital, 
+    TarefasService 
+} from '../../../shared/sevice/api/tarefas/TarefasService';
+import { ApiException } from '../../../shared/sevice/api/ApiException';
 
 export const AgendaHistorico = () => {
     const navegando = useNavigate();

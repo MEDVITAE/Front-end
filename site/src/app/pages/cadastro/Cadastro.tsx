@@ -1,6 +1,3 @@
-import "../../../html-css-template/css/Cadastro.css";
-import "../../../html-css-template/css/geral.css";
-
 import Swal from "sweetalert2";
 
 import { useRef, useState } from "react";

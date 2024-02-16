@@ -1,6 +1,7 @@
-import '../../../../../html-css-template/css/HemocentroEHorario.css'
-import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+
+import { useEffect, useState } from 'react';
+
 import { IAgenda, TarefasService } from '../../../../shared/sevice/api/tarefas/TarefasService';
 import { ApiException } from '../../../../shared/sevice/api/ApiException';
 
@@ -153,7 +154,6 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
                             const isHorarioOcupado = horarioIndisponivel.some((item) => {
                                 const hora = new Date(item.horario);
                                 const horaFormatada = `${hora.getHours() < 10 ? '0' : ''}${hora.getHours()}:${(hora.getMinutes() < 10 ? '0' : '')}${hora.getMinutes()}`;
-                                console.log(horaFormatada );
                                 return horaFormatada === vetor.hora;
                             });
 

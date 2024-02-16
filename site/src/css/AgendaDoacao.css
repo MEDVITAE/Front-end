@@ -1,0 +1,84 @@
+@import url(geral.css);
+
+.mainAgendaDoacao {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    position: relative;
+}
+
+.divAgendaDoacao {
+    height: 90vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    margin-left: 5%;
+}
+
+.AgendaDoacaoBox {
+    margin-top: 9%;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+}
+
+.AgendamentosBox {
+    margin-top: 2%;
+    height: 70vh;
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.AgendamentosBox .box_3{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ff6666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #000000 solid 1px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+.box_3 .agendamentos{
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: none;
+}
+
+.box_3 .agendamentos::-webkit-scrollbar {
+    display: none;
+}
+
+.agendamentos .btn_agenda{
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 20px;
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+
+.btn_agenda p{
+    margin: auto 15px;
+}
+
+.button_csv{
+    margin-top: 30px;
+    width: auto;
+    padding: 0 10px;
+    height: 50px;
+}

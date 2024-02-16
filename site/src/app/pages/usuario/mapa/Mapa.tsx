@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
-import '../../../../html-css-template/css/maps.css'
-
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { EnderecoService, IEndereco, ICoords } from "../../../shared/sevice/api/tarefas/EnderecoService";
 import Swal from 'sweetalert2';

@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 
-import '../../../../../html-css-template/css/Agenda.css'
 import Swal from 'sweetalert2';
-
 
 export const Agenda = () => {
   const hoje = new Date();
@@ -55,7 +52,7 @@ export const Agenda = () => {
       const diaDaSemana = date.getDay();
       if (diaDaSemana !== 0 && diaDaSemana !== 6) {
         setDataSelecionada(date);
-        sessionStorage.setItem('data', date.getFullYear() + "-" + (Number(date.getMonth()) + 1) + "-" + (date.getDate() < 10 ? '0' : '') + date.getDate());
+        sessionStorage.setItem('data', date.getFullYear() + "-" + (date.getMonth() < 10 ? '0' : '') + (Number(date.getMonth()) + 1) + "-" + (date.getDate() < 10 ? '0' : '') + date.getDate());
         showChosenDate("Agora, selecione um Hemocentro caso ainda não o tenha escolhido.")
       }
       else {

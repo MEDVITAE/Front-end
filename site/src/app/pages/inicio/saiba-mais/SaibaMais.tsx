@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 import '../../../../html-css-template/css/telaSaibaMais.css'
+>>>>>>> qa
 import { vetorIcon, vetorImg } from '../../../shared/components/imagens';
 
 export const SaibaMais = () => {
