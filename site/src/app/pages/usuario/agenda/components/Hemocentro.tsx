@@ -55,8 +55,6 @@ export const Hemocentro: React.FC<IHemocentroProps> = ({ onChange }) => {
             if (result instanceof Error) {
                 showChosenHemocentro("Erro ao carregar Hemocentros");
             } else {
-                console.log(result);
-
                 setRows(result.data.filter((item) =>
                 item.nome.toLowerCase().includes(busca.toLowerCase())
             ));

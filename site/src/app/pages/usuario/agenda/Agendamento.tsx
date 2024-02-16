@@ -111,7 +111,7 @@ export const Agendamento = () => {
             TarefasService.createAgendamento({
                 fkHospital: Number(idHemo),
                 fkUsuario: Number(idUsuario),
-                Horario: horario ? horario : ''
+                Horario: horario ? horario : '' 
             }, tokenSession ? tokenSession : '')
             .then(async (result) => {
 

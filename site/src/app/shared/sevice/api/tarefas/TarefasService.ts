@@ -170,13 +170,6 @@ export interface IHistoricoDeAgendamento {
     hospital: IHospitalParaHistorico[];
   }
 
-export interface ICriarAgendamento {
-    fkUsuario: number;
-    fkHospital: number;
-    Horario: string;
-}
-
-
 export interface IEnviaEmail {
     ownerRef: string;
     emailFrom: string;

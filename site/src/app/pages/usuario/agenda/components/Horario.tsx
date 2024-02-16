@@ -153,7 +153,6 @@ export const Horario: React.FC<IHorarioProps> = ({ onChange }) => {
                             const isHorarioOcupado = horarioIndisponivel.some((item) => {
                                 const hora = new Date(item.horario);
                                 const horaFormatada = `${hora.getHours() < 10 ? '0' : ''}${hora.getHours()}:${(hora.getMinutes() < 10 ? '0' : '')}${hora.getMinutes()}`;
-                                console.log(horaFormatada );
                                 return horaFormatada === vetor.hora;
                             });
 
