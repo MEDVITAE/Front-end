@@ -43,8 +43,8 @@ export const Routes = () => {
 
                 <Route path="/cadastro-usuario" element={<Cadastro />} />
                 <Route path="/cadastro-usuario/complementar" element={<CadastroDados />} />
-                <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
-                <Route path="/cadastro-empresa/complementar" element={<CadastroEmpresaDados />} />
+                <Route path="/cadastro-empresa" element={<CadastroEmpresaDados />} />
+                <Route path="/cadastro-empresa/complementar" element={<CadastroEmpresa />} />
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/perfil-usuario" element={<Perfil />} />

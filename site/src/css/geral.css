@@ -180,7 +180,7 @@ li {
     /*BOLD*/
     .bold-30 {
         font-weight: var(--bold);
-        font-size: 30;
+        font-size: 30px;
     }
 
     .bold-24 {

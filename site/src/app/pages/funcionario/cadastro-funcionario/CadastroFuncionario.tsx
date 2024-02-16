@@ -186,7 +186,7 @@ export const CadastroFuncionario = () => {
             </label>
             <input
               id="arquivoInput"
-              className="campoFuncionario roboto bold-30"
+              className="campoFuncionario roboto sbold-16"
               type="file"
               accept=".txt"
               capture="environment"
@@ -200,7 +200,7 @@ export const CadastroFuncionario = () => {
               <div className="cadastroInputs">
                 <div className="esquerda">
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     type="text"
                     placeholder={"Nome Completo"}
                     value={nome}
@@ -208,7 +208,7 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setNome(newValue)}
                   />
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     type="number"
                     placeholder={"CPF"}
                     value={cpf}
@@ -216,7 +216,7 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setCpf(newValue)}
                   />
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     type="text"
                     placeholder={"Cargo"}
                     value={cargo}
@@ -226,7 +226,7 @@ export const CadastroFuncionario = () => {
                 </div>
                 <div className="esquerda">
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     type="text"
                     placeholder={"Email"}
                     value={email}
@@ -234,13 +234,13 @@ export const CadastroFuncionario = () => {
                     onChange={(newValue) => setEmail(newValue)}
                   />
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     placeholder={"Senha"}
                     value={senha}
                     onChange={(newValue) => setSenha(newValue)}
                   />
                   <Input
-                    className={"campoFuncionario roboto bold-30"}
+                    className={"campoFuncionario roboto sbold-16"}
                     type="text"
                     placeholder={"Confirma senha"}
                     value={confSenha}

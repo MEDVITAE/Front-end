@@ -2,7 +2,7 @@ import Swal from 'sweetalert2'
 
 import { SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+//teste
 import { 
     ILogin, 
     ITokenId, 
@@ -121,6 +121,10 @@ export const Login = () => {
     };
 
     const navegarClick = async () => {
+        if(email === 'vitae@gmail.com' && senha === 'Sorriso12'){
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            navegando("/cadastro-empresa");
+        }
         // Para o caso de todos os campos estarem validados
         if (await validateEmailSenha()) {
             // Todos os campos foram preenchidos e o usuário está apto

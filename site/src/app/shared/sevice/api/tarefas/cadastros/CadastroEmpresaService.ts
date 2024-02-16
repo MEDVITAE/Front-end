@@ -2,6 +2,7 @@ import { Api } from "../../ApiConfig";
 import { ApiException } from "../../ApiException";
 
 export interface ICadastroEmpresa {
+    id?: string;
     nome: string;
     email: string | null;
     senha: string | null;

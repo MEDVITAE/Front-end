@@ -17,8 +17,9 @@
     overflow-y: scroll;
 
     background-color: var(--branco);
+    border-radius: 20px;
     border-style: solid;
-    border-color: var(--azul-escuro);
+    border-color: var(--azul-real);
 }
 
 .caixaHemo .formularioAgenda::-webkit-scrollbar {
@@ -50,7 +51,9 @@
     width: 90%;
     height: 8vh;
     padding-left: 2%;
-    border-radius: 6px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: var(--azul-real);
 }
 
 .caixaHemo .formularioAgenda .headerHomo h1 {
@@ -123,8 +126,12 @@
 }
 
 .disponivel{
-    border: solid 3px var(--azul-escuro);
+    border: solid 3px var(--azul-real);
     border-radius: 5px;
+}
+
+.disponivel:hover{
+    background-color: var(--azul-claro);
 }
 
 .caixaHemo .formularioAgenda .historicoAgenda .hemo {
@@ -150,6 +157,9 @@
     border-radius: 7px;
     border: none;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     cursor: pointer;
 }

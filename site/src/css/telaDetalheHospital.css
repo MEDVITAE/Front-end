@@ -23,14 +23,10 @@
     margin-left: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: solid 1px black;
-    padding: 30px;
+    padding: 20px;
     background-color: #ff6666;
 }
 
-.titleQuadro {
-    margin-left: 30px;
-    margin-bottom: 10px;
-}
 
 .opitionUm {
     font-family: "rowdies";
@@ -81,7 +77,7 @@
 
 .flexColumn {
     display: flex;
-    height: 40px;
+    justify-content: center;
 }
 
 .quizDois .comboBox {

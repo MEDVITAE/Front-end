@@ -93,14 +93,11 @@ export const CadastroDoacao = () => {
   }, [cpf]);
 
   const validateForm = async () => {
-    if (cpf === "" || litros === "" || tipoSanguineo === "") {
+    if (litros === "" || tipoSanguineo === "") {
       showValidationErrorModal("Os Campos não pode estar em branco");
       return false;
-    } else if (parseInt(cpf) < 0 || parseFloat(litros) < 0) {
+    } else if (parseFloat(litros) < 0) {
       showValidationErrorModal("Valores negativos inseridos");
-      return false;
-    } else if (cpf.length != 11) {
-      showValidationErrorModal("CPF inválido");
       return false;
     } else if (!tipoSanguineo.toUpperCase) {
       showValidationErrorModal(

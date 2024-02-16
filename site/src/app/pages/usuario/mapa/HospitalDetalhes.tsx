@@ -2,21 +2,41 @@ import { useState, useEffect } from 'react';
 
 import { MenuPerfilUsuario, OndaLateralEsquerda } from "../../../shared/components";
 import { HospitalService, IHospital } from "../../../shared/sevice/api/tarefas/HospitalService";
+import Swal from 'sweetalert2';
 
 export const HospitalDetalhes = () => {
     const [Hosp, setHosp] = useState<IHospital | null>(null);
+
+    const showWrongForm = (message: string) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        Toast.fire({
+            icon: "error",
+            title: message
+        });
+    };
 
     useEffect(() => {
         HospitalService.getAll()
             .then((result) => {
                 if (result instanceof Error) {
-                    alert(result.message);
+                    showWrongForm(result.message);
                 } else {
                     setHosp(result);
                 }
             })
             .catch((error) => {
-                alert(error.message || 'Erro ao buscar dados.');
+                showWrongForm(error.message || 'Erro ao buscar dados.');
             });
     }, []);
 
